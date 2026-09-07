@@ -17,6 +17,9 @@
   	
     "frontend1" : "Growing up in the 90s meant grwoing up side-by-side with the internet and all the technologies that came along with it. I disovered in various IT classes early on that I have a passion for creating interfaces. Over the years I used plain HTML/CSS, Wordpress, FTP, Typo3 etc. to host websites for schoolclasses, clubs and hobbies. Always staying up to date with the latest libraries and frameworks enabled me to create increasingly good solutions.",
   	"frontend2" : "Since the release of the first smartphones, a brand new need for user friendly interfaces emerged. Screens of all sized and formats needed to be considered. Responsive Layout and Cross Platform deployability became more and more relevant. For me that meant to focus on technologies that can deploy interfaces across all common device types like Flutter, Electron and React. ",
+
+    "backend1": "I’m comfortable working on complex backend and API systems, from building REST APIs to connecting services and data layers. While backend development isn’t my full-time focus, I can build and maintain reliable systems with C# and ASP.NET when the project requires it.",
+    "backend2": "My focus is on clean interfaces, predictable data flows, and secure, testable architecture. I work with authentication, business logic, and API design in a way that supports both user-facing applications and long-term product stability.",
     
     "unity1" : "During my university studies, I worked with Unity to build interactive prototypes and simulations, turning abstract ideas into hands-on, testable experiences. This is where I developed a strong mindset for rapid iteration and user-focused design.",
     "unity2" : "I brought this experience into my first professional role, where I worked on prototypes for automotive user interfaces. Using Unity, I created and tested HMI concepts early on, helping connect design ideas with technical implementation and real-world automotive use cases.",

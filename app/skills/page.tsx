@@ -22,10 +22,10 @@ export default function SkillsPage({ id }: { id?: string }){
     { name: "Visual Studio / VS Code", url: "https://code.visualstudio.com/" },
     { name: "React", url: "https://react.dev/" },
     { name: "React Native", url: "https://reactnative.dev/" },
+    { name: "Android Studio", url: "https://developer.android.com/studio" },
     { name: "Flutter", url: "https://flutter.dev/" },
     { name: "Next.js", url: "https://nextjs.org/" },
-    { name: "Unity", url: "https://unity.com/" },
-    { name: "Figma", url: "https://www.figma.com/" },
+    { name: "Unity", url: "https://unity.com/" }
   ];
 
   const languages = [
@@ -47,9 +47,10 @@ export default function SkillsPage({ id }: { id?: string }){
   ];
 
   const creativeTools = [
+    { name: "Figma", url: "https://www.figma.com/" },
+    { name: "Adobe Creative Cloud", url: "https://www.adobe.com/products/photoshop.html" },
     { name: "Cinema 4D", url: "https://www.maxon.net/en/cinema-4d" },
     { name: "Blender", url: "https://www.blender.org/" },
-    { name: "Adobe Creative Cloud", url: "https://www.adobe.com/products/photoshop.html" },
     { name: "Office 365", url: "https://www.microsoft.com/en-us/microsoft-365/" }
   ];
 
@@ -68,12 +69,21 @@ export default function SkillsPage({ id }: { id?: string }){
         <Typography variant="h6">{title}</Typography>
       </Stack>
 
-      <Divider sx={{ my: 2, borderColor: "border.secondary"}} />
+      <Divider
+        sx={{
+          my: 2,
+          border: 0,
+          height: 2,
+          background: 'linear-gradient(90deg, rgba(59, 134, 219, 0.95) 0%, rgba(103, 192, 255, 1) 100%)',
+          opacity: 1,
+        }}
+      />
       
       <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        {items.map((item) => {
+        {items.map((item, index) => {
           const itemName = typeof item === 'string' ? item : item.name;
           const itemUrl = typeof item === 'string' ? null : item.url;
+          const isDarkChip = index % 2 === 1;
           
           return (
             <Chip           
@@ -83,10 +93,12 @@ export default function SkillsPage({ id }: { id?: string }){
               sx={{
                 cursor: itemUrl ? 'pointer' : 'default',
                 transition: 'all 0.2s ease',
+                backgroundColor: isDarkChip ? 'rgba(59, 134, 219, 0.72)' : undefined,
+                color: 'text.secondary',
                 ...(itemUrl && {
                   '&:hover': {
-         
-                    bgcolor: "#eda916",  
+                    bgcolor: "#eda916",
+                    color: '#111',
                     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                   }
                 })
@@ -158,13 +170,25 @@ export default function SkillsPage({ id }: { id?: string }){
         );
       })}
 
-      <Divider  sx={{ my: 3, borderColor: "border.secondary" }} />
+      <Divider
+        sx={{
+          my: 3,
+          border: 0,
+          height: 2,
+          background: 'linear-gradient(90deg, rgba(31, 89, 173, 0.95) 0%, rgba(79, 163, 255, 1) 100%)',
+          opacity: 1,
+        }}
+      />
 
       <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        {chips.map((item) => (
-          <Chip          
-            key={item}
+        {chips.map((item, index) => (
+          <Chip
+            key={index}
             label={item}
+            sx={{
+              backgroundColor: index % 2 === 1 ? 'rgba(59, 134, 219, 0.72)' : undefined,
+              color: 'text.secondary',
+            }}
           />
         ))}
       </Stack>
@@ -192,6 +216,14 @@ export default function SkillsPage({ id }: { id?: string }){
             </IconButton>
           </Stack>
         }
+
+       <SkillArticle
+          bgIcon={<DrawIcon sx={{ color:"white", fontSize: 220 }} />}
+          title="User Experience Design"
+          paragraphs={[t("ux1")]}
+          chips={["Usability", "Storytelling", "Design Thinking", "User Centered Design", "Wireframing"]}
+        />
+
         <SkillArticle
           bgIcon={<AssignmentIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Project Management"         
@@ -199,27 +231,29 @@ export default function SkillsPage({ id }: { id?: string }){
           chips={["Product Owner", "Scrum Master"]}
         />
 
-       <SkillArticle
-          bgIcon={<DrawIcon sx={{ color:"white", fontSize: 220 }} />}
-          title="User Experience Design"
-          paragraphs={[t("ux1")]}
-          chips={["Usability", "Design Thinking", "User Focussed"]}
-        />
-
         <SkillArticle  
           bgIcon={<PhonelinkIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Frontend & Mobile Development"
           paragraphs={[t("frontend1"), t("frontend2")]}
-          chips={["Cross Platform", "Responsive Layout"]}
+          chips={["Cross Platform", "Responsive Layout", "Web Apps", "Mobile Apps", "Data Visualization"]}
+        />
+
+        <SkillArticle
+          bgIcon={<CodeIcon sx={{ color:"white", fontSize: 220 }} />}
+          title="Backend Development"
+          paragraphs={[t("backend1"), t("backend2")]}
+          chips={["REST APIs", "ASP.NET"]}
         />
 
         <SkillArticle
           bgIcon={<Image width={250} src={UnityLogo} alt={"unity"}/>}
           title="Unity Development"
           paragraphs={[t("unity1"), t("unity2"), t("unity3")]}
-          chips={["Automotive Interfaces", "Mixed Reality", "Realtime 3D", "Data Visualization", "Prototyping"]}
+          chips={["Automotive Interfaces", "Mixed Reality", "Realtime 3D", "Data Visualization", "Prototyping", "Game Development"]}
         />
-        
+
+
+
         <Typography mt={6} mb={2} variant="h5" component="h1">
           {t("tools")}
         </Typography>
