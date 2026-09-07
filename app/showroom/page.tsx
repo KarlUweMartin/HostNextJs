@@ -17,6 +17,7 @@ import { WaterLevelModal } from "../components/waterlevelModal";
 import PlayIcon from '@mui/icons-material/PlayArrow';
 import { BackButton } from "../sections/backbutton";
 import WebAssetIcon from '@mui/icons-material/WebAsset';
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 function FeatureContent({ title, body, imgSrc }) {
   return (
@@ -52,10 +53,11 @@ function FeatureContent({ title, body, imgSrc }) {
   );
 }
 
-function Feature({ title, body, href, imgSrc, onOpen }: { 
+function Feature({ title, body, href, git, imgSrc, onOpen }: { 
   title: string; 
   body: React.ReactNode; 
-  href: string; 
+  href?: string; 
+  git?: string;
   imgSrc: string; 
   onOpen?: (href: string, title: string) => void;
 }) {
@@ -73,12 +75,27 @@ function Feature({ title, body, href, imgSrc, onOpen }: {
       }}
     >
       <FeatureContent body={body} title={title} imgSrc={imgSrc} />
-      <IconButton
-        onClick={showModal ? () => onOpen(href, title) : undefined}
-        href={showModal ? undefined : href}
-        sx={{ boxShadow: 1, borderRadius: "50%", width: 44, height: 44, m: 2, ml: "auto" }}>
-        <PlayIcon />
-      </IconButton>
+      <Stack spacing={1} m={2} direction={"row"} alignItems={"center"} justifyContent="flex-end">
+        {git && (
+        <IconButton
+          title="GitHub"
+          href={git}
+          target={"_blank"}
+          rel={"noopener noreferrer"}
+          sx={{ boxShadow: 1, borderRadius: "50%", width: 44, height: 44 }}>
+          <GitHubIcon />
+        </IconButton>
+        )}
+        {href && (
+          <IconButton
+            title="Play"
+            onClick={showModal ? () => onOpen(href, title) : undefined}
+            href={showModal ? undefined : href}
+            sx={{ boxShadow: 1, borderRadius: "50%", width: 44, height: 44}}>
+            <PlayIcon />
+          </IconButton>
+          )}
+      </Stack>
     </Card>
   );
 }
@@ -138,6 +155,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               title="Satellites"
               body={t.rich("satellitesDescription")}
               href='/satellites/index.html'
+              git={"https://github.com/KarlUweMartin/Unity_Satellites"}
               imgSrc={"/thumbSat.png"}
               onOpen={openIframe}
             />
@@ -148,6 +166,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               title="Orbit Sandbox"
               body={t.rich("orbitSandboxDescription")}
               href='/orbitSandbox/index.html'
+              git={"https://github.com/KarlUweMartin/Unity_OrbitParadise"}
               imgSrc={"/orbitSandbox.jpg"}
               onOpen={openIframe}
             />
@@ -159,6 +178,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               body={t.rich("cubePuzzleDescription")}
               href='/cubeGame/index.html'
               imgSrc={"/thumbCube.png"}
+              git={"https://github.com/KarlUweMartin/Unity_CubePuzzle"}
               onOpen={openIframe}
             />
           </Grid>
@@ -167,7 +187,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
             <Feature
               title="Shop-App Tempate"
               body={t.rich("flutterDescription")}
-              href="https://github.com/KarlUweMartin/WebApi-Flutter-Template"
+              git="https://github.com/KarlUweMartin/WebApi-Flutter-Template"
               imgSrc={"/thumbFlutter.png"}
             />
           </Grid>
