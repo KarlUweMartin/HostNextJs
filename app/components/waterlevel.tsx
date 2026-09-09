@@ -1,4 +1,5 @@
 import { LineChart } from '@mui/x-charts/LineChart';
+import { areaElementClasses } from '@mui/x-charts/LineChart';
 import { useEffect, useState } from 'react';
 import { Box, Checkbox, FormControlLabel, Link, MenuItem,
    Select, SelectChangeEvent, Stack, useTheme } from '@mui/material';
@@ -76,14 +77,25 @@ export default function Waterlevel() {
       label: "Rhein / Speyer",
       showMark: false,
       id: "speyer",
+      area: true,
     },
     showNeckar && {
       data: dataHeidelberg.map((d) => d.value),
       label: "Neckar / Heidelberg",
       showMark: false,
       id: "heidelberg",
+      area: true,
     },
   ].filter(Boolean);
+
+  const activeValues = [
+    showRhein ? dataSpeyer : [],
+    showNeckar ? dataHeidelberg : [],
+  ]
+    .flatMap((data) => data.map((measurement) => measurement.value))
+    .filter((value): value is number => value !== null);
+  const yAxisMin = activeValues.length > 0 ? Math.min(...activeValues) - 15 : undefined;
+  const yAxisMax = activeValues.length > 0 ? Math.max(...activeValues) + 15 : undefined;
 
   return (
     <Box p={2} minHeight={350} height="100%" display="flex" flexDirection="column">
@@ -142,9 +154,17 @@ export default function Waterlevel() {
       <LineChart
         colors={[theme.palette.data.cyan, theme.palette.data.blue]}
         series={series}
+        sx={{
+          [`& .${areaElementClasses.root}[data-series="speyer"]`]: {
+            fill: 'url(#waterlevel-gradient-speyer)',
+          },
+          [`& .${areaElementClasses.root}[data-series="heidelberg"]`]: {
+            fill: 'url(#waterlevel-gradient-heidelberg)',
+          },
+        }}
         slotProps={{
           tooltip: {
-            sx: {
+            sx: {    
               '& .MuiPaper-root': {
                 backgroundColor: '#333333', // Change this to your desired background color
                 color: '#ffffff',             // Optional: change text color
@@ -167,7 +187,19 @@ export default function Waterlevel() {
               });
             },
           },
-        ]}>
+        ]}
+        yAxis={[{ min: yAxisMin, max: yAxisMax }]}
+      >
+        <defs>
+          <linearGradient id="waterlevel-gradient-speyer" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={theme.palette.data.cyan} stopOpacity={0.45} />
+            <stop offset="100%" stopColor={theme.palette.data.cyan} stopOpacity={0} />
+          </linearGradient>
+          <linearGradient id="waterlevel-gradient-heidelberg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={theme.palette.data.blue} stopOpacity={0.45} />
+            <stop offset="100%" stopColor={theme.palette.data.blue} stopOpacity={0} />
+          </linearGradient>
+        </defs>
       </LineChart>
       <Link href={"https://www.pegelonline.wsv.de"} fontSize={"0.8em"} variant="body2" mx={3}>API: pegelonline.wsv.de</Link>
     </Box>
