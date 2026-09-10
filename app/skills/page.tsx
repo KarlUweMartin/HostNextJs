@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography, Chip, Stack, Divider, IconButton } from "@mui/material";
+import { Box, Container, Typography, Chip, Stack, IconButton } from "@mui/material";
 import CodeIcon from '@mui/icons-material/SettingsEthernet';
 import { useTranslations } from "next-intl";
 import { ReactElement } from "react";

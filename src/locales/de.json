@@ -5,7 +5,7 @@
     "orbitSandboxDescription": "Eine farbenfrohe Simulation zur Erkundung von Masse, Impuls und Gravitation. Wische oder ziehe, um Objekte zu erstellen, und beobachte, wie sie mit dem zentralen Stern interagieren.",
     "flutterDescription": "Flutter-Template für eine Shop-App – inklusive funktionsfähigem Backend mit REST-API. Der Code ist auf GitHub verfügbar.",
     "cubePuzzleDescription": "Nachbildung des berühmten Würfelpuzzles, das kaum jemand lösen kann. Mir war wichtig, ein realistisches Look-and-Feel sowie eine klare und intuitive Steuerung umzusetzen.",
-    "droneSimDescription": "Phyikalisch realistische Simulation einer Quadcopter-Drohne mit einstellbaren PID-Reglern.",
+    "droneSimDescription": "Physikalisch realistische Simulation einer Quadcopter-Drohne mit einstellbaren PID-Reglern.",
     "days": "Tag/e",
     "waterlevelHead": "Als Angler ist für mich wichtig, die aktuellen Wasserstände der Flüsse meiner Region zu kennen."
   },
@@ -57,7 +57,8 @@
     "head": "Du hast eine Frage oder möchtest zusammenarbeiten? Melde dich gerne!"
   },
   "Nav": {
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "tagline": "Ich gestalte und entwickle ansprechende digitale Interfaces"
   },
   "NotFound": {
     "title": "Seite nicht gefunden",

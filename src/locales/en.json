@@ -1,13 +1,13 @@
 {
   "Showroom": {
-    "showroomHead": "Try out and see some of my work. Here you find a mix of visual explorations, OSS-Projects or other random ideas I created in the last few years.",
-    "satellitesDescription": "3D visualization of all plublicly documented satellites that orbit earth at this moment. Data provided by NORAD.",
+    "showroomHead": "Try out and see some of my work. Here you will find a mix of visual explorations, OSS projects, and other random ideas I created in the last few years.",
+    "satellitesDescription": "3D visualization of all publicly documented satellites that orbit Earth at this moment. Data provided by NORAD.",
     "orbitSandboxDescription": "A colorful simulation to explore mass, momentum, and gravity. Swipe or drag to create objects and watch them interact with the central star.",
     "flutterDescription": "Flutter Template for a Shop-App - including a functional backend with REST-API. Code is available on GitHub.",
-    "cubePuzzleDescription": "Recreating the famous cube puzzle hardly anyone can solve. I wanted it to have a realistic look and feel and straight forward contolls.",
+    "cubePuzzleDescription": "Recreating the famous cube puzzle hardly anyone can solve. I wanted it to have a realistic look and feel and straightforward controls.",
     "droneSimDescription": "Physically realistic simulation of a quadcopter drone with adjustable PID controllers.",
     "days": "Day/s",
-    "waterlevelHead": "Knowing the water level of the rivers in my area is crutial for a fisherman like myself."
+    "waterlevelHead": "Knowing the water level of the rivers in my area is crucial for a fisherman like myself."
   },
   "Skills" : {
     "ux1" : "User Experience Design (UXD) focuses on creating applications that are intuitive, efficient, and enjoyable to use. I connect user needs with technical implementation by turning goals and workflows into clear interfaces, consistent interactions, and predictable system behavior. From a programming perspective, UXD is not only about visuals - it also includes performance, responsiveness, accessibility, error handling, and feedback. By designing and building with the user in mind, I help reduce friction, improve usability, and create software that feels reliable and easy to navigate.",
@@ -15,8 +15,8 @@
     "management1": "The backbone of successful projects is strong teamwork at every stage of the process. As a Product Owner, I translate research and stakeholder input into clear requirements, prioritize the backlog, and define product goals and a structured roadmap. Good communication skills and a healthy level of empathy are key to building an efficient team that shares common goals.",
   	"management2": "As a Scrum Master, I organize team meetings, remove blockers, and support the team in working efficiently and collaboratively. In my view, the conventional Scrum process has its flaws and doesn't apply equally well to every team. I have never hesitated to adapt the workflow by introducing my own ideas and adjustments - an approach that has proven successful in past projects.",
   	
-    "frontend1" : "Growing up in the 90s meant grwoing up side-by-side with the internet and all the technologies that came along with it. I disovered in various IT classes early on that I have a passion for creating interfaces. Over the years I used plain HTML/CSS, Wordpress, FTP, Typo3 etc. to host websites for schoolclasses, clubs and hobbies. Always staying up to date with the latest libraries and frameworks enabled me to create increasingly good solutions.",
-  	"frontend2" : "Since the release of the first smartphones, a brand new need for user friendly interfaces emerged. Screens of all sized and formats needed to be considered. Responsive Layout and Cross Platform deployability became more and more relevant. For me that meant to focus on technologies that can deploy interfaces across all common device types like Flutter, Electron and React. ",
+    "frontend1" : "Growing up in the 90s meant growing up side-by-side with the internet and all the technologies that came along with it. I discovered in various IT classes early on that I have a passion for creating interfaces. Over the years I used plain HTML/CSS, WordPress, FTP, Typo3, etc. to host websites for school classes, clubs, and hobbies. Always staying up to date with the latest libraries and frameworks enabled me to create increasingly good solutions.",
+  	"frontend2" : "Since the release of the first smartphones, a brand-new need for user-friendly interfaces emerged. Screens of all sizes and formats needed to be considered. Responsive layouts and cross-platform deployability became more and more relevant. For me that meant focusing on technologies that can deploy interfaces across all common device types, like Flutter, Electron, and React. ",
 
     "backend1": "I’m comfortable working on complex backend and API systems, from building REST APIs to connecting services and data layers. While backend development isn’t my full-time focus, I can build and maintain reliable systems with C# and ASP.NET when the project requires it.",
     "backend2": "My focus is on clean interfaces, predictable data flows, and secure, testable architecture. I work with authentication, business logic, and API design in a way that supports both user-facing applications and long-term product stability.",
@@ -57,7 +57,8 @@
     "head" : "Have a question or want to collaborate? Feel free to reach out!"
   },
   "Nav" : {
-    "contact" : "Contact"
+    "contact" : "Contact",
+    "tagline" : "I design and build engaging digital interfaces"
   },
   "NotFound": {
     "title": "Page Not Found",

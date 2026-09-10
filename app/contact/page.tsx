@@ -24,7 +24,7 @@ export default function ContactPage({ id }: { id?: string }) {
   const t = useTranslations('Contact');
 
   return (
-    <Box sx={{ bgcolor: "background.defaultDark" }} id={id}>
+    <Box id={id}>
       <Container maxWidth="lg" sx={{ py: 15 }}>
         <Box sx={{ mb: 4 }}>
           <Typography variant="h4" sx={{ mb: 2 }}>

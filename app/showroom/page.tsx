@@ -132,7 +132,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
 
   return (
-    <Box sx={{ bgcolor: "background.defaultDark" }} id={id}>
+    <Box id={id}>
       <BackButton title={"Showroom"} disabled={!singlePage} />
       <Container  maxWidth="lg" sx={{ py: singlePage ? 2 : 5 }}>     
         {!singlePage && 
