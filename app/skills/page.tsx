@@ -16,6 +16,7 @@ import UnityLogo from "../../public/UnityLogo_White.svg";
 import { BackButton } from "../sections/backbutton";
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import React from "react";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 export default function SkillsPage({ id }: { id?: string }){
   const devTools = [
@@ -221,7 +222,7 @@ export default function SkillsPage({ id }: { id?: string }){
           bgIcon={<DrawIcon sx={{ color:"white", fontSize: 220 }} />}
           title="User Experience Design"
           paragraphs={[t("ux1")]}
-          chips={["Usability", "Storytelling", "Design Thinking", "User Centered Design", "Wireframing"]}
+          chips={["Storytelling", "Design Thinking", "Visual Design", "Interaction Design", "Wireframing", "Usability Testing" ]}
         />
 
         <SkillArticle
@@ -242,7 +243,14 @@ export default function SkillsPage({ id }: { id?: string }){
           bgIcon={<CodeIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Backend Development"
           paragraphs={[t("backend1"), t("backend2")]}
-          chips={["REST APIs", "ASP.NET"]}
+          chips={["REST APIs", "ASP.NET", "Docker", "DevOps", "CI/CD"]}
+        />
+
+        <SkillArticle
+          bgIcon={<SmartToyIcon sx={{ color:"white", fontSize: 220 }} />}
+          title="Artificial Intelligence"
+          paragraphs={[t("ai1"), t("ai2")]}
+          chips={["Agentic-Coding", "Model Deployment", "LLM", "RAG", "OCR", "Computer Vision"]}
         />
 
         <SkillArticle

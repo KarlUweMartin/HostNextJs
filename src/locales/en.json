@@ -25,6 +25,9 @@
     "unity2" : "I brought this experience into my first professional role, where I worked on prototypes for automotive user interfaces. Using Unity, I created and tested HMI concepts early on, helping connect design ideas with technical implementation and real-world automotive use cases.",
     "unity3" : "Alongside this, I worked on mixed reality projects, developing VR and AR experiences for devices like Microsoft HoloLens and Magic Leap. These projects focused on spatial interaction, immersive interfaces, and real-time simulations, allowing me to explore how users interact with digital content beyond traditional screens.",
     
+    "ai1" : "I started my IT career as a self-taught programmer. That means I’ve spent countless hours digging through Stack Overflow, GitHub, and documentation to learn about development and how to put my ideas into practice. My approach has always been, and is to this day, 'learning by doing'. Coding with AI has accelerated this process massively. No longer getting stuck with syntax issues, complex dependency stacks, or unique software patterns allows me to get fast results and see how it is supposed to be done, almost instantly.",
+    "ai2" : "My day-to-day programming with familiar technology has changed a lot with AI. Especially on frontend work, this means doing the same patterns many times. Not having to write everything out myself gives me more time to focus on the actual functionality and the usability of an interface",
+
     "head" : "Skills",
     "devTools" : "Development",
     "programming" : "Programming",

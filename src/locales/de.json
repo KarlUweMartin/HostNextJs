@@ -25,6 +25,9 @@
     "unity2" : "Diese Erfahrung habe ich in meine erste berufliche Station mitgenommen, wo ich Prototypen für Automotive-Benutzeroberflächen entwickelt habe. Mit Unity konnte ich HMI-Konzepte früh simulieren und testen und so eine Brücke zwischen Design, technischer Umsetzung und realen Anwendungsfällen im Fahrzeug schlagen.",
     "unity3" : "Parallel dazu habe ich an Mixed-Reality-Projekten gearbeitet und VR- und AR-Erlebnisse für Geräte wie Microsoft HoloLens und Magic Leap entwickelt. Der Fokus lag dabei auf räumlicher Interaktion, immersiven Benutzeroberflächen und Echtzeitsimulationen, wodurch ich meine Fähigkeiten im Prototyping für neue, über klassische Bildschirme hinausgehende Plattformen weiter ausbauen konnte.",
 
+    "ai1" : "Ich habe meine IT-Karriere als Autodidakt begonnen. Das bedeutet, dass ich unzählige Stunden damit verbracht habe, mich durch Stack Overflow, GitHub und Dokumentationen zu arbeiten, um Entwicklung zu verstehen und meine Ideen in die Praxis umzusetzen. Mein Ansatz war schon immer und ist es bis heute: „Learning by doing“. Das Programmieren mit KI hat diesen Prozess massiv beschleunigt. Wenn ich nicht mehr an Syntaxproblemen, komplexen Abhängigkeiten oder besonderen Softwaremustern festhänge, kann ich schnell Ergebnisse erzielen und nahezu sofort sehen, wie etwas umgesetzt werden sollte.",
+    "ai2" : "Meine tägliche Arbeit mit vertrauten Technologien hat sich durch KI stark verändert. Gerade bei der Frontend-Entwicklung bedeutet das oft, dieselben Muster immer wieder umzusetzen. Nicht mehr alles selbst ausformulieren zu müssen, gibt mir mehr Zeit, mich auf die eigentliche Funktionalität und die Benutzerfreundlichkeit eines Interfaces zu konzentrieren.",
+
     "head" : "Skills",
     "devTools": "Entwicklung",
     "programming": "Programmierung",
