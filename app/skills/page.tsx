@@ -1,11 +1,7 @@
 "use client";
 
-import { Box, Container, Typography,  Chip, Stack, Divider, Grid, IconButton } from "@mui/material";
-import HandymanIcon from '@mui/icons-material/Handyman';
+import { Box, Container, Typography, Chip, Stack, Divider, IconButton } from "@mui/material";
 import CodeIcon from '@mui/icons-material/SettingsEthernet';
-import BrushIcon from '@mui/icons-material/Brush';
-import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
-import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import { useTranslations } from "next-intl";
 import { ReactElement } from "react";
 import DrawIcon from '@mui/icons-material/Draw';
@@ -17,114 +13,93 @@ import { BackButton } from "../sections/backbutton";
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import React from "react";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import HandymanIcon from '@mui/icons-material/Handyman';
 
 export default function SkillsPage({ id }: { id?: string }){
-  const devTools = [
-    { name: "Visual Studio / VS Code", url: "https://code.visualstudio.com/" },
-    { name: "React", url: "https://react.dev/" },
-    { name: "React Native", url: "https://reactnative.dev/" },
-    { name: "Android Studio", url: "https://developer.android.com/studio" },
-    { name: "Flutter", url: "https://flutter.dev/" },
-    { name: "Next.js", url: "https://nextjs.org/" },
-    { name: "Unity", url: "https://unity.com/" }
-  ];
 
-  const languages = [
-    { name: "C# / .NET", url: "https://dotnet.microsoft.com/" }, 
-    { name: "HTML / CSS", url: "https://developer.mozilla.org/en-US/docs/Web/HTML/" }, 
-    { name: "JavaScript / TypeScript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/" },
-    { name: "Dart", url: "https://dart.dev/" },
-  ];
+  interface ChipRow {
+    name: string;
+    chips: string[];
+  }
 
-  const platforms = [
-    { name: "Windows", url: "https://www.microsoft.com/en-us/windows" },
-    { name: "Universal Windows Platform", url: "https://learn.microsoft.com/en-us/windows/uwp/" },
-    { name: "HoloLens 1, 2", url: "https://www.microsoft.com/en-us/hololens/" },
-    { name: "Magic Leap 2", url: "https://www.magicleap.com/" },
-    { name: "Android", url: "https://www.android.com/" },
-    { name: "iOS", url: "https://www.apple.com/ios/" },
-    { name: "Android VR", url: "https://developer.android.com/distribute/play-services/play-vr" },
-    { name: "Web", url: "https://www.w3.org/" },
-  ];
+  const t = useTranslations('Skills');
 
-  const creativeTools = [
-    { name: "Figma", url: "https://www.figma.com/" },
-    { name: "Adobe Creative Cloud", url: "https://www.adobe.com/products/photoshop.html" },
-    { name: "Cinema 4D", url: "https://www.maxon.net/en/cinema-4d" },
-    { name: "Blender", url: "https://www.blender.org/" },
-    { name: "Office 365", url: "https://www.microsoft.com/en-us/microsoft-365/" }
-  ];
+  const skills_ux: ChipRow = {
+    name: t("techniques"),
+    chips: ["Storytelling", "Design Thinking", "Visual Design", "Interaction Design", "Wireframing", "Usability Testing", "Prototyping"]
+  }
+  const tools_ux: ChipRow = {
+    name: t("toolsLabel"),
+    chips: ["Figma", "Adobe Creative Cloud", "Unity"]
+  }
 
-  const devOps = [
-    { name: "Git", url: "https://git-scm.com/" },
-    { name: "Azure DevOps", url: "https://azure.microsoft.com/en-us/products/devops/" },
-    { name: "SCRUM / Secure SCRUM", url: "https://www.scrum.org/" },
-    { name: "Kubernetes", url: "https://kubernetes.io/" },
-    { name: "Docker", url: "https://www.docker.com/" }
-  ];
   
-  const ChipSection = ({ title, items, icon }) => (
-    <Box sx={{ bgcolor: "background.defaultLight", p: 3, borderRadius: 2 }}>
-      <Stack spacing={2} direction="row" alignItems="center" mb={2}>
-        {icon}
-        <Typography variant="h6">{title}</Typography>
-      </Stack>
+  const skills_management: ChipRow = {
+    name: t("roles"),
+    chips: ["Product Owner", "Scrum Master"]
+  };
+  const tools_management: ChipRow = {
+    name: t("toolsLabel"),
+    chips: [ "SCRUM / Secure SCRUM", "Azure DevOps", "Forgejo", "Miro", "Jira", "Confluence"]
+  };
+  
+  const skills_frontend: ChipRow = {
+    name: t("usage"),
+    chips: ["Cross Platform Apps", "Responsive Layout", "Web Apps", "Mobile Apps", "Data Visualization", "AR / VR Interfaces"]
+  };
+  const tools_frontend: ChipRow = {
+    name: t("toolsAndProgramming"),
+    chips: ["React", "React Native", "Android Studio", "Flutter", "Electron", "Next.js", "HTML / CSS", "JavaScript / TypeScript", "Dart"]
+  }
 
-      <Divider
-        sx={{
-          my: 2,
-          border: 0,
-          height: 2,
-          background: 'linear-gradient(90deg, rgba(59, 134, 219, 0.95) 0%, rgba(103, 192, 255, 1) 100%)',
-          opacity: 1,
-        }}
-      />
-      
-      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        {items.map((item, index) => {
-          const itemName = typeof item === 'string' ? item : item.name;
-          const itemUrl = typeof item === 'string' ? null : item.url;
-          const isDarkChip = index % 2 === 1;
-          
-          return (
-            <Chip           
-              key={itemName} 
-              label={itemName}
-              onClick={() => itemUrl && window.open(itemUrl, '_blank')}
-              sx={{
-                cursor: itemUrl ? 'pointer' : 'default',
-                transition: 'all 0.2s ease',
-                backgroundColor: isDarkChip ? 'rgba(59, 134, 219, 0.72)' : undefined,
-                color: 'text.secondary',
-                ...(itemUrl && {
-                  '&:hover': {
-                    bgcolor: "#eda916",
-                    color: '#111',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                  }
-                })
-              }}
-            />
-          );
-        })}
-      </Stack>
-    </Box>
-  );
+  const skills_backend: ChipRow = {
+    name: t("usage"),
+    chips: ["REST APIs", "ASP.NET"]
+  };
+  const tools_backend: ChipRow = {
+    name: t("programming"),
+    chips: ["VS & VS Code", "C# / .NET", "JavaScript / TypeScript"]
+  };
+
+  const skills_ai: ChipRow = {
+    name: t("usage"),
+    chips: ["Agentic-Coding", "Computer Vision", "Model Deployment", "LLM", "RAG", "OCR",]
+  };
+  const tools_ai: ChipRow = {
+    name: t("models"),
+    chips: ["YOLO", "Claude", "GPT", "Mistral"]
+  };
+
+  const skills_unity: ChipRow = {
+    name: t("usage"),
+    chips: ["Automotive Interfaces", "Augmented Reality", "Virtual Reality", "Realtime 3D", "Data Visualization", "Prototyping", "Game Development"]
+  };
+  const tools_unity: ChipRow = {
+    name: t("platforms"),
+    chips: ["Windows", "WebGL","UWP", "HoloLens 1, 2", "Magic Leap 1, 2", "Android", "iOS"]
+  };
+
+  const tools_devops: ChipRow = {
+    name: t("toolsLabel"),
+    chips: ["Git", "Azure DevOps", "Forgejo", "Kubernetes", "Docker"]
+  };
   
   const SkillArticle = ({
     title,
     paragraphs,
-    chips = [],
+    skillRow,
+    toolRow,
     bgIcon
   }: {
     title: string;
     paragraphs: string[];
-    chips?: string[];
+    skillRow?: ChipRow;
+    toolRow?: ChipRow;
     bgIcon?: ReactElement
   }) => (
     <Box
       sx={{
-        mb: 2,
+        mb: 4,
         bgcolor: "background.defaultLight",
         p: 3,
         borderRadius: 2,
@@ -171,32 +146,51 @@ export default function SkillsPage({ id }: { id?: string }){
         );
       })}
 
-      <Divider
-        sx={{
-          my: 3,
-          border: 0,
-          height: 2,
-          background: 'linear-gradient(90deg, rgba(31, 89, 173, 0.95) 0%, rgba(79, 163, 255, 1) 100%)',
-          opacity: 1,
-        }}
-      />
+      <Box height={15} />
 
       <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        {chips.map((item, index) => (
-          <Chip
+        <Typography color="chip.primary_offset" variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
+          {skillRow?.name}
+        </Typography>
+        {skillRow?.chips.map((item, index) => (
+           <Chip
+            size="small"
             key={index}
             label={item}
             sx={{
-              backgroundColor: index % 2 === 1 ? 'rgba(59, 134, 219, 0.72)' : undefined,
+              backgroundColor: index % 2 === 1 ? 'chip.primary_offset' : 'chip.primary',
               color: 'text.secondary',
             }}
-          />
+          >
+            <Typography px={2} variant="body2" sx={{ fontSize: "0.75rem" }}>
+              {item}
+            </Typography>
+          </Chip>
+        ))}
+      </Stack>
+
+      <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+         <Typography variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
+          {toolRow?.name}
+        </Typography>
+        {toolRow?.chips.map((item, index) => (
+          <Chip
+            size="small"
+            key={index}
+            label={item}
+            sx={{
+              backgroundColor: index % 2 === 1 ? 'chip.secondary' : 'chip.secondary_offset',
+              color: 'text.secondary',
+            }}
+          >
+            <Typography px={2}  variant="body2" sx={{ fontSize: "0.75rem" }}>
+              {item}
+            </Typography>
+          </Chip>
         ))}
       </Stack>
     </Box>
   );
-
-  const t = useTranslations('Skills');
 
   const [singlePage, setSinglePage] = React.useState(false);
   React.useEffect(() => {
@@ -222,67 +216,56 @@ export default function SkillsPage({ id }: { id?: string }){
           bgIcon={<DrawIcon sx={{ color:"white", fontSize: 220 }} />}
           title="User Experience Design"
           paragraphs={[t("ux1")]}
-          chips={["Storytelling", "Design Thinking", "Visual Design", "Interaction Design", "Wireframing", "Usability Testing" ]}
+          skillRow={skills_ux}
+          toolRow={tools_ux}
         />
 
         <SkillArticle
           bgIcon={<AssignmentIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Project Management"         
           paragraphs={[t("management1"), t("management2")]}
-          chips={["Product Owner", "Scrum Master"]}
+          skillRow={skills_management}
+          toolRow={tools_management}
         />
 
         <SkillArticle  
           bgIcon={<PhonelinkIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Frontend & Mobile Development"
           paragraphs={[t("frontend1"), t("frontend2")]}
-          chips={["Cross Platform", "Responsive Layout", "Web Apps", "Mobile Apps", "Data Visualization"]}
+          skillRow={skills_frontend}
+          toolRow={tools_frontend}
         />
 
         <SkillArticle
           bgIcon={<CodeIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Backend Development"
           paragraphs={[t("backend1"), t("backend2")]}
-          chips={["REST APIs", "ASP.NET", "Docker", "DevOps", "CI/CD"]}
+          skillRow={skills_backend}
+          toolRow={tools_backend}
         />
 
         <SkillArticle
           bgIcon={<SmartToyIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Artificial Intelligence"
           paragraphs={[t("ai1"), t("ai2")]}
-          chips={["Agentic-Coding", "Model Deployment", "LLM", "RAG", "OCR", "Computer Vision"]}
+          skillRow={skills_ai}
+          toolRow={tools_ai}
         />
 
         <SkillArticle
           bgIcon={<Image width={250} src={UnityLogo} alt={"unity"}/>}
           title="Unity Development"
           paragraphs={[t("unity1"), t("unity2"), t("unity3")]}
-          chips={["Automotive Interfaces", "Mixed Reality", "Realtime 3D", "Data Visualization", "Prototyping", "Game Development"]}
+          skillRow={skills_unity}
+          toolRow={tools_unity}
         />
 
-
-
-        <Typography mt={6} mb={2} variant="h5" component="h1">
-          {t("tools")}
-        </Typography>
-        
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <ChipSection icon={<HandymanIcon sx={{color: "white"}}  />} title={t("devTools")} items={devTools} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ChipSection icon={<CodeIcon sx={{color: "white"}} />} title={t("programming")} items={languages} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ChipSection icon={<DevicesOtherIcon sx={{color: "white"}}  />} title={t("platforms")} items={platforms} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ChipSection icon={<BrushIcon sx={{color: "white"}}  />} title={t("creativeTools")} items={creativeTools} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <ChipSection icon={<CloudSyncIcon sx={{color: "white"}}  />} title="DevOps" items={devOps} />
-          </Grid>
-        </Grid>
+        <SkillArticle
+          bgIcon={<HandymanIcon sx={{ color:"white", fontSize: 220 }} />}
+          title="DevOps"
+          paragraphs={[t("devops1")]}
+          toolRow={tools_devops}
+        />
 
         <Box sx={{ my: 4 }}>
           <Typography variant="h5" sx={{ mb: 2 }}>

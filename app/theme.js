@@ -35,7 +35,14 @@ const theme = createTheme({
       red: "#c9112a",
       cyan: "#15acc0",
       pink: "#d32289",
-    }       
+    },
+    chip:
+    {
+      primary: "#3b86db",
+      primary_offset: "#5a9be6",
+      secondary: "#cf9311",
+      secondary_offset: "#d3a033",
+    }              
   },
   shape: {
     borderRadius: 12
@@ -87,7 +94,7 @@ const theme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          minWidth: "120px",      
+          minWidth: "85px",      
           backgroundColor: "#3b86db",
         },     
       },

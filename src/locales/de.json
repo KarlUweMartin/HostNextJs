@@ -20,6 +20,7 @@
 
     "backend1": "Ich bin mit der Entwicklung und Wartung komplexer Backend- und API-Systeme vertraut – von der Erstellung von REST-APIs bis hin zur Anbindung von Services und Datenebenen. Auch wenn Backend-Entwicklung nicht mein Schwerpunkt ist, kann ich mit C# und ASP.NET zuverlässige Systeme entwickeln und langfristig betreuen, wenn ein Projekt es erfordert.",
     "backend2": "Mein Fokus liegt auf sauberen Schnittstellen, nachvollziehbaren Datenflüssen und sicherer, testbarer Architektur. Dabei arbeite ich mit Authentifizierung, Geschäftslogik und API-Design, damit sowohl nutzerseitige Anwendungen als auch die langfristige Produktstabilität unterstützt werden.",
+    "devops1": "In meiner täglichen Arbeit nutze ich Tools wie Git, Azure DevOps, Forgejo, Kubernetes und Docker, um Code zu verwalten, Tests zu automatisieren und Software zuverlässig bereitzustellen. Dadurch bleiben Entwicklungsprozesse strukturiert, Änderungen nachvollziehbar und Anwendungen können konsistent in verschiedenen Umgebungen ausgeliefert werden.",
     
     "unity1" : "Während meines Studiums habe ich intensiv mit Unity gearbeitet, um interaktive Prototypen und Simulationen zu entwickeln und abstrakte Ideen in greifbare, testbare Erfahrungen zu verwandeln. Dabei habe ich mir früh eine Arbeitsweise angeeignet, die auf schnelle Iteration und nutzerzentriertes Design setzt.",
     "unity2" : "Diese Erfahrung habe ich in meine erste berufliche Station mitgenommen, wo ich Prototypen für Automotive-Benutzeroberflächen entwickelt habe. Mit Unity konnte ich HMI-Konzepte früh simulieren und testen und so eine Brücke zwischen Design, technischer Umsetzung und realen Anwendungsfällen im Fahrzeug schlagen.",
@@ -34,6 +35,12 @@
     "platforms": "Plattform Resumé",
     "creativeTools": "Kreativ",
     "tools" : "Meine Werkzeuge",
+    "toolsLabel": "Tools",
+    "techniques": "Techniken",
+    "roles": "Rollen",
+    "usage": "Nutzung",
+    "toolsAndProgramming": "Tools & Programmierung",
+    "models": "Modelle",
     "fluentLanguages": "Fließende Sprachen",
     "en": "Englisch",
     "de": "Deutsch"
