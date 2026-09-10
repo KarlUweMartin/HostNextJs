@@ -14,8 +14,8 @@ export default function Home() {
     <>
       <Head id={"head-section"}/>
       <AboutPage/>
-      <ShowroomPage id={"showroom-section"}/>
       <SkillsPage id={"skills-section"} />
+      <ShowroomPage id={"showroom-section"}/>
       <ContactPage id={"contact-section"} />
       <Footer />
     </>
