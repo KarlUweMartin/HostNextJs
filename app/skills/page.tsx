@@ -122,7 +122,7 @@ export default function SkillsPage({ id }: { id?: string }){
         </Box>
       }
 
-      <Typography mb={1} variant="h6">
+      <Typography mb={3} variant="h6">
         {title}
       </Typography>
 

@@ -25,8 +25,7 @@ export default function Head({ id }: { id?: string }) {
   
   const t = useTranslations('Nav');  
 
-  return (
-    <Box id={id} 
+  return (<Box id={id} 
         sx={{ 
           justifyContent: "center",
           display: "flex",
@@ -78,18 +77,11 @@ export default function Head({ id }: { id?: string }) {
                 Karl Martin
               </Typography>
       
-                <Typography 
-                  variant="body2"
-                  sx={{ color:"text.secondary" }}>
-                    UX Technologist | Senior Developer
-                </Typography>
-                <Typography 
-                  variant="body2"
-                  fontSize={"0.7rem"}
-                  sx={{ color: "text.faded" }}>
-                    {t("tagline")}
-                </Typography>
-     
+              <Typography 
+                variant="body2"
+                sx={{ color:"text.faded" }}>
+                  UX Technologist | Senior Developer
+              </Typography>
             </Stack>
             </Stack>
 

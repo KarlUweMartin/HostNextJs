@@ -61,7 +61,7 @@ function Feature({ title, body, href, git, imgSrc, onOpen }: {
   imgSrc: string; 
   onOpen?: (href: string, title: string) => void;
 }) {
-  const isMobile = useMediaQuery("(max-width:1000px)");
+  const isMobile = useMediaQuery("(max-width:1000px)", { noSsr: true });
   const showModal = onOpen && !isMobile;
 
   return (

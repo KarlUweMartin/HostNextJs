@@ -177,7 +177,7 @@ export function SineWaveBox(props: SineWaveProps) {
       const normalizedX = (x / rect.width) * 2 - 1
       const normalizedY = -(y / rect.height) * 2 + 1
 
-      const multiplier = 90
+      const multiplier = 200
       setCursorPos([normalizedX * rect.width / multiplier, normalizedY * rect.height / multiplier])
     }
 
