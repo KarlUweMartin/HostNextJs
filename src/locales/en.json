@@ -20,7 +20,8 @@
 
     "backend1": "I’m comfortable working on complex backend and API systems, from building REST APIs to connecting services and data layers. While backend development isn’t my full-time focus, I can build and maintain reliable systems with C# and ASP.NET when the project requires it.",
     "backend2": "My focus is on clean interfaces, predictable data flows, and secure, testable architecture. I work with authentication, business logic, and API design in a way that supports both user-facing applications and long-term product stability.",
-    "devops1": "In my day-to-day work, I use tools such as Git, Azure DevOps, Forgejo, Kubernetes, and Docker to manage code, automate testing, and deploy software reliably. This helps me keep development structured, make changes traceable, and deliver applications consistently across different environments.",
+    
+    "devops1": "In my day-to-day work, I use and deploy DevOps tools and practices to support efficient teamwork and reliable deployment processes. This helps us work together smoothly, keep development organized, and get new features and updates into different environments quickly and reliably.",
     
     "unity1" : "During my university studies, I worked with Unity to build interactive prototypes and simulations, turning abstract ideas into hands-on, testable experiences. This is where I developed a strong mindset for rapid iteration and user-focused design.",
     "unity2" : "I brought this experience into my first professional role, where I worked on prototypes for automotive user interfaces. Using Unity, I created and tested HMI concepts early on, helping connect design ideas with technical implementation and real-world automotive use cases.",

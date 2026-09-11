@@ -1,38 +1,27 @@
 "use client";
 
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, Stack } from "@mui/material";
 import { useTranslations } from "next-intl";
 import { SineWaveBox } from "../three/sineWave3d";
 
 export default function AboutPage() {
-  
+
   const t = useTranslations("About");
 
   return (
-    <Box>   
+    <Box>
       <Container maxWidth="lg" sx={{ py: 6 }}>
-        <Box sx={{ mb: 5, alignSelf: "center", mx: "auto" }}>
-
-        <Typography  variant="body2" color="text.secondary" paragraph>
-          {t("about0")}
-        </Typography>         
-        <Typography variant="body2" color="text.secondary" paragraph>
-          {t("about1")}
-        </Typography>
-      
-        </Box>
-
-        <Box sx={{      
+        <Box sx={{
           width: "85%", 
           mx: "auto",
           p: 6,
-          border: .1,
-          borderColor: "border.secondary",   
+          border: "0.1rem solid",
+          borderColor: "border.secondary",
           borderBottomLeftRadius: 100,
           borderBottomRightRadius: 100,
           borderTopRightRadius: 100,
           position: "relative",
-          overflow: "hidden" }}>                          
+          overflow: "hidden" }}>
           <Typography 
               color="text.secondary"
               variant="h6" 
@@ -65,9 +54,15 @@ export default function AboutPage() {
           </Box>
         </Box>
 
-        <Box width="85%" sx={{ mt: 5, textAlign: "center", alignSelf: "center", mx: "auto" }}>
+        <Stack direction="row" spacing={5} sx={{ mx: "auto", mt: 3, mb: 6, bgcolor: "background.defaultLight", p: 3, borderRadius: 2, width: {xs: "100%", md: "85%"} }}>
+          <Typography  variant="body2" color="text.secondary" paragraph>
+            {t("about0")}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {t("about1")}
+          </Typography>
+        </Stack>
 
-        </Box>
       </Container>
     </Box>
   );

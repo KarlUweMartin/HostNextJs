@@ -164,10 +164,13 @@ export function SineWaveBox(props: SineWaveProps) {
     const canvasElement = document.querySelector('canvas')
     if (!canvasElement) return
 
+    const resetCursor = () => setCursorPos([0, 0])
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvasElement.getBoundingClientRect()
       if (e.clientX < rect.left || e.clientX > rect.right ||
           e.clientY < rect.top || e.clientY > rect.bottom) {
+        resetCursor()
         return
       }
 
@@ -183,11 +186,15 @@ export function SineWaveBox(props: SineWaveProps) {
 
     const handleTouchMove = (e: TouchEvent) => {
       const touch = e.touches[0]
-      if (!touch) return
+      if (!touch) {
+        resetCursor()
+        return
+      }
 
       const rect = canvasElement.getBoundingClientRect()
       if (touch.clientX < rect.left || touch.clientX > rect.right ||
           touch.clientY < rect.top || touch.clientY > rect.bottom) {
+        resetCursor()
         return
       }
 
@@ -201,11 +208,17 @@ export function SineWaveBox(props: SineWaveProps) {
       setCursorPos([normalizedX * rect.width / multiplier, normalizedY * rect.height / multiplier])
     }
 
+    canvasElement.addEventListener('mouseleave', resetCursor)
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('touchmove', handleTouchMove)
+    window.addEventListener('touchend', resetCursor)
+    window.addEventListener('touchcancel', resetCursor)
     return () => {
+      canvasElement.removeEventListener('mouseleave', resetCursor)
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', resetCursor)
+      window.removeEventListener('touchcancel', resetCursor)
     }
   }, [])
 

@@ -85,16 +85,18 @@ export default function SkillsPage({ id }: { id?: string }){
   };
   
   const SkillArticle = ({
+    articleIndex,
     title,
     paragraphs,
-    skillRow,
-    toolRow,
+    blueChips,
+    yellowChips,
     bgIcon
   }: {
+    articleIndex: number;
     title: string;
     paragraphs: string[];
-    skillRow?: ChipRow;
-    toolRow?: ChipRow;
+    blueChips?: ChipRow;
+    yellowChips?: ChipRow;
     bgIcon?: ReactElement
   }) => (
     <Box
@@ -105,19 +107,21 @@ export default function SkillsPage({ id }: { id?: string }){
         borderRadius: 2,
         position: "relative",
         overflow: "hidden",
+        width: { xs: "100%", md: "85%" },
+        ml: { xs: 0, md: articleIndex % 2 === 0 ? 0: "auto" },
       }}
     >
       {bgIcon && 
         <Box
         sx={{
           position: "absolute",
-          right: 25,
+          right: 0,
           top: "50%",
           transform: "translateY(-50%)",
           pointerEvents: "none",
-          opacity: 0.1       
+          opacity: 0.1
         }}
-        >         
+        >
           {bgIcon}
         </Box>
       }
@@ -132,7 +136,7 @@ export default function SkillsPage({ id }: { id?: string }){
             key={index}
             component="p"
             variant="body2"
-            color="text.secondary"    
+            color="text.secondary"
             sx={{
               mb: 1.5,
               "& b, & strong": {
@@ -149,10 +153,10 @@ export default function SkillsPage({ id }: { id?: string }){
       <Box height={15} />
 
       <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        <Typography color="chip.primary_offset" variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
-          {skillRow?.name}
+        <Typography color="text.blue" variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
+          {blueChips?.name}
         </Typography>
-        {skillRow?.chips.map((item, index) => (
+        {blueChips?.chips.map((item, index) => (
            <Chip
             size="small"
             key={index}
@@ -171,9 +175,9 @@ export default function SkillsPage({ id }: { id?: string }){
 
       <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
          <Typography variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
-          {toolRow?.name}
+          {yellowChips?.name}
         </Typography>
-        {toolRow?.chips.map((item, index) => (
+        {yellowChips?.chips.map((item, index) => (
           <Chip
             size="small"
             key={index}
@@ -198,9 +202,9 @@ export default function SkillsPage({ id }: { id?: string }){
   }, []);
 
   return (
-    <Box id={id} bgcolor={"background.default"} >      
+    <Box id={id} bgcolor={"background.default"} >
       <BackButton title={"Skills"} disabled={!singlePage} />
-      <Container  maxWidth="lg" sx={{ py: singlePage ? 2 : 5 }}>         
+      <Container  maxWidth="lg" sx={{ py: singlePage ? 2 : 5 }}>
           {!singlePage && 
           <Stack mb={2} direction={"row"} alignItems={"center"}  justifyContent={"space-between"}>
             <Typography variant="h4" component="h1" gutterBottom>
@@ -213,61 +217,68 @@ export default function SkillsPage({ id }: { id?: string }){
         }
 
        <SkillArticle
+         articleIndex={0}
           bgIcon={<DrawIcon sx={{ color:"white", fontSize: 220 }} />}
           title="User Experience Design"
           paragraphs={[t("ux1")]}
-          skillRow={skills_ux}
-          toolRow={tools_ux}
+          blueChips={skills_ux}
+          yellowChips={tools_ux}
         />
 
         <SkillArticle
+          articleIndex={1}
           bgIcon={<AssignmentIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Project Management"         
           paragraphs={[t("management1"), t("management2")]}
-          skillRow={skills_management}
-          toolRow={tools_management}
+          blueChips={skills_management}
+          yellowChips={tools_management}
         />
 
         <SkillArticle  
+          articleIndex={2}
           bgIcon={<PhonelinkIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Frontend & Mobile Development"
           paragraphs={[t("frontend1"), t("frontend2")]}
-          skillRow={skills_frontend}
-          toolRow={tools_frontend}
+          blueChips={skills_frontend}
+          yellowChips={tools_frontend}
         />
 
         <SkillArticle
+          articleIndex={3}
           bgIcon={<CodeIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Backend Development"
           paragraphs={[t("backend1"), t("backend2")]}
-          skillRow={skills_backend}
-          toolRow={tools_backend}
+          blueChips={skills_backend}
+          yellowChips={tools_backend}
         />
 
         <SkillArticle
+          articleIndex={4}
           bgIcon={<SmartToyIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Artificial Intelligence"
           paragraphs={[t("ai1"), t("ai2")]}
-          skillRow={skills_ai}
-          toolRow={tools_ai}
+          blueChips={skills_ai}
+          yellowChips={tools_ai}
         />
 
         <SkillArticle
+          articleIndex={5}
           bgIcon={<Image width={250} src={UnityLogo} alt={"unity"}/>}
           title="Unity Development"
           paragraphs={[t("unity1"), t("unity2"), t("unity3")]}
-          skillRow={skills_unity}
-          toolRow={tools_unity}
+          blueChips={skills_unity}
+          yellowChips={tools_unity}
         />
 
         <SkillArticle
+          articleIndex={6}
           bgIcon={<HandymanIcon sx={{ color:"white", fontSize: 220 }} />}
           title="DevOps"
           paragraphs={[t("devops1")]}
-          toolRow={tools_devops}
+          yellowChips={tools_devops}
         />
 
-        <Box sx={{ my: 4 }}>
+        {/*<Box sx={{ my: 4 }}>
           <Typography variant="h5" sx={{ mb: 2 }}>
             {t("fluentLanguages")}
           </Typography>
@@ -275,7 +286,7 @@ export default function SkillsPage({ id }: { id?: string }){
             🇩🇪 {t("de")}<br />
             🇬🇧 {t("en")}
           </Typography>
-        </Box>      
+        </Box>*/}      
       </Container>
     </Box>
   );
