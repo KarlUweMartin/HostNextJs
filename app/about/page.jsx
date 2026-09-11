@@ -54,7 +54,18 @@ export default function AboutPage() {
           </Box>
         </Box>
 
-        <Stack direction="row" spacing={5} sx={{ mx: "auto", mt: 3, mb: 6, bgcolor: "background.defaultLight", p: 3, borderRadius: 2, width: {xs: "100%", md: "85%"} }}>
+        <Stack 
+          direction={{ xs: "column", sm: "row" }} 
+          spacing={5} 
+          sx={{
+            mx: "auto", 
+            mt: 3, 
+            mb: 6,
+            bgcolor: "background.defaultLight", 
+            p: 3, 
+            borderRadius: 2, 
+            width: {xs: "100%", md: "85%"} 
+          }}>
           <Typography  variant="body2" color="text.secondary" paragraph>
             {t("about0")}
           </Typography>
