@@ -56,6 +56,36 @@
     "title": "Kontakt",
     "head": "Du hast eine Frage oder möchtest zusammenarbeiten? Melde dich gerne!"
   },
+  "Cv": {
+    "title": "Lebenslauf",
+    "profilePicture": "Profilbild",
+    "workExperience": "Berufserfahrung",
+    "educationHeading": "Ausbildung",
+    "detail": "Details",
+    "today": "Heute",
+    "city": "Ort: {city}",
+    "personal": {
+      "fullName": "Vollständiger Name",
+      "dateOfBirth": "Geburtsdatum",
+      "dateOfBirthValue": "13. Aug. 1990",
+      "city": "Ort",
+      "email": "E-Mail"
+    },
+    "experience": [
+      { "title": "Product Owner & Entwickler", "summary": ["Entwicklung moderner Software für die Industrie", "Leitung eines Entwicklerteams und Pflege von Backlogs"] },
+      { "title": "UX-Designer & Entwickler", "summary": ["UX-Konzeption und Entwicklung von VR- und AR-Trainingsanwendungen", "Lead-Entwickler einer AR-Konferenzanwendung"] },
+      { "title": "Creative Technologist", "summary": ["Gestaltung und Entwicklung von Interfaces für moderne Fahrzeuge", "Internationale Reisen zur Unterstützung von Kunden vor Ort"] },
+      { "title": "Programmiertutor", "summary": ["Unterricht und Betreuung in C#-Programmierung sowie Unterstützung bei Projekten"] },
+      { "title": "Video-Artist", "summary": ["Konzeption und Bearbeitung von 3D-Animationen und Spezialeffekten"] },
+      { "title": "Video-Artist (Praktikum)", "summary": ["Schnitt und Bearbeitung von Werbeclips"] },
+      { "title": "Webdesigner (Praktikum)", "summary": ["Webdesign und Werbung"] }
+    ],
+    "education": [
+      { "title": "Interactive Media Design", "details": "UX-Design | Interaktionsdesign | Programmierung | Usability\nBachelor of Arts" },
+      { "title": "Druck-/Medientechnologie", "details": "Drucktechnologie | Mediendesign" },
+      { "title": "Abitur", "details": "Abitur" }
+    ]
+  },
   "Nav": {
     "contact": "Kontakt",
     "tagline": "Ich gestalte und entwickle ansprechende digitale Interfaces"

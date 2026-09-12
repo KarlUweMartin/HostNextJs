@@ -56,6 +56,36 @@
   	"title" : "Contact",
     "head" : "Have a question or want to collaborate? Feel free to reach out!"
   },
+  "Cv": {
+    "title": "Curriculum Vitae",
+    "profilePicture": "Profile picture",
+    "workExperience": "Work Experience",
+    "educationHeading": "Education",
+    "detail": "Detail",
+    "today": "Today",
+    "city": "City: {city}",
+    "personal": {
+      "fullName": "Full Name",
+      "dateOfBirth": "Date of Birth",
+      "dateOfBirthValue": "Aug. 13th, 1990",
+      "city": "City",
+      "email": "Email"
+    },
+    "experience": [
+      { "title": "Product Owner & Developer", "summary": ["Developing state of the art software for modern industry", "Managing team of developers and curating backlogs"] },
+      { "title": "UX-Designer & Developer", "summary": ["UX concept and development of VR&AR training applications", "Lead developer of AR-Conferencing application"] },
+      { "title": "Creative Technologist", "summary": ["Designing and developing interfaces for modern vehicles", "Intercontinental travel for on-site client support"] },
+      { "title": "Programming Tutor", "summary": ["Teaching/tutoring C# programming and assisting in projects"] },
+      { "title": "Video Artist", "summary": ["Conception and processing 3D animation and special effects"] },
+      { "title": "Video Artist (internship)", "summary": ["Cutting and processing advertisement clips"] },
+      { "title": "Web Designer (internship)", "summary": ["Web design & advertising"] }
+    ],
+    "education": [
+      { "title": "Interactive Media Design", "details": "UX Design | Interaction Design | Programming | Usability\nBachelor of Arts" },
+      { "title": "Print-/Mediatechnology", "details": "Print Technology | Media Design" },
+      { "title": "Abitur", "details": "A-Level" }
+    ]
+  },
   "Nav" : {
     "contact" : "Contact",
     "tagline" : "I design and build engaging digital interfaces"

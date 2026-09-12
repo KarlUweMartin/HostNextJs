@@ -34,6 +34,7 @@ export default function Footer() {
           <Link sx={{ cursor: "pointer" }} onClick={() => { handleScroll("showroom-section") }} >Showroom</Link>
           <Link sx={{ cursor: "pointer" }} onClick={() => { handleScroll("skills-section") }}>Skills</Link>
           <Link sx={{ cursor: "pointer" }} onClick={() => { handleScroll("contact-section") }}>Contact</Link>
+          <Link sx={{ cursor: "pointer" }} href={"/cv"}>CV</Link>
           |
           <LocaleSwitcher />
         </Stack>
