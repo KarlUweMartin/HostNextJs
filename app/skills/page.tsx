@@ -153,7 +153,7 @@ export default function SkillsPage({ id }: { id?: string }){
       <Box height={15} />
 
       <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        <Typography color="text.blue" variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
+        <Typography color="chip.primary" variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
           {blueChips?.name}
         </Typography>
         {blueChips?.chips.map((item, index) => (
@@ -162,7 +162,7 @@ export default function SkillsPage({ id }: { id?: string }){
             key={index}
             label={item}
             sx={{
-              backgroundColor: index % 2 === 1 ? 'chip.primary_offset' : 'chip.primary',
+              backgroundColor: 'chip.primary_offset',
               color: 'text.secondary',
             }}
           >
@@ -183,7 +183,7 @@ export default function SkillsPage({ id }: { id?: string }){
             key={index}
             label={item}
             sx={{
-              backgroundColor: index % 2 === 1 ? 'chip.secondary' : 'chip.secondary_offset',
+              backgroundColor: 'chip.secondary_offset',
               color: 'text.secondary',
             }}
           >

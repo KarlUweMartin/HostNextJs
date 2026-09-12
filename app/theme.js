@@ -39,10 +39,10 @@ const theme = createTheme({
     },
     chip:
     {
-      primary: "#4775a8",
-      primary_offset: "#3469a5",
-      secondary: "#b6800c",
-      secondary_offset: "#926c19",
+      primary: "#529fdd",
+      primary_offset: "#48779e",
+      secondary: "#eda916",
+      secondary_offset: "#ac8636",
     }              
   },
   shape: {
