@@ -1,3 +1,5 @@
+"use client";
+
 import { Typography, Stack, Link, Box, Container } from "@mui/material";
 import { LocaleSwitcher } from "../components/localeSwitcher";
 import { useTranslations } from "next-intl";

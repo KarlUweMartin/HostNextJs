@@ -23,6 +23,7 @@ const theme = createTheme({
     },
     text: {
       primary: "#eda916",
+      blue: "#4775a8",
       secondary: "#f3ede3",
       faded: "#929087",
       dark: "#32323a"
@@ -38,10 +39,10 @@ const theme = createTheme({
     },
     chip:
     {
-      primary: "#3b86db",
-      primary_offset: "#5a9be6",
-      secondary: "#cf9311",
-      secondary_offset: "#d3a033",
+      primary: "#4775a8",
+      primary_offset: "#3469a5",
+      secondary: "#b6800c",
+      secondary_offset: "#926c19",
     }              
   },
   shape: {
