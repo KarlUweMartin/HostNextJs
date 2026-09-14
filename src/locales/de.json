@@ -62,6 +62,8 @@
     "profilePicture": "Profilbild",
     "workExperience": "Berufserfahrung",
     "educationHeading": "Ausbildung",
+    "skillsHeading": "Fähigkeiten",
+    "skillsLink": "Zur Skills-Seite für weitere Details",
     "detail": "Details",
     "today": "Heute",
     "city": "Ort: {city}",
@@ -85,6 +87,13 @@
       { "title": "Interactive Media Design", "details": "UX-Design | Interaktionsdesign | Programmierung | Usability\nBachelor of Arts" },
       { "title": "Druck-/Medientechnologie", "details": "Drucktechnologie | Mediendesign" },
       { "title": "Abitur", "details": "Abitur" }
+    ],
+    "skills": [
+      { "title": "Projektmanagement", "details": "Technische Leitung | PO/PM | Scrum Master" },
+      { "title": "Programmierung", "details": "C#/.NET | TypeScript/JavaScript | Dart | HTML/CSS" },
+      { "title": "Zusammenarbeit", "details": "Git | DevOps | Scrum | Arbeit über Zeitzonen hinweg | internationale Teams" },
+      { "title": "Branchen", "details": "Industrie 4.0 | Automotive | Bildung | Journalismus | Unterhaltung" },
+      { "title": "Sprachen", "details": "Deutsch (Muttersprache) | Englisch (fließend, C1)" }
     ]
   },
   "Nav": {

@@ -2,32 +2,35 @@
 
 import {
   Box,
-  Button,
   Container,
   Link,
   Typography,
 } from "@mui/material";
 import { BackButton } from "../sections/backbutton";
 import React from "react";
-import SearchIcon from '@mui/icons-material/Article';
 import { useTranslations } from "next-intl";
-
-const headingSx = {
-  color: "text.secondary",
-  fontWeight: 600,
-  letterSpacing: "0.01em",
-  mb: 3,
-};
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import TranslateIcon from '@mui/icons-material/Translate';
+import PeopleIcon from '@mui/icons-material/People';
+import CodeIcon from '@mui/icons-material/Code';
+import FactoryIcon from '@mui/icons-material/Factory';
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <Typography component="h3" sx={headingSx}>
+    <Typography 
+      component="h3" 
+      sx={{        
+        color: "text.secondary",
+        fontWeight: 600,
+        letterSpacing: "0.01em",
+        mb: 3,
+      }}>
       {children}
     </Typography>
   );
 }
 
-function TimelineItem({ period, children }: { period: string; children: React.ReactNode }) {
+function CvSection({ period, children, icon }: { period?: string; children: React.ReactNode; icon?: React.ReactNode; }) {
   return (
     <Box
       sx={{
@@ -37,7 +40,7 @@ function TimelineItem({ period, children }: { period: string; children: React.Re
         mb: 4,
       }}
     >
-      <Typography
+      {period && <Typography
         sx={{
           color: "border.secondary",
           fontWeight: 800,
@@ -49,7 +52,8 @@ function TimelineItem({ period, children }: { period: string; children: React.Re
         }}
       >
         {period}
-      </Typography>
+      </Typography>}
+      {icon && icon}
       <Box>
         {children}
       </Box>
@@ -57,7 +61,7 @@ function TimelineItem({ period, children }: { period: string; children: React.Re
   );
 }
 
-function DetailLines({ children }: { children: string }) {
+function TextParagraphs({ children }: { children: string }) {
   return (
     <Typography
       sx={{
@@ -79,6 +83,13 @@ export default function CvPage() {
     setSinglePage(window.location.pathname.toLocaleLowerCase().endsWith("/cv"));
   }, []);
 
+  const personalData = [
+    { label: t("personal.fullName"), value: "Karl Uwe Martin" },
+    { label: t("personal.dateOfBirth"), value: t("personal.dateOfBirthValue") },
+    { label: t("personal.city"), value: "69181, Leimen, Germany" },
+    { label: t("personal.email"), value: "KarlUweMartin@gmail.com", href: "mailto:KarlUweMartin@gmail.com" },
+  ];
+
   const experience = [
     { period: `${t("today")} -\n2022`, title: t("experience.0.title"), company: "Aunovis", city: "Karlsruhe", link: "https://www.aunovis.de/", detailModal: true, summary: [t("experience.0.summary.0"), t("experience.0.summary.1")] },
     { period: "2022 -\n2018", title: t("experience.1.title"), company: "3spin", city: "Darmstadt", link: "https://www.3spin-learning.com/", detailModal: true, summary: [t("experience.1.summary.0"), t("experience.1.summary.1")] },
@@ -95,18 +106,17 @@ export default function CvPage() {
     { period: "2011", title: t("education.2.title"), company: "Alexander v. Humboldt Schule Viernheim", details: t("education.2.details") },
   ];
 
-  const personalData = [
-    { label: t("personal.fullName"), value: "Karl Uwe Martin" },
-    { label: t("personal.dateOfBirth"), value: t("personal.dateOfBirthValue") },
-    { label: t("personal.city"), value: "69181, Leimen, Germany" },
-    { label: t("personal.email"), value: "KarlUweMartin@gmail.com", href: "mailto:KarlUweMartin@gmail.com" },
+  const skills = [
+    { period: <AssignmentIcon/>, title: t("skills.0.title"), details: t("skills.0.details") },
+    { period: <CodeIcon/>, title: t("skills.1.title"), details: t("skills.1.details") },
+    { period: <PeopleIcon/>, title: t("skills.2.title"), details: t("skills.2.details") },
+    { period: <FactoryIcon/>, title: t("skills.3.title"), details: t("skills.3.details") },
+    { period: <TranslateIcon/>, title: t("skills.4.title"), details: t("skills.4.details") },
   ];
 
   return (
-    <Box  id={"cv-section"} bgcolor={"background.default"}>
-      <Container
-        maxWidth="lg"
-        >
+    <Box  mb={10} id={"cv-section"} bgcolor={"background.default"}>
+      <Container maxWidth="lg">
         <BackButton title={"Curriculum Vitae"} disabled={!singlePage} />      
 
         <Box
@@ -172,7 +182,7 @@ export default function CvPage() {
       <Box mt={6} mb={3} sx={{ maxWidth: 760, mx: "auto" }}>     
         <SectionHeading>{t("workExperience")}</SectionHeading>
         {experience.map((item) => (
-          <TimelineItem
+          <CvSection
             key={`${item.title}-${item.company}`}
             period={item.period}
           >
@@ -192,7 +202,7 @@ export default function CvPage() {
                 @ {item.company}             
               </Box>
             </Typography>
-            <DetailLines>{item.summary.join("\n")}</DetailLines>
+            <TextParagraphs>{item.summary.join("\n")}</TextParagraphs>
             {/*item.detailModal && <Button sx={{ width: 120, size:"sm", mt: 2 }} startIcon={<SearchIcon/>}>{t("detail")}</Button>*/}
             <Typography
               sx={{
@@ -205,14 +215,14 @@ export default function CvPage() {
             </Typography>
             {item.link && <Link href={item.link}>{item.link}</Link>}
             <Typography color="text.faded">{t("city", { city: item.city })}</Typography>
-          </TimelineItem>
+          </CvSection>
         ))}
       </Box>
 
       <Box sx={{ maxWidth: 760, mx: "auto" }}>
           <SectionHeading>{t("educationHeading")}</SectionHeading>
           {education.map((item) => (
-            <TimelineItem
+            <CvSection
               key={item.title}
               period={item.period}
             >
@@ -232,9 +242,38 @@ export default function CvPage() {
                   @ {item.company}
                 </Box>      
               </Typography>
-              <DetailLines>{item.details}</DetailLines>
-            </TimelineItem>
+              <TextParagraphs>{item.details}</TextParagraphs>
+            </CvSection>
           ))}
+      </Box>
+
+      <Box sx={{ maxWidth: 760, mx: "auto" }}>
+        <SectionHeading>{t("skillsHeading")}</SectionHeading>
+          {skills.map((item) => (
+            <CvSection
+            key={`${item.title}`}
+            period={item.period as any}
+            >
+            <Typography
+              sx={{
+                fontSize: { xs: "1.05rem", md: "1.15rem" },
+                mb: 0.7,
+              }}
+            >
+              {item.title}{" "}
+              <Box
+                component="span"
+                sx={{
+                  color: "text.secondary",
+                }}
+              >
+                    
+              </Box>
+            </Typography>
+            <TextParagraphs>{item.details}</TextParagraphs>  
+          </CvSection>
+        ))}
+        <Link href={"/skills"}>{t("skillsLink")}</Link>       
       </Box>
     </Container>
   </Box>
