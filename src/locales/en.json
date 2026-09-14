@@ -75,11 +75,11 @@
       "email": "Email"
     },
     "experience": [
-      { "title": "Product Owner & Developer", "summary": ["Developing state of the art software for modern industry", "Managing team of developers and curating backlogs"] },
-      { "title": "UX-Designer & Developer", "summary": ["UX concept and development of VR&AR training applications", "Lead developer of AR-Conferencing application"] },
+      { "title": "Product Owner & Developer", "summary": ["Designing and developing state of the art software for industry 3.0/4.0", "Managing team of developers and curating backlogs"] },
+      { "title": "UX-Designer & Developer", "summary": ["UX-Design and development of VR&AR training applications", "Lead developer of AR-Conferencing application"] },
       { "title": "Creative Technologist", "summary": ["Designing and developing interfaces for modern vehicles", "Intercontinental travel for on-site client support"] },
       { "title": "Programming Tutor", "summary": ["Teaching/tutoring C# programming and assisting in projects"] },
-      { "title": "Video Artist", "summary": ["Conception and processing 3D animation and special effects"] },
+      { "title": "Video Artist", "summary": ["Conception and processing 3D animation and special effects", "Production of documentary films"]},
       { "title": "Video Artist (internship)", "summary": ["Cutting and processing advertisement clips"] },
       { "title": "Web Designer (internship)", "summary": ["Web design & advertising"] }
     ],
@@ -92,7 +92,7 @@
       { "title": "Project Management", "details": "Technical Lead | PO/PM | Scrum Master" },
       { "title": "Programming", "details": "C#/.NET | TypeScript/JavaScript | Dart | HTML/CSS" },
       { "title": "Teamwork", "details": "Git | DevOps | Scrum | working across timezones | international teams" },
-      { "title": "Industries", "details": "Industry 4.0 | Automotive | Education | Journalism" },
+      { "title": "Industries", "details": "Industry 4.0 | Automotive | Education | Journalism | Entertainment" },
       { "title": "Languages", "details": "German (Mothertongue) | English (Fluent, C1)" }
     ]
   },
