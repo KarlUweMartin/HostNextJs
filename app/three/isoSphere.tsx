@@ -2,7 +2,6 @@ import { Box, Slider, Typography } from '@mui/material'
 import { Canvas, ThreeEvent, useFrame, useLoader } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
 import { Group, InstancedMesh, Matrix4, Quaternion, TextureLoader, Vector3 } from 'three'
-import { GuidGenerator } from '../utils/guidGenerator'
 import earthSpecular from '../../src/earth_specular.png'
 
 // Head-on view: camera looks straight down the z axis at the centered sphere.
@@ -12,8 +11,10 @@ const ISO_POSITION: [number, number, number] = [0, 0, ISO_DISTANCE]
 const POS: vector3 = { x: 0, y: 0, z: 0 }
 const ROT: vector3 = { x: 0, y: 0, z: 0 }
 const SIZE: vector3 = { x: 7, y: 7, z: 7 }
-const LONGITUDE_SEGMENTS = 128
-const LATITUDE_SEGMENTS = 64
+const MAX_LONGITUDE_SEGMENTS = 256
+const MIN_LONGITUDE_SEGMENTS = 16
+const POLAR_LONGITUDE_SEGMENTS = 3
+const LATITUDE_SEGMENTS = 128
 
 interface vector3 {
   x: number;
@@ -38,8 +39,8 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
   const dragRef = useRef({ active: false, lastX: 0, lastY: 0, velocityX: 0, velocityY: 0 })
   const whiteMeshRef = useRef<InstancedMesh>(null)
   const blackMeshRef = useRef<InstancedMesh>(null)
-  const [whiteCells, setWhiteCells] = useState<MapCell[]>([])
-  const [blackCells, setBlackCells] = useState<MapCell[]>([])
+  //const [landCells, setLandCells] = useState<MapCell[]>([])
+  const [landCells, setLandCells] = useState<MapCell[]>([])
 
   useEffect(() => {
     const image = specularMap.image as HTMLImageElement
@@ -53,25 +54,33 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
     context.drawImage(image, 0, 0)
     const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data
     const radius = size.x / 2
+    const longitudeSegments = Math.max(
+      MIN_LONGITUDE_SEGMENTS,
+      Math.round(MAX_LONGITUDE_SEGMENTS * (size.x / SIZE.x))
+    )
     const cellSize = Math.min(
-      (2 * Math.PI * radius) / LONGITUDE_SEGMENTS,
+      (2 * Math.PI * radius) / longitudeSegments,
       (Math.PI * radius) / LATITUDE_SEGMENTS
-    ) * 0.5
-    const white: MapCell[] = []
-    const black: MapCell[] = []
+    ) * 0.2
+    const land: MapCell[] = []
+    const water: MapCell[] = []
     const radialAxis = new Vector3(0, 0, 1)
 
     for (let latitudeIndex = 0; latitudeIndex < LATITUDE_SEGMENTS; latitudeIndex++) {
       const latitude = Math.PI / 2 - ((latitudeIndex + 0.5) / LATITUDE_SEGMENTS) * Math.PI
+      const latitudeCosine = Math.abs(Math.cos(latitude))
+      const rowLongitudeSegments = Math.max(
+        POLAR_LONGITUDE_SEGMENTS,
+        Math.round(longitudeSegments * latitudeCosine)
+      )
       const textureY = Math.min(canvas.height - 1, Math.floor((latitudeIndex + 0.5) / LATITUDE_SEGMENTS * canvas.height))
 
-      for (let longitudeIndex = 0; longitudeIndex < LONGITUDE_SEGMENTS; longitudeIndex++) {
-        const longitude = ((longitudeIndex + 0.5) / LONGITUDE_SEGMENTS - 0.5) * Math.PI * 2
-        const textureX = Math.min(canvas.width - 1, Math.floor((longitudeIndex + 0.5) / LONGITUDE_SEGMENTS * canvas.width))
+      for (let longitudeIndex = 0; longitudeIndex < rowLongitudeSegments; longitudeIndex++) {
+        const longitude = ((longitudeIndex + 0.5) / rowLongitudeSegments - 0.5) * Math.PI * 2
+        const textureX = Math.min(canvas.width - 1, Math.floor((longitudeIndex + 0.5) / rowLongitudeSegments * canvas.width))
         const pixelIndex = (textureY * canvas.width + textureX) * 4
         const brightness = (pixels[pixelIndex] + pixels[pixelIndex + 1] + pixels[pixelIndex + 2]) / 3
         const isBlack = brightness < 128
-        const latitudeCosine = Math.cos(latitude)
         const normal = new Vector3(
           latitudeCosine * Math.sin(longitude),
           Math.sin(latitude),
@@ -86,13 +95,13 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
           size: cubeSize
         }
 
-        if (isBlack) black.push(cell)
-        else white.push(cell)
+        if (isBlack) land.push(cell)
+        else water.push(cell)
       }
     }
 
-    setWhiteCells(white)
-    setBlackCells(black)
+    setLandCells(land)
+    //setWaterCells(water)
   }, [size.x, specularMap])
 
   useFrame((_, delta) => {
@@ -154,15 +163,19 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
     >
-      <instancedMesh ref={whiteMeshRef} args={[undefined, undefined, whiteCells.length]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshBasicMaterial color="#ffffff" />
-        <MapCells cells={whiteCells} meshRef={whiteMeshRef} />
-      </instancedMesh>
-      <instancedMesh ref={blackMeshRef} args={[undefined, undefined, blackCells.length]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshBasicMaterial color="#000000" />
-        <MapCells cells={blackCells} meshRef={blackMeshRef} />
+      <mesh>
+        <sphereGeometry args={[size.x / 2, 64, 32]} />
+        <meshBasicMaterial transparent color="#032d50" opacity={0.8} />
+      </mesh>
+      {/*<instancedMesh ref={whiteMeshRef} args={[undefined, undefined, landCells.length]}>
+        <sphereGeometry args={[1, 64, 32]} />
+        <meshBasicMaterial color="#207cb9" />
+        <MapCells cells={landCells} meshRef={whiteMeshRef} />
+      </instancedMesh>*/}
+      <instancedMesh ref={blackMeshRef} args={[undefined, undefined, landCells.length]}>
+        <sphereGeometry args={[1, 64, 32]} />
+        <meshBasicMaterial color="#db6e14" />
+        <MapCells cells={landCells} meshRef={blackMeshRef} />
       </instancedMesh>
     </group>
   )
@@ -189,8 +202,6 @@ function MapCells({ cells, meshRef }: { cells: MapCell[]; meshRef: React.RefObje
 
 
 export function IsoSphereBox() {
-  const [hue, setHue] = useState(210)
-  const color = `hsl(${hue}, 100%, 50%)`
   const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 })
 
   return (
@@ -205,31 +216,6 @@ export function IsoSphereBox() {
         borderRadius={2}
         bgcolor="rgba(0, 0, 0, 0.5)"
       >
-        <Slider
-          value={hue}
-          min={0}
-          max={360}
-          step={1}
-          onChange={(_, value) => setHue(value as number)}
-          sx={{
-            color: 'transparent',
-            height: 12,
-            '& .MuiSlider-rail': {
-              opacity: 1,
-              background: 'linear-gradient(to right, ' +
-                'hsl(0, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), ' +
-                'hsl(180, 100%, 50%), hsl(240, 100%, 50%), hsl(300, 100%, 50%), hsl(360, 100%, 50%))'
-            },
-            '& .MuiSlider-track': {
-              border: 'none',
-              background: 'transparent'
-            },
-            '& .MuiSlider-thumb': {
-              bgcolor: color,
-              border: '2px solid white'
-            }
-          }}
-        /> 
         <Typography variant="body1" color="white">
           {`x: ${rotation.x.toFixed(2)}, y: ${rotation.y.toFixed(2)}, z: ${rotation.z.toFixed(2)}`}
         </Typography>
