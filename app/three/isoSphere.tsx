@@ -324,6 +324,11 @@ function IsoSphere(
     dragRef.current.active = false
   }
 
+  const handlePointerCancel = (event: ThreeEvent<PointerEvent>) => {
+    event.stopPropagation()
+    dragRef.current.active = false
+  }
+
   return (
     <group
       ref={groupRef}
@@ -331,7 +336,7 @@ function IsoSphere(
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
     >
       <mesh>
         <sphereGeometry args={[size.x / 2, 64, 32]} />
@@ -339,7 +344,7 @@ function IsoSphere(
       </mesh>
       {selectedPoiPos && <mesh position={[selectedPoiPos.x, selectedPoiPos.y, selectedPoiPos.z]}>
         <sphereGeometry args={[0.15, 32, 16]} />
-        <meshBasicMaterial transparent color="#ffffff" opacity={.45} />
+        <meshBasicMaterial transparent color="#188dec" opacity={.25} />
       </mesh>}
       {pois.map((poi, index) => (
         <mesh 
@@ -457,15 +462,15 @@ export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords
           sx={{ backdropFilter: "blur(6px)" }}
         >
           <Stack direction="column" spacing={2}>
-          {/*<Typography fontSize="0.8rem" variant="body1" color="white">
-            {`ROT x: ${eulerDegrees.x.toFixed(1)}, y: ${eulerDegrees.y.toFixed(1)}, z: ${eulerDegrees.z.toFixed(1)}`}
-          </Typography>
-          {selectedCell && (
-            <Typography fontSize="0.8rem" variant="body1" color="white">
-              {`POS x: ${selectedCell.position[0].toFixed(2)}, y: ${selectedCell.position[1].toFixed(2)}, z: ${selectedCell.position[2].toFixed(2)}`}
+            {/*<Typography fontSize="0.8rem" variant="body1" color="white">
+              {`ROT x: ${eulerDegrees.x.toFixed(1)}, y: ${eulerDegrees.y.toFixed(1)}, z: ${eulerDegrees.z.toFixed(1)}`}
             </Typography>
-          )}*/}
-            <Box >
+            {selectedCell && (
+              <Typography fontSize="0.8rem" variant="body1" color="white">
+                {`POS x: ${selectedCell.position[0].toFixed(2)}, y: ${selectedCell.position[1].toFixed(2)}, z: ${selectedCell.position[2].toFixed(2)}`}
+              </Typography>
+            )}*/}
+            <Box>
               <Typography variant="h4" color="white">
                 {selectedPoi.name}
               </Typography>
@@ -494,7 +499,7 @@ export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords
         height={24}
       />*/}
       <Canvas
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", touchAction: "none" }}
         orthographic
         camera={{ position: ISO_POSITION, zoom: 1, near: 0.1, far: 100 }}
         onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
