@@ -1,8 +1,7 @@
 'use client';
-import { IsoSphereBox } from './three/isoSphere';
+
 import Head from './sections/head';
 import AboutPage from './about/page';
-import CvPage from "./cv/page";
 import ShowroomPage from './showroom/page';
 import SkillsPage from './skills/page';
 import ContactPage from './contact/page';
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Head id={"head-section"}/>
       <AboutPage/>
-      <IsoSphereBox />
       <ShowroomPage id={"showroom-section"}/>
       <SkillsPage id={"skills-section"} />
       <ContactPage id={"contact-section"} />

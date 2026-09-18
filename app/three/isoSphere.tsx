@@ -1,26 +1,159 @@
-import { Box, Slider, Typography } from '@mui/material'
-import { Canvas, ThreeEvent, useFrame, useLoader } from '@react-three/fiber'
+import { Box, Button, Slider, Stack, Typography } from '@mui/material'
+import { Canvas, ThreeEvent, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { useEffect, useRef, useState } from 'react'
-import { Group, InstancedMesh, Matrix4, Quaternion, TextureLoader, Vector3 } from 'three'
+import { Group, InstancedMesh, MathUtils, Matrix4, Quaternion, TextureLoader, Vector3 } from 'three'
 import earthSpecular from '../../src/earth_specular.png'
 
 // Head-on view: camera looks straight down the z axis at the centered sphere.
 const ISO_DISTANCE = 5
 const ISO_POSITION: [number, number, number] = [0, 0, ISO_DISTANCE]
 
-const POS: vector3 = { x: 0, y: 0, z: 0 }
-const ROT: vector3 = { x: 0, y: 0, z: 0 }
-const SIZE: vector3 = { x: 7, y: 7, z: 7 }
+const POS: Coords = { x: 0, y: 0, z: 0 }
+const ROT: Coords = {  x: 55.6, y: -29.9, z: 0.0 }
+const SIZE: Coords = { x: 5, y: 5, z: 5 }
+const ROTATION_SPEED = 3
+const MAX_TILT = MathUtils.degToRad(85)
 const MAX_LONGITUDE_SEGMENTS = 256
 const MIN_LONGITUDE_SEGMENTS = 16
 const POLAR_LONGITUDE_SEGMENTS = 3
 const LATITUDE_SEGMENTS = 128
 
-interface vector3 {
+interface Coords {
   x: number;
   y: number;
   z: number;
 }
+type vector3 = Coords
+
+interface PointOfInterest {
+  name: string;
+  language: string;
+  timezone: string;
+  position: vector3;
+  rotation: vector3;
+}
+
+const pois: PointOfInterest[] = [
+  {
+    name: 'Berlin',
+    language: 'German',
+    timezone: 'Europe/Berlin',
+    position: { x: 0.24, y: 1.92, z: 1.59 },
+    rotation: { x: 49.8, y: -8.5, z: 0.0 }
+  },
+  {
+    name: 'London',
+    language: 'English',
+    timezone: 'Europe/London',
+    position: { x: 0.00, y: 1.99, z: 1.52 },
+    rotation: { x: 52.7, y: 0.1, z: 0.0 }
+  },
+  {
+    name: 'Shanghai',
+    language: 'Mandarin Chinese',
+    timezone: 'Asia/Shanghai',
+    position: { x: 1.81, y: 1.37, z: -1.07 },
+    rotation: { x: 33.2, y: -120.3, z: 0.0 }
+  },
+  {
+    name: 'Dubai',
+    language: 'Arabic',
+    timezone: 'Asia/Dubai',
+    position: { x: 1.62, y: 1.21, z: 1.49 },
+    rotation: { x: 28.6, y: -47.5, z: 0.0 }
+  },
+  {
+    name: 'Tokyo',
+    language: 'Japanese',
+    timezone: 'Asia/Tokyo',
+    position: { x: 1.22, y: 1.57, z: -1.53 },
+    rotation: { x: 38.4, y: -140.9, z: 0.0 }
+  },
+  {
+    name: 'Johannesburg',
+    language: 'English',
+    timezone: 'Africa/Johannesburg',
+    position: { x: 1.06, y: -1.04, z: 2.01 },
+    rotation: { x: -24.7, y: -28.0, z: 0.0 }
+  },
+  {
+    name: 'Cairo',
+    language: 'Arabic',
+    timezone: 'Africa/Cairo',
+    position: { x: 1.03, y: 1.21, z: 1.94 },
+    rotation: {  x: 28.6, y: -28.1, z: 0.0 }
+  },
+  {
+    name: 'Sydney',
+    language: 'English',
+    timezone: 'Australia/Sydney',
+    position: { x: 1.03, y: -1.42, z: -1.79 },
+    rotation: { x: -34.4, y: -150.1, z: 0.0 }
+  },  
+  {
+    name: 'New York',
+    language: 'English',
+    timezone: 'America/New_York',
+    position: { x: -1.85, y: 1.61, z: 0.52 },
+    rotation: { x: 39.5, y: 74.6, z: 0.0 }
+  },
+  {
+    name: 'Los Angeles',
+    language: 'English',
+    timezone: 'America/Los_Angeles',
+    position: { x: -1.76, y: 1.47, z: -1.02 },
+    rotation: { x: 35.5, y: 119.9, z: 0.0 }
+  },
+  {
+    name: 'Kyiv',
+    language: 'Ukrainian',
+    timezone: 'Europe/Kyiv',
+    position: { x: 0.70, y: 2.07, z: 1.23 },
+    rotation: { x: 55.6, y: -29.9, z: 0.0 }
+  },
+  {
+    name: 'Rio de Janeiro',
+    language: 'Portuguese',
+    timezone: 'America/Sao_Paulo',
+    position: { x: -1.59, y: -0.93, z: 1.70 },
+    rotation: { x: -21.8, y: 43.0, z: 0.0 }
+  },
+  {
+    name: "Mexico City",
+    language: 'Spanish',
+    timezone: 'America/Mexico_City',
+    position: { x: -2.26, y: 0.99, z: -0.44 },
+    rotation: { x: 22.9, y: 100.9, z: 0.0}
+  },
+  {
+    name: "New Delhi",
+    language: 'Hindi and English',
+    timezone: 'Asia/Kolkata',
+    position: { x: 2.17, y: 1.15, z: 0.47 },
+    rotation: { x: 27.5, y: -77.9, z: 0.0 }
+  },
+  {
+    name: "Anchorage",
+    language: 'English',
+    timezone: 'America/Anchorage',
+    position: { x: -0.44, y: 2.28, z: -0.94 },
+    rotation: {  x: 65.3, y: 154.9, z: 0.0 }
+  },
+    {
+    name: "Singapur",
+    language: 'English, Malay, Mandarin Chinese and Tamil',
+    timezone: 'Asia/Singapore',
+    position: { x: 2.45, y: 0.15, z: -0.52 },
+    rotation: {  x: 3.4, y: -102.0, z: 0.0 }
+  },
+  {
+    name: "Havanna",
+    language: 'Spanish',
+    timezone: 'America/Havana',
+    position: {  x: -2.27, y: 0.93, z: 0.49 },
+    rotation: { x: 21.8, y: 77.9, z: 0.0 }
+  }
+]
 
 interface PointerCaptureTarget extends EventTarget {
   setPointerCapture(pointerId: number): void;
@@ -33,14 +166,44 @@ interface MapCell {
   size: number
 }
 
-function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: vector3; rot: vector3; onRotationChange: (rot: vector3) => void }) {
+function toEulerDegrees(radians: number) {
+  return MathUtils.euclideanModulo(MathUtils.radToDeg(radians) + 180, 360) - 180
+}
+
+function getTimeZoneTitle(timeZone: string) {
+  const parts = new Intl.DateTimeFormat(undefined, {
+    timeZone,
+    timeZoneName: 'short'
+  }).formatToParts(new Date())
+
+  return parts.find((part) => part.type === 'timeZoneName')?.value ?? timeZone
+}
+
+function getCurrentTime(timeZone: string, date: Date) {
+  return new Intl.DateTimeFormat(undefined, {
+    timeZone,
+    timeStyle: 'medium'
+  }).format(date)
+}
+
+function IsoSphere(
+  { pos, size, rot, rotationRequest, onRotationChange, onCellSelect, onMoveTo, onPoiSelect }: 
+  { pos: vector3; size: vector3; rot: vector3; rotationRequest: number; onRotationChange: (rot: vector3) => void; onCellSelect: (cell: MapCell) => void; onMoveTo: (target: Coords) => void; onPoiSelect: (poi: PointOfInterest) => void }) {
+
   const specularMap = useLoader(TextureLoader, earthSpecular.src)
   const groupRef = useRef<Group>(null)
-  const dragRef = useRef({ active: false, lastX: 0, lastY: 0, velocityX: 0, velocityY: 0 })
-  const whiteMeshRef = useRef<InstancedMesh>(null)
+  const targetRotationRef = useRef<{ x: number; y: number } | null>(null)
+  const dragRef = useRef({ active: false, lastX: 0, lastY: 0 })
   const blackMeshRef = useRef<InstancedMesh>(null)
-  //const [landCells, setLandCells] = useState<MapCell[]>([])
   const [landCells, setLandCells] = useState<MapCell[]>([])
+  const [selectedPoiPos, setSelectedPoiPos] = useState<vector3 | null>(null)
+
+  useEffect(() => {
+    targetRotationRef.current = {
+      x: MathUtils.degToRad(MathUtils.clamp(rot.x, -85, 85)),
+      y: MathUtils.degToRad(rot.y)
+    }
+  }, [rot.x, rot.y, rotationRequest])
 
   useEffect(() => {
     const image = specularMap.image as HTMLImageElement
@@ -101,7 +264,6 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
     }
 
     setLandCells(land)
-    //setWaterCells(water)
   }, [size.x, specularMap])
 
   useFrame((_, delta) => {
@@ -110,22 +272,32 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
 
     if (!group || drag.active) return
 
-    group.rotation.y += drag.velocityX * delta
-    group.rotation.x += drag.velocityY * delta
-    drag.velocityX *= Math.pow(0.05, delta)
-    drag.velocityY *= Math.pow(0.05, delta)
-    onRotationChange({ x: group.rotation.x, y: group.rotation.y, z: group.rotation.z })
+    const targetRotation = targetRotationRef.current
+    if (targetRotation) {
+      const interpolation = 1 - Math.exp(-ROTATION_SPEED * delta)
+      group.rotation.x = MathUtils.lerp(group.rotation.x, targetRotation.x, interpolation)
+      group.rotation.y = MathUtils.lerp(group.rotation.y, targetRotation.y, interpolation)
+      group.rotation.z = 0
+
+      if (
+        Math.abs(group.rotation.x - targetRotation.x) < 0.001 &&
+        Math.abs(group.rotation.y - targetRotation.y) < 0.001
+      ) {
+        group.rotation.set(targetRotation.x, targetRotation.y, 0)
+        targetRotationRef.current = null
+      }
+      onRotationChange({ x: group.rotation.x, y: group.rotation.y, z: 0 })
+    }
   })
 
   const handlePointerDown = (event: ThreeEvent<PointerEvent>) => {
     event.stopPropagation()
     const target = event.target as PointerCaptureTarget
     target.setPointerCapture(event.pointerId)
+    targetRotationRef.current = null
     dragRef.current.active = true
     dragRef.current.lastX = event.clientX
     dragRef.current.lastY = event.clientY
-    dragRef.current.velocityX = 0
-    dragRef.current.velocityY = 0
   }
   
   const handlePointerMove = (event: ThreeEvent<PointerEvent>) => {
@@ -135,15 +307,14 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
     event.stopPropagation()
     const deltaX = event.clientX - drag.lastX
     const deltaY = event.clientY - drag.lastY
-    const sensitivity = 0.01
+    const sensitivity = 0.003
 
     groupRef.current.rotation.y += deltaX * sensitivity
-    groupRef.current.rotation.x += deltaY * sensitivity
-    drag.velocityX = deltaX * 0.1
-    drag.velocityY = deltaY * 0.1
+    groupRef.current.rotation.x = MathUtils.clamp(groupRef.current.rotation.x + deltaY * sensitivity, -MAX_TILT, MAX_TILT)
+    groupRef.current.rotation.z = 0
     drag.lastX = event.clientX
     drag.lastY = event.clientY
-    onRotationChange({ x: groupRef.current.rotation.x, y: groupRef.current.rotation.y, z: groupRef.current.rotation.z })
+    onRotationChange({ x: groupRef.current.rotation.x, y: groupRef.current.rotation.y, z: 0 })
   }
 
   const handlePointerUp = (event: ThreeEvent<PointerEvent>) => {
@@ -157,7 +328,6 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
     <group
       ref={groupRef}
       position={[pos.x, pos.y, pos.z]}
-      rotation={[rot.x, rot.y, rot.z]}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -165,15 +335,39 @@ function IsoSphere({ pos, size, rot, onRotationChange }: { pos: vector3; size: v
     >
       <mesh>
         <sphereGeometry args={[size.x / 2, 64, 32]} />
-        <meshBasicMaterial transparent color="#032d50" opacity={0.8} />
+        <meshBasicMaterial transparent color="#282829" opacity={.85} />
       </mesh>
-      {/*<instancedMesh ref={whiteMeshRef} args={[undefined, undefined, landCells.length]}>
-        <sphereGeometry args={[1, 64, 32]} />
-        <meshBasicMaterial color="#207cb9" />
-        <MapCells cells={landCells} meshRef={whiteMeshRef} />
-      </instancedMesh>*/}
-      <instancedMesh ref={blackMeshRef} args={[undefined, undefined, landCells.length]}>
-        <sphereGeometry args={[1, 64, 32]} />
+      {selectedPoiPos && <mesh position={[selectedPoiPos.x, selectedPoiPos.y, selectedPoiPos.z]}>
+        <sphereGeometry args={[0.15, 32, 16]} />
+        <meshBasicMaterial transparent color="#ffffff" opacity={.45} />
+      </mesh>}
+      {pois.map((poi, index) => (
+        <mesh 
+          key={index} 
+          position={[poi.position.x, poi.position.y, poi.position.z]}
+          onClick={(event: ThreeEvent<MouseEvent>) => 
+          { 
+            event.stopPropagation();
+            onPoiSelect(poi)
+            setSelectedPoiPos(poi.position)
+            onMoveTo(poi.rotation); 
+          }}>
+          <sphereGeometry args={[0.05, 8, 8]} />
+          <meshBasicMaterial transparent color="#188dec" />
+        </mesh>
+      ))}     
+      <instancedMesh
+        ref={blackMeshRef}
+        args={[undefined, undefined, landCells.length]}
+        onClick={(event: ThreeEvent<MouseEvent>) => {
+          event.stopPropagation()
+          const instanceId = (event.intersections[0] as { instanceId?: number } | undefined)?.instanceId
+          if (instanceId !== undefined && landCells[instanceId]) {
+            onCellSelect(landCells[instanceId])
+          }
+        }}
+      >
+        <sphereGeometry args={[1, 6, 6]} />
         <meshBasicMaterial color="#db6e14" />
         <MapCells cells={landCells} meshRef={blackMeshRef} />
       </instancedMesh>
@@ -200,39 +394,123 @@ function MapCells({ cells, meshRef }: { cells: MapCell[]; meshRef: React.RefObje
   return null
 }
 
+function FitCamera() {
+  const { camera, size } = useThree()
 
-export function IsoSphereBox() {
+  useEffect(() => {
+    if (!camera.isOrthographicCamera) return
+
+    const padding = 0.85
+    camera.zoom = Math.min(size.width, size.height) * padding / SIZE.x
+    camera.updateProjectionMatrix()
+  }, [camera, size.width, size.height])
+
+  return null
+}
+
+
+export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords }) {
   const [rotation, setRotation] = useState({ x: 0, y: 0, z: 0 })
+  const [rotationTarget, setRotationTarget] = useState(targetRotation)
+  const [rotationRequest, setRotationRequest] = useState(0)
+  const [selectedCell, setSelectedCell] = useState<MapCell | null>(null)
+  const [selectedPoi, setSelectedPoi] = useState<PointOfInterest| null>(null)
+  const [currentTime, setCurrentTime] = useState(() => new Date())
+  const eulerDegrees = {
+    x: toEulerDegrees(rotation.x),
+    y: toEulerDegrees(rotation.y),
+    z: toEulerDegrees(rotation.z)
+  }
+
+  useEffect(() => {
+    setRotationTarget(targetRotation)
+    setRotationRequest((request) => request + 1)
+  }, [targetRotation.x, targetRotation.y, targetRotation.z])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setCurrentTime(new Date()), 1000)
+    return () => window.clearInterval(timer)
+  }, [])
+
+  const moveTo = (target: Coords) => {
+    setRotationTarget(target)
+    setRotationRequest((request) => request + 1)
+  }
 
   return (
-    <Box position="relative">
-      <Box
+    <Box
+      minWidth="500px"
+      maxHeight="500px"
+      minHeight={360}
+      overflow="hidden"
+    >
+      {selectedPoi && (
+        <Box
+          position="absolute"
+          top={{ sm: "5%", md: "45%" }}
+          zIndex={1}
+          minWidth={285}
+          p={2}
+          borderRadius={2}
+          bgcolor="background.blurry"
+          overflow="hidden"
+          sx={{ backdropFilter: "blur(6px)" }}
+        >
+          <Stack direction="column" spacing={2}>
+          {/*<Typography fontSize="0.8rem" variant="body1" color="white">
+            {`ROT x: ${eulerDegrees.x.toFixed(1)}, y: ${eulerDegrees.y.toFixed(1)}, z: ${eulerDegrees.z.toFixed(1)}`}
+          </Typography>
+          {selectedCell && (
+            <Typography fontSize="0.8rem" variant="body1" color="white">
+              {`POS x: ${selectedCell.position[0].toFixed(2)}, y: ${selectedCell.position[1].toFixed(2)}, z: ${selectedCell.position[2].toFixed(2)}`}
+            </Typography>
+          )}*/}
+            <Box >
+              <Typography variant="h4" color="white">
+                {selectedPoi.name}
+              </Typography>
+              <Stack direction="row" spacing={1}>
+                <Typography variant="h6" color="text.secondary">
+                  {getCurrentTime(selectedPoi.timezone, currentTime)}
+                </Typography>
+                <Typography variant="h6" color="text.faded">
+                  ({getTimeZoneTitle(selectedPoi.timezone)})
+                </Typography>
+              </Stack>
+              <Typography variant="body2" color="text.secondary">
+                Language: {selectedPoi.language}
+              </Typography>
+            </Box>
+          </Stack>
+        </Box>
+      )}
+      {/*<Box
         position="absolute"
-        top={16}
-        left={16}
+        top="50%"
+        left="50%"
+        sx={{ transform: "translate(-50%, -50%)", borderRadius: "50%", border: "1px solid white" }}
         zIndex={1}
-        width={240}
-        p={2}
-        borderRadius={2}
-        bgcolor="rgba(0, 0, 0, 0.5)"
-      >
-        <Typography variant="body1" color="white">
-          {`x: ${rotation.x.toFixed(2)}, y: ${rotation.y.toFixed(2)}, z: ${rotation.z.toFixed(2)}`}
-        </Typography>
-      </Box>
+        width={24}
+        height={24}
+      />*/}
       <Canvas
-        style={{ height: '800px' }}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
         orthographic
-        camera={{ position: ISO_POSITION, zoom: 80, near: 0.1, far: 100 }}
+        camera={{ position: ISO_POSITION, zoom: 1, near: 0.1, far: 100 }}
         onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
         >
+        <FitCamera />
         <ambientLight intensity={Math.PI / 2} />
         <directionalLight position={[10, 10, 5]} intensity={Math.PI / 2} />
         <IsoSphere
           pos={POS}
           size={SIZE}
-          rot={ROT}
+          rot={rotationTarget}
+          rotationRequest={rotationRequest}
           onRotationChange={setRotation}
+          onCellSelect={setSelectedCell}
+          onMoveTo={moveTo}
+          onPoiSelect={setSelectedPoi}
         />
       </Canvas>
     </Box>
