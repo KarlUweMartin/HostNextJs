@@ -3,6 +3,7 @@ import { Canvas, ThreeEvent, useFrame, useLoader, useThree } from '@react-three/
 import { useEffect, useRef, useState } from 'react'
 import { Group, InstancedMesh, MathUtils, Matrix4, Quaternion, TextureLoader, Vector3 } from 'three'
 import earthSpecular from '../../src/earth_specular.png'
+import ForumIcon from '@mui/icons-material/Forum';
 
 // Head-on view: camera looks straight down the z axis at the centered sphere.
 const ISO_DISTANCE = 5
@@ -264,6 +265,9 @@ function IsoSphere(
     }
 
     setLandCells(land)
+
+    if(!selectedPoiPos) setSelectedPoiPos(pois[10].position)
+
   }, [size.x, specularMap])
 
   useFrame((_, delta) => {
@@ -346,7 +350,7 @@ function IsoSphere(
         <sphereGeometry args={[0.15, 32, 16]} />
         <meshBasicMaterial transparent color="#188dec" opacity={.25} />
       </mesh>}
-      {pois.map((poi, index) => (
+      {pois.map((poi, index) => (        
         <mesh 
           key={index} 
           position={[poi.position.x, poi.position.y, poi.position.z]}
@@ -357,8 +361,12 @@ function IsoSphere(
             setSelectedPoiPos(poi.position)
             onMoveTo(poi.rotation); 
           }}>
-          <sphereGeometry args={[0.05, 8, 8]} />
-          <meshBasicMaterial transparent color="#188dec" />
+          <sphereGeometry args={[0.2, 12, 8]} />
+          <meshBasicMaterial transparent opacity={0} depthWrite={false} />
+          <mesh>
+            <sphereGeometry args={[0.05, 8, 8]} />
+            <meshBasicMaterial transparent color="#188dec" />
+          </mesh>
         </mesh>
       ))}     
       <instancedMesh
@@ -419,13 +427,8 @@ export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords
   const [rotationTarget, setRotationTarget] = useState(targetRotation)
   const [rotationRequest, setRotationRequest] = useState(0)
   const [selectedCell, setSelectedCell] = useState<MapCell | null>(null)
-  const [selectedPoi, setSelectedPoi] = useState<PointOfInterest| null>(null)
+  const [selectedPoi, setSelectedPoi] = useState<PointOfInterest| null>(pois[10])
   const [currentTime, setCurrentTime] = useState(() => new Date())
-  const eulerDegrees = {
-    x: toEulerDegrees(rotation.x),
-    y: toEulerDegrees(rotation.y),
-    z: toEulerDegrees(rotation.z)
-  }
 
   useEffect(() => {
     setRotationTarget(targetRotation)
@@ -444,24 +447,26 @@ export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords
 
   return (
     <Box
-      minWidth="500px"
-      maxHeight="500px"
+      position="relative"
+      width="100%"
+      height="min(100vh, 800px)"
       minHeight={360}
       overflow="hidden"
     >
       {selectedPoi && (
         <Box
           position="absolute"
-          top={{ sm: "5%", md: "45%" }}
+          top="35%"
+          left="15%"
           zIndex={1}
-          minWidth={285}
+          //minWidth={285}
           p={2}
-          borderRadius={2}
+          borderRadius="12px"
           bgcolor="background.blurry"
           overflow="hidden"
-          sx={{ backdropFilter: "blur(6px)" }}
+          sx={{ backdropFilter: "blur(4px)" }}
         >
-          <Stack direction="column" spacing={2}>
+          <Stack direction="column" spacing={1}>
             {/*<Typography fontSize="0.8rem" variant="body1" color="white">
               {`ROT x: ${eulerDegrees.x.toFixed(1)}, y: ${eulerDegrees.y.toFixed(1)}, z: ${eulerDegrees.z.toFixed(1)}`}
             </Typography>
@@ -471,19 +476,25 @@ export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords
               </Typography>
             )}*/}
             <Box>
-              <Typography variant="h4" color="white">
+              <Typography
+                mb={1}
+                variant="h3"
+                sx={{ fontSize: { xs: "1.1rem", sm: "1.25rem", md: "2.125rem" } }}
+                color="text.secondary"
+              >
                 {selectedPoi.name}
               </Typography>
               <Stack direction="row" spacing={1}>
-                <Typography variant="h6" color="text.secondary">
+                <Typography sx={{ fontSize:  { xs: "0.6rem", sm: "0.8rem", md: "1rem" } }} variant="body1" color="text.secondary">
                   {getCurrentTime(selectedPoi.timezone, currentTime)}
                 </Typography>
-                <Typography variant="h6" color="text.faded">
+                <Typography sx={{ fontSize: { xs: "0.6rem", sm: "0.8rem", md: "1rem" } }}  variant="body1" color="text.faded">
                   ({getTimeZoneTitle(selectedPoi.timezone)})
                 </Typography>
               </Stack>
-              <Typography variant="body2" color="text.secondary">
-                Language: {selectedPoi.language}
+              <Typography sx={{ fontSize: { xs: "0.5rem", sm: "0.6rem", md: "0.8rem" } }}  variant="body1" color="text.secondary">
+                <ForumIcon sx={{ fontSize: { xs: "0.5rem", sm: "0.6rem", md: "0.8rem" }, verticalAlign: "middle", mr: 0.5 }} />
+                {selectedPoi.language}
               </Typography>
             </Box>
           </Stack>
@@ -499,14 +510,12 @@ export function IsoSphereBox({ targetRotation = ROT }: { targetRotation?: Coords
         height={24}
       />*/}
       <Canvas
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", touchAction: "none" }}
+        style={{ position: "absolute", inset: 0, width: "100%", minWidth: "500px", height: "100%", touchAction: "none" }}
         orthographic
         camera={{ position: ISO_POSITION, zoom: 1, near: 0.1, far: 100 }}
         onCreated={({ camera }) => camera.lookAt(0, 0, 0)}
         >
         <FitCamera />
-        <ambientLight intensity={Math.PI / 2} />
-        <directionalLight position={[10, 10, 5]} intensity={Math.PI / 2} />
         <IsoSphere
           pos={POS}
           size={SIZE}
