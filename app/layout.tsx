@@ -13,10 +13,10 @@ export default async function RootLayout({children}: {children: React.ReactNode}
     <html lang={"en"}>
       <body style={{ margin: 0 }}>
         <ThemeProvider theme={theme}>
-          <CssBaseline />        
+          <CssBaseline />
           <ClientIntlProvider initialMessages={messages}>
             {children}
-          </ClientIntlProvider>           
+          </ClientIntlProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -41,8 +41,7 @@ export default function Head({ id }: { id?: string }) {
   return (<Box id={id} 
         sx={{ 
           justifyContent: "center",
-          display: "flex",
-          bgcolor: "background.default" }}>
+          display: "flex"}}>
 
         <Container
           maxWidth="lg"

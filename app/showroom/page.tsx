@@ -67,7 +67,6 @@ function Feature({ title, body, href, git, imgSrc, onOpen }: {
   return (
     <Card
       sx={{
-        boxShadow: 0,
         borderRadius: 2,
         display: "flex",
         flexDirection: "column",
@@ -134,7 +133,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
   return (
     <Box id={id}>
       <BackButton title={"Showroom"} disabled={!singlePage} />
-      <Container  maxWidth="lg" sx={{ py: singlePage ? 2 : 5 }}>     
+      <Container  maxWidth="lg" sx={{ py: singlePage ? 2 : 5 }}>
         {!singlePage && 
           <Stack direction={"row"} alignItems={"center"}  justifyContent={"space-between"}>
             <Typography variant="h4" component="h1" gutterBottom>
@@ -150,12 +149,32 @@ export default function ShowroomPage({ id }: { id?: string }) {
         </Typography>
 
         <Grid container spacing={2} sx={{ mb: 3, mt: 6 }}>
+
+          <Grid item xs={12} sm={4} md={3} >
+            <Feature
+              title="ThreeJS Globe"
+              body={t("globeDescription")}
+              href="/threeGlobe"
+              imgSrc={"/thumbGlobe.png"}
+              onOpen={openIframe}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={4} md={3} >
+            <Feature
+              title="Water Levels"
+              body={t.rich("waterlevelHead")}
+              href="/waterlevelPage"
+              imgSrc={"/thumbWaterlevels.png"}
+              onOpen={openWaterLevel}
+            />
+          </Grid>
+
           <Grid item xs={12} sm={4} md={3} >
             <Feature
               title="Satellites"
               body={t.rich("satellitesDescription")}
               href='/satellites/index.html'
-              git={"https://github.com/KarlUweMartin/Unity_Satellites"}
               imgSrc={"/thumbSat.png"}
               onOpen={openIframe}
             />
@@ -199,16 +218,6 @@ export default function ShowroomPage({ id }: { id?: string }) {
               href='/droneSim/index.html'
               imgSrc={"/thumbDrone.png"}
               onOpen={openIframe}
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4} md={3} >
-            <Feature
-              title="Water Levels"
-              body={t.rich("waterlevelHead")}
-              href="/waterlevelPage"
-              imgSrc={"/thumbWaterlevels.png"}
-              onOpen={openWaterLevel}
             />
           </Grid>
         </Grid>

@@ -6,6 +6,7 @@
     "flutterDescription": "Flutter-Template für eine Shop-App – inklusive funktionsfähigem Backend mit REST-API. Der Code ist auf GitHub verfügbar.",
     "cubePuzzleDescription": "Nachbildung des berühmten Würfelpuzzles, das kaum jemand lösen kann. Mir war wichtig, ein realistisches Look-and-Feel sowie eine klare und intuitive Steuerung umzusetzen.",
     "droneSimDescription": "Physikalisch realistische Simulation einer Quadcopter-Drohne mit einstellbaren PID-Reglern.",
+    "globeDescription": "Anhand einer Spekularitätskarte der Erde wird eine Punktmatrix erzeugt und mit Three.js/Fiber visualisiert.",
     "days": "Tag/e",
     "waterlevelHead": "Als Angler ist für mich wichtig, die aktuellen Wasserstände der Flüsse meiner Region zu kennen."
   },

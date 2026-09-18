@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/dev/types/**/*.ts"
-  ],
+, "app/threeGlobe"  ],
   "exclude": [
     "node_modules"
   ]
