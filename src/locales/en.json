@@ -1,12 +1,12 @@
 {
   "Showroom": {
-    "showroomHead": "Try out and see some of my work. Here you will find a mix of visual explorations, OSS projects, and other random ideas I created in the last few years.",
+    "showroomHead": "Here you'll find a mix of visual experiments and creative ideas I've brought to life in my free time over the past few years.",
+    "showroomDisclaimer": "Disclaimer: NDA's prevent me from publicly showcasing customer projects or parts of them - the showroom is not a professional portfolio.",
     "satellitesDescription": "3D visualization of all publicly documented satellites that orbit Earth at this moment. Data provided by NORAD.",
     "orbitSandboxDescription": "A colorful simulation to explore mass, momentum, and gravity. Swipe or drag to create objects and watch them interact with the central star.",
     "flutterDescription": "Flutter Template for a Shop-App - including a functional backend with REST-API. Code is available on GitHub.",
     "cubePuzzleDescription": "Recreating the famous cube puzzle hardly anyone can solve. I wanted it to have a realistic look and feel and straightforward controls.",
     "droneSimDescription": "Physically realistic simulation of a quadcopter drone with adjustable PID controllers.",
-    "globeDescription": "Using a specular map of Earth to generate a dot matrix and visualizing it with Three.js/Fiber.",
     "days": "Day/s",
     "waterlevelHead": "Knowing the water level of the rivers in my area is crucial for a fisherman like myself."
   },
@@ -76,11 +76,11 @@
       "email": "Email"
     },
     "experience": [
-      { "title": "Product Owner & Developer", "summary": ["Designing and developing state of the art software for industry 3.0/4.0", "Managing team of developers and curating backlogs"] },
-      { "title": "UX-Designer & Developer", "summary": ["UX-Design and development of VR&AR training applications", "Lead developer of AR-Conferencing application"] },
+      { "title": "Product Owner & Developer", "summary": ["Developing state of the art software for modern industry", "Managing team of developers and curating backlogs"] },
+      { "title": "UX-Designer & Developer", "summary": ["UX concept and development of VR&AR training applications", "Lead developer of AR-Conferencing application"] },
       { "title": "Creative Technologist", "summary": ["Designing and developing interfaces for modern vehicles", "Intercontinental travel for on-site client support"] },
       { "title": "Programming Tutor", "summary": ["Teaching/tutoring C# programming and assisting in projects"] },
-      { "title": "Video Artist", "summary": ["Conception and processing 3D animation and special effects", "Production of documentary films"]},
+      { "title": "Video Artist", "summary": ["Conception and processing 3D animation and special effects"] },
       { "title": "Video Artist (internship)", "summary": ["Cutting and processing advertisement clips"] },
       { "title": "Web Designer (internship)", "summary": ["Web design & advertising"] }
     ],

@@ -144,8 +144,11 @@ export default function ShowroomPage({ id }: { id?: string }) {
             </IconButton>
           </Stack>
         }
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           {t("showroomHead")}
+        </Typography>
+        <Typography variant="body2" sx={{ fontSize: "0.7em" }} color="text.faded">
+          {t("showroomDisclaimer")}
         </Typography>
 
         <Grid container spacing={2} sx={{ mb: 3, mt: 6 }}>
