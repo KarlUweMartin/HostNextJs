@@ -175,6 +175,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               title="Satellites"
               body={t.rich("satellitesDescription")}
               href='/satellites/index.html'
+              git={"https://github.com/KarlUweMartin/Unity_Satellites"}
               imgSrc={"/thumbSat.png"}
               onOpen={openIframe}
             />
