@@ -1,0 +1,9 @@
+![icon](https://upload.wikimedia.org/wikipedia/commons/1/18/Hda_logo.svg?utm_source=de.wikipedia.org&utm_campaign=index&utm_content=original)
+
+Im Jahr 2016 schloss ich mein Bachelorstudium im Bereich Interactive Media Design (IMD) an der Hochschule Darmstadt ab. Der Studiengang ist in drei Hauptbereiche gegliedert: Mediendesign, Medienmanagement und Medientechnologie. Mein Schwerpunkt lag insbesondere auf Medientechnologie und Mediendesign, vor allem auf der technischen Umsetzung von Prototypen sowie der Gestaltung von User Experience.
+
+Jedes Semester im IMD stand unter einem eigenen thematischen Schwerpunkt, in dem kleine Teams wie in einer simulierten Agentur über das gesamte Semester hinweg ein Projektkonzept entwickelten und einen Prototyp umsetzten. Diese Projekte gaben mir wertvolle praktische Erfahrung in der Entwicklung verschiedener interaktiver Medien, darunter Websites, Apps, Spiele und sogar technische Geräte.
+
+Neben den semesterübergreifenden Hauptprojekten bot das Studium spezialisierte Wahlfächer zu unterschiedlichen Themenbereichen. Ich beschäftigte mich unter anderem mit Usability, 3D-Rendering, Game Programming, Interface Design sowie Augmented- und Virtual Reality und setzte in jedem dieser Bereiche eigene Projekte um. Der Umgang mit Tools wie Cinema4D, Unity3D und der Adobe Creative Suite wurde häufig vorausgesetzt, sodass ich mir viele dieser Fähigkeiten eigenständig außerhalb der Lehrveranstaltungen aneignete.
+
+Präsentationen waren ein zentraler Bestandteil jedes Semesterprojekts und machten einen wesentlichen Teil der Gesamtnote aus. Professoren und Dozenten fungierten dabei als potenzielle Auftraggeber, vor denen wir unsere Projekte pitchen und präsentieren mussten. Eine zusätzliche Herausforderung bestand darin, dass diese Präsentationen auf Englisch durchgeführt wurden, da der Studiengang bilingual aufgebaut ist.

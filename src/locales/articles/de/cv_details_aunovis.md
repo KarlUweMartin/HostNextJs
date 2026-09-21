@@ -1,0 +1,18 @@
+![icon](https://www.aunovis.de/wp-content/uploads/Aunovis-Logo.svg)
+
+Für das Projekt „Q!Apps“ wurde ich von AUNOVIS als Experte für Mixed-Reality-Entwicklung engagiert. In einem kleinen Team legten wir die Grundlage für ein umfangreiches Assistenzsystem. Meine Hauptverantwortung bestand in der Implementierung der Hauptanwendung für moderne AR-Geräte. Das zentrale Ziel war es, eine intuitive Benutzeroberfläche für Bediener zu schaffen, die zuvor keinerlei Erfahrung mit dieser Technologie hatten und sicherzustellen, dass sie effektiv in ihren täglichen Arbeitsablauf integriert werden konnte. Bediener können Echtzeit-Maschinendaten anzeigen, Maschinen steuern und wichtige Informationen direkt am Objekt in einer dreidimensionalen Ansicht abrufen.
+
+Neben der Entwicklung der AR-Oberfläche war die Kompatibilität mit einem webbasierten ThreeJS Editor von entscheidender Bedeutung. Ein Team in Barcelona entwickelte diesen Editor parallel zum Projekt. Als Product Owner innerhalb ihres Scrum-Prozesses war ich für die Kommunikation sowie die Freigabe neuer Versionen verantwortlich.
+
+Der Großteil der Entwicklung basierte auf C#/.NET in Unity sowie den Serveranwendungen. Ein wesentlicher Aspekt des Projekts war die Aufrechterhaltung einer stabilen und sicheren Verbindung zu verschiedenen Datenströmen. Ich entwickelte REST-API-Schnittstellen auf unseren Servern und implementierte diese in den Client-Anwendungen. Das Team führte regelmäßige wöchentliche Meetings mit dem Product Owner und den Stakeholdern zur Koordination sowie zur Qualitätskontrolle durch. Pull Requests, Releases, Bugfixing usw. wurden vollständig über Azure DevOps organisiert.
+
+Eine große Herausforderung bestand darin, industrielle Softwarestandards einzuhalten und gleichzeitig intuitive Software für Hardware der nächsten Generation zu entwickeln. AUNOVIS ist nach DIN EN ISO 9001 zertifiziert und gewährleistet dadurch hohe Qualität und sichere Software auf allen Ebenen.
+
+Während meiner ersten Projektphase bei AUNOVIS konnte ich mein Potenzial für eine technische Führungsrolle unter Beweis stellen und wurde deshalb zum Product Owner eines weiteren laufenden Projekts im Bereich Remote-Support per Videoanruf mit Fokus auf Spezialwerkzeuge für die industrielle Wartung befördert. Das Projekt befand sich noch in der Anfangsphase, nachdem zuvor ein Prototyp auf einer Fachmesse mit positivem Feedback präsentiert worden war.
+
+Meine Aufgabe bestand darin, ein Team von vier bis sechs Entwicklern aus verschiedenen Fachbereichen zu koordinieren, darunter ein .NET-Backend, eine React-Webanwendung, eine native iOS-App sowie die zugrunde liegende Infrastruktur, die über DevOps verwaltet wurde. Neben meiner Tätigkeit als Product Owner arbeitete ich auch aktiv als Entwickler in allen Bereichen mit, wobei mein Schwerpunkt insbesondere auf der Implementierung neuer Funktionen für die React-Webanwendung (Typescript) und der Weiterentwicklung des Backends (REST/ASP.NET) lag.
+
+Neben Kundenprojekten nahm ich freiwillig an einer Arbeitsgruppe teil, in der wir Themen rund um das Thema künstliche Intelligenz (AI) behandelten. Hier wurde erarbeitet, welche KI-Modelle geeignet sind, um sie in der Produktion effizient und sicher einzusetzen. Neben dem Einsatz von Agentic-AI als Software Entwickler, erarbeitete ich auch einige Prototypen für Produkte, die KI einsetzen:
+
+* Objekterkennung mit YOLOv26 in einer „spatial aware“ (AR) Applikation, um die Position von erkannten Objekten im Raum zu erkennen und kartographieren.
+* RAG-System: AI-Support Tool, das basierend auf Screenshots aktive Hilfe auf einer Webanwendung leisten kann. Hierzu nutzte ich YOLOv26, Mistral-OCR, Mistral-Small (LLM) und eine Vector-Datenbank, die aus verschiedenen technischen Dokumenten bestand.

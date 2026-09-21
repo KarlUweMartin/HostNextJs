@@ -67,6 +67,7 @@
     "skillsHeading": "Skills",
     "skillsLink": "Go to Skills-Page for details",
     "detail": "Detail",
+    "close": "Close",
     "today": "Today",
     "city": "City: {city}",
     "personal": {
@@ -77,25 +78,87 @@
       "email": "Email"
     },
     "experience": [
-      { "title": "Product Owner & Developer", "summary": ["Developing state of the art software for modern industry", "Managing team of developers and curating backlogs"] },
-      { "title": "UX-Designer & Developer", "summary": ["UX concept and development of VR&AR training applications", "Lead developer of AR-Conferencing application"] },
-      { "title": "Creative Technologist", "summary": ["Designing and developing interfaces for modern vehicles", "Intercontinental travel for on-site client support"] },
-      { "title": "Programming Tutor", "summary": ["Teaching/tutoring C# programming and assisting in projects"] },
-      { "title": "Video Artist", "summary": ["Conception and processing 3D animation and special effects"] },
-      { "title": "Video Artist (internship)", "summary": ["Cutting and processing advertisement clips"] },
-      { "title": "Web Designer (internship)", "summary": ["Web design & advertising"] }
+      {
+        "title": "Product Owner & Developer",
+        "summary": [
+          "- Developing state of the art software for modern industry",
+          "- Managing team of developers and curating backlogs"
+        ]
+      },
+      {
+        "title": "UX-Designer & Developer",
+        "summary": [
+          "- UX concept and development of VR&AR training applications",
+          "- Lead developer of AR-Conferencing application"
+        ]
+      },
+      {
+        "title": "Creative Technologist",
+        "summary": [
+          "- Designing and developing interfaces for modern vehicles",
+          "- Intercontinental travel for on-site client support"
+        ]
+      },
+      {
+        "title": "Programming Tutor",
+        "summary": [
+          "- Teaching/tutoring C# programming and assisting in projects"
+        ]
+      },
+      {
+        "title": "Video Artist",
+        "summary": [
+          "- Conception and processing 3D animation and special effects"
+        ]
+      },
+      {
+        "title": "Video Artist (internship)",
+        "summary": [
+          "- Cutting and processing advertisement clips"
+        ]
+      },
+      {
+        "title": "Web Designer (internship)",
+        "summary": [
+          "- Web design & advertising"
+        ]
+      }
     ],
     "education": [
-      { "title": "Interactive Media Design", "details": "UX Design | Interaction Design | Programming | Usability\nBachelor of Arts" },
-      { "title": "Print-/Mediatechnology", "details": "Print Technology | Media Design" },
-      { "title": "Abitur", "details": "A-Level" }
+      {
+        "title": "Interactive Media Design",
+        "details": "UX Design | Interaction Design | Programming | Usability\nBachelor of Arts"
+      },
+      {
+        "title": "Print-/Mediatechnology",
+        "details": "Print Technology | Media Design"
+      },
+      {
+        "title": "Abitur",
+        "details": "A-Level"
+      }
     ],
     "skills": [
-      { "title": "Project Management", "details": "Technical Lead | PO/PM | Scrum Master" },
-      { "title": "Programming", "details": "C#/.NET | TypeScript/JavaScript | Dart | HTML/CSS" },
-      { "title": "Teamwork", "details": "Git | DevOps | Scrum | working across timezones | international teams" },
-      { "title": "Industries", "details": "Industry 4.0 | Automotive | Education | Journalism | Entertainment" },
-      { "title": "Languages", "details": "German (Mothertongue) | English (Fluent, C1)" }
+      {
+        "title": "Project Management",
+        "details": "Technical Lead | PO/PM | Scrum Master"
+      },
+      {
+        "title": "Programming",
+        "details": "C#/.NET | TypeScript/JavaScript | Dart | HTML/CSS"
+      },
+      {
+        "title": "Teamwork",
+        "details": "Git | DevOps | Scrum | working across timezones | international teams"
+      },
+      {
+        "title": "Industries",
+        "details": "Industry 4.0 | Automotive | Education | Journalism | Entertainment"
+      },
+      {
+        "title": "Languages",
+        "details": "German (Mothertongue) | English (Fluent, C1)"
+      }
     ]
   },
   "Nav" : {

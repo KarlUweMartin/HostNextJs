@@ -19,11 +19,14 @@
     "next": "16.1.6",
     "next-intl": "^4.3.6",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "^20.7.1",
     "license-checker": "^25.0.1",
+    "raw-loader": "^4.0.2",
     "typescript": "5.9.3"
   }
 }

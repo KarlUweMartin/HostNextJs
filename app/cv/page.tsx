@@ -2,18 +2,45 @@
 
 import {
   Box,
+  Button,
   Container,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
   Link,
   Typography,
 } from "@mui/material";
 import { BackButton } from "../sections/backbutton";
 import React from "react";
 import { useTranslations } from "next-intl";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
+
+import aunovisDetailsDe from "../../src/locales/articles/de/cv_details_aunovis.md";
+import aunovisDetailsEn from "../../src/locales/articles/en/cv_details_aunovis.md";
+import threeSpinDetailsDe from "../../src/locales/articles/de/cv_details_3spin.md";
+import threeSpinDetailsEn from "../../src/locales/articles/en/cv_details_3spin.md";
+import hdaDetailsDe from "../../src/locales/articles/de/cv_details_hda.md";
+import hdaDetailsEn from "../../src/locales/articles/en/cv_details_hda.md";
+import iconIncarDetailsDe from "../../src/locales/articles/de/cv_details_iconincar.md";
+import iconIncarDetailsEn from "../../src/locales/articles/en/cv_details_iconincar.md";
+import mlsDetailsDe from "../../src/locales/articles/de/cv_details_mls.md";
+import mlsDetailsEn from "../../src/locales/articles/en/cv_details_mls.md";
+
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import TranslateIcon from '@mui/icons-material/Translate';
 import PeopleIcon from '@mui/icons-material/People';
 import CodeIcon from '@mui/icons-material/Code';
 import FactoryIcon from '@mui/icons-material/Factory';
+import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
+
+type CvDetail = {
+  title: string;
+  markdown: string;
+};
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -78,40 +105,188 @@ function TextParagraphs({ children }: { children: string }) {
 
 export default function CvPage() {
   const t = useTranslations("Cv");
+  const { locale } = useAppLocale();
   const [singlePage, setSinglePage] = React.useState(false);
+  const [selectedDetail, setSelectedDetail] = React.useState<CvDetail | null>(null);
+  const articleDetailsByLocale = {
+    de: {
+      aunovis: aunovisDetailsDe,
+      threeSpin: threeSpinDetailsDe,
+      hda: hdaDetailsDe,
+      iconIncar: iconIncarDetailsDe,
+      mls: mlsDetailsDe
+    },
+    en: {
+      aunovis: aunovisDetailsEn,
+      threeSpin: threeSpinDetailsEn,
+      hda: hdaDetailsEn,
+      iconIncar: iconIncarDetailsEn,
+      mls: mlsDetailsEn
+    },
+  } as const;
+  const articleDetails = articleDetailsByLocale[locale as keyof typeof articleDetailsByLocale];
+
   React.useEffect(() => {
     setSinglePage(window.location.pathname.toLocaleLowerCase().endsWith("/cv"));
   }, []);
 
+  React.useEffect(() => {
+    setSelectedDetail(null);
+  }, [locale]);
+
   const personalData = [
-    { label: t("personal.fullName"), value: "Karl Uwe Martin" },
-    { label: t("personal.dateOfBirth"), value: t("personal.dateOfBirthValue") },
-    { label: t("personal.city"), value: "69181, Leimen, Germany" },
-    { label: t("personal.email"), value: "KarlUweMartin@gmail.com", href: "mailto:KarlUweMartin@gmail.com" },
+    {
+      label: t("personal.fullName"),
+      value: "Karl Uwe Martin",
+    },
+    {
+      label: t("personal.dateOfBirth"),
+      value: t("personal.dateOfBirthValue"),
+    },
+    {
+      label: t("personal.city"),
+      value: "69181, Leimen, Germany",
+    },
+    {
+      label: t("personal.email"),
+      value: "KarlUweMartin@gmail.com",
+      href: "mailto:KarlUweMartin@gmail.com",
+    },
   ];
 
   const experience = [
-    { period: `${t("today")} -\n2022`, title: t("experience.0.title"), company: "Aunovis", city: "Karlsruhe", link: "https://www.aunovis.de/", detailModal: true, summary: [t("experience.0.summary.0"), t("experience.0.summary.1")] },
-    { period: "2022 -\n2018", title: t("experience.1.title"), company: "3spin", city: "Darmstadt", link: "https://www.3spin-learning.com/", detailModal: true, summary: [t("experience.1.summary.0"), t("experience.1.summary.1")] },
-    { period: "2018 -\n2016", title: t("experience.2.title"), company: "icon incar", city: "Ingolstadt", link: "https://www.iconincar.com/", detailModal: true, summary: [t("experience.2.summary.0"), t("experience.2.summary.1")] },
-    { period: "2016 -\n2014", title: t("experience.3.title"), company: "Hochschule Darmstadt", city: "Darmstadt", link: "https://mediencampus.h-da.de/", summary: [t("experience.3.summary.0")] },
-    { period: "2015 -\n2011", title: t("experience.4.title"), company: "Mountain Lane Studio", city: "Viernheim", summary: [t("experience.4.summary.0")] },
-    { period: "2009", title: t("experience.5.title"), company: "Huber Verlag", city: "Mannheim", summary: [t("experience.5.summary.0")] },
-    { period: "2006", title: t("experience.6.title"), company: "Erdt Artworks", city: "Viernheim", link: "https://www.erdtartworks.de/", summary: [t("experience.6.summary.0")] },
+    {
+      period: `${t("today")} -\n2022`,
+      title: t("experience.0.title"),
+      company: "Aunovis",
+      city: "Karlsruhe",
+      link: "https://www.aunovis.de/",
+      details: {
+        title: `${t("experience.0.title")} @ Aunovis`,
+        markdown: articleDetails.aunovis,
+      },
+      summary: [
+        t("experience.0.summary.0"),
+        t("experience.0.summary.1"),
+      ],
+    },
+    {
+      period: "2022 -\n2018",
+      title: t("experience.1.title"),
+      company: "3spin",
+      city: "Darmstadt",
+      link: "https://www.3spin-learning.com/",
+      details: {
+        title: `${t("experience.1.title")} @ 3spin`,
+        markdown: articleDetails.threeSpin,
+      },
+      summary: [
+        t("experience.1.summary.0"),
+        t("experience.1.summary.1"),
+      ],
+    },
+    {
+      period: "2018 -\n2016",
+      title: t("experience.2.title"),
+      company: "icon incar",
+      city: "Ingolstadt",
+      link: "https://www.iconincar.com/",
+      details: {
+        title: `${t("experience.2.title")} @ icon incar`,
+        markdown: articleDetails.iconIncar,
+      },
+      summary: [
+        t("experience.2.summary.0"),
+        t("experience.2.summary.1"),
+      ],
+    },
+    {
+      period: "2016 -\n2014",
+      title: t("experience.3.title"),
+      company: "Hochschule Darmstadt",
+      city: "Darmstadt",
+      link: "https://mediencampus.h-da.de/",
+      summary: [t("experience.3.summary.0")],
+    },
+    {
+      period: "2015 -\n2011",
+      title: t("experience.4.title"),
+      company: "Mountain Lane Studio",
+      city: "Viernheim",
+      details: {
+        title: `${t("experience.4.title")} @ Mountain Lane Studio`,
+        markdown: articleDetails.mls,
+      },
+      summary: [t("experience.4.summary.0")],
+    },
+    {
+      period: "2009",
+      title: t("experience.5.title"),
+      company: "Huber Verlag",
+      city: "Mannheim",
+      summary: [t("experience.5.summary.0")],
+    },
+    {
+      period: "2006",
+      title: t("experience.6.title"),
+      company: "Erdt Artworks",
+      city: "Viernheim",
+      link: "https://www.erdtartworks.de/",
+      summary: [t("experience.6.summary.0")],
+    },
   ];
 
   const education = [
-    { period: "2016 -\n2013", title: t("education.0.title"), company: "Hochschule Darmstadt", details: t("education.0.details") },
-    { period: "2013 -\n2012", title: t("education.1.title"), company: "Hochschule der Medien Stuttgart", details: t("education.1.details") },
-    { period: "2011", title: t("education.2.title"), company: "Alexander v. Humboldt Schule Viernheim", details: t("education.2.details") },
+    {
+      period: "2016 -\n2013",
+      title: t("education.0.title"),
+      company: "Hochschule Darmstadt",
+      details: t("education.0.details"),
+      detailsArticle: {
+        title: `${t("experience.3.title")} @ Hochschule Darmstadt`,
+        markdown: articleDetails.hda,
+      },
+    },
+    {
+      period: "2013 -\n2012",
+      title: t("education.1.title"),
+      company: "Hochschule der Medien Stuttgart",
+      details: t("education.1.details"),
+    },
+    {
+      period: "2011",
+      title: t("education.2.title"),
+      company: "Alexander v. Humboldt Schule Viernheim",
+      details: t("education.2.details"),
+    },
   ];
 
   const skills = [
-    { period: <AssignmentIcon/>, title: t("skills.0.title"), details: t("skills.0.details") },
-    { period: <CodeIcon/>, title: t("skills.1.title"), details: t("skills.1.details") },
-    { period: <PeopleIcon/>, title: t("skills.2.title"), details: t("skills.2.details") },
-    { period: <FactoryIcon/>, title: t("skills.3.title"), details: t("skills.3.details") },
-    { period: <TranslateIcon/>, title: t("skills.4.title"), details: t("skills.4.details") },
+    {
+      period: <AssignmentIcon />,
+      title: t("skills.0.title"),
+      details: t("skills.0.details"),
+    },
+    {
+      period: <CodeIcon />,
+      title: t("skills.1.title"),
+      details: t("skills.1.details"),
+    },
+    {
+      period: <PeopleIcon />,
+      title: t("skills.2.title"),
+      details: t("skills.2.details"),
+    },
+    {
+      period: <FactoryIcon />,
+      title: t("skills.3.title"),
+      details: t("skills.3.details"),
+    },
+    {
+      period: <TranslateIcon />,
+      title: t("skills.4.title"),
+      details: t("skills.4.details"),
+    },
   ];
 
   return (
@@ -199,11 +374,20 @@ export default function CvPage() {
                   color: "text.secondary",
                 }}
               >
-                @ {item.company}             
+                @ {item.company}
               </Box>
             </Typography>
             <TextParagraphs>{item.summary.join("\n")}</TextParagraphs>
-            {/*item.detailModal && <Button sx={{ width: 120, size:"sm", mt: 2 }} startIcon={<SearchIcon/>}>{t("detail")}</Button>*/}
+            {item.details && (
+              <Button
+                size="small"
+                sx={{ width: 120, mt: 2 }}
+                startIcon={<SearchIcon />}
+                onClick={() => setSelectedDetail(item.details)}
+              >
+                {t("detail")}
+              </Button>
+            )}
             <Typography
               sx={{
                 color: "text.faded",
@@ -243,6 +427,16 @@ export default function CvPage() {
                 </Box>      
               </Typography>
               <TextParagraphs>{item.details}</TextParagraphs>
+              {item.detailsArticle && (
+              <Button
+                size="small"
+                sx={{ width: 120, mt: 2 }}
+                startIcon={<SearchIcon />}
+                onClick={() => setSelectedDetail(item.detailsArticle)}
+              >
+                {t("detail")}
+              </Button>
+            )}
             </CvSection>
           ))}
       </Box>
@@ -267,15 +461,126 @@ export default function CvPage() {
                   color: "text.secondary",
                 }}
               >
-                    
               </Box>
             </Typography>
-            <TextParagraphs>{item.details}</TextParagraphs>  
+            <TextParagraphs>{item.details}</TextParagraphs>
           </CvSection>
         ))}
-        <Link href={"/skills"}>{t("skillsLink")}</Link>       
+        <Link href={"/skills"}>{t("skillsLink")}</Link>
       </Box>
+      <CvDetailModal
+        detail={selectedDetail}
+        open={selectedDetail !== null}
+        onClose={() => setSelectedDetail(null)}
+        closeLabel={t("close")}
+      />
     </Container>
   </Box>
+  );
+}
+
+function CvDetailModal({
+  detail,
+  open,
+  onClose,
+  closeLabel,
+}: {
+  detail: CvDetail | null;
+  open: boolean;
+  onClose: () => void;
+  closeLabel: string;
+}) {
+  return (
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="md"
+      slotProps={{
+        backdrop: {
+          sx: {
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            backdropFilter: "blur(6px)",
+          },
+        },
+      }}
+      PaperProps={{
+        sx: {
+          bgcolor: "background.defaultLight",
+          borderRadius: 1,
+          maxHeight: "85vh",
+        },
+      }}
+    >
+      {detail && (
+        <>
+          <DialogTitle sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Typography component="h2" variant="h6" sx={{ flex: 1 }}>
+              {detail.title}
+            </Typography>
+            <IconButton onClick={onClose} aria-label={closeLabel} size="small">
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent dividers sx={{ py: 3 }}>
+            <Box
+              component="article"
+              sx={{
+                maxWidth: 680,
+                mx: "auto",
+                color: "text.secondary",
+                lineHeight: 1.75,
+                "& h1, & h2, & h3": {
+                  color: "text.primary",
+                  lineHeight: 1.3,
+                  mt: 3.5,
+                  mb: 1.5,
+                },
+                "& h1": { fontSize: "1.6rem", mt: 0 },
+                "& h2": { fontSize: "1.3rem" },
+                "& h3": { fontSize: "1.1rem" },
+                "& p": { my: 2 },
+                "& ul, & ol": { pl: 3, my: 2 },
+                "& a": { color: "primary.main" },
+                "& blockquote": {
+                  m: "24px 0",
+                  pl: 2,
+                  borderLeft: "3px solid",
+                  borderColor: "border.secondary",
+                  color: "text.faded",
+                },
+                "& code": {
+                  bgcolor: "action.hover",
+                  borderRadius: 0.5,
+                  px: 0.6,
+                  py: 0.2,
+                },
+                "& pre": {
+                  overflowX: "auto",
+                  bgcolor: "action.hover",
+                  borderRadius: 1,
+                  p: 2,
+                },
+                "& pre code": { p: 0, bgcolor: "transparent" },
+                "& img": {
+                  display: "block",
+                  maxWidth: "45%",
+                  maxHeight: "30%",
+                  height: "auto",
+                  borderRadius: 1,
+                  p: 2,
+                  backgroundColor: "#fff",
+                  my: 3,
+                },
+              }}
+            >
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {detail.markdown}
+              </ReactMarkdown>
+            </Box>
+          </DialogContent>
+        </>
+      )}
+    </Dialog>
   );
 }

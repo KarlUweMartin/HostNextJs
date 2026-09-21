@@ -1,0 +1,5 @@
+During my studies, I co-founded a small film production company together with three friends, where I worked as a video artist. We produced music videos, commercials, documentaries, and news reports for clients from various industries across Germany. I was involved in all areas of video production, including idea generation, concept development, filming, editing, and post-production.
+
+We initially began with filming events such as the Frankfurt Book Fair and Comic Con Erlangen. Through YouTube, we were able to attract the attention of companies that later commissioned us for similar projects.
+
+One particularly outstanding project was a documentary for the aid organization FOCUS e.V. We accompanied the team to Burkina Faso to document their work and life in the region. This involved a 15-day journey through one of the poorest countries in the world to gather authentic and unique footage. The result was so impressive that FOCUS e.V. even screened the film in the Kinopolis Viernheim cinema. This project holds a very special place in my life because it profoundly shaped my perspective on the world and was realized together with three of my closest friends.

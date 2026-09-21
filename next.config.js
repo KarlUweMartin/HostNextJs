@@ -6,6 +6,14 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
+  turbopack: {
+    rules: {
+      '*.md': {
+        loaders: ['raw-loader'],
+        as: '*.js'
+      }
+    }
+  },
   images: {
     unoptimized: true
   }
