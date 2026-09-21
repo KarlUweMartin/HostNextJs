@@ -7,6 +7,7 @@
     "flutterDescription": "Flutter Template for a Shop-App - including a functional backend with REST-API. Code is available on GitHub.",
     "cubePuzzleDescription": "Recreating the famous cube puzzle hardly anyone can solve. I wanted it to have a realistic look and feel and straightforward controls.",
     "droneSimDescription": "Physically realistic simulation of a quadcopter drone with adjustable PID controllers.",
+    "globeDescription": "Using a specular map of the Earth, a point matrix is generated and visualized with Three.js/Fiber.",
     "days": "Day/s",
     "waterlevelHead": "Knowing the water level of the rivers in my area is crucial for a fisherman like myself."
   },

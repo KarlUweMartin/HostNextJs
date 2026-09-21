@@ -167,10 +167,6 @@ interface MapCell {
   size: number
 }
 
-function toEulerDegrees(radians: number) {
-  return MathUtils.euclideanModulo(MathUtils.radToDeg(radians) + 180, 360) - 180
-}
-
 function getTimeZoneTitle(timeZone: string) {
   const parts = new Intl.DateTimeFormat(undefined, {
     timeZone,
