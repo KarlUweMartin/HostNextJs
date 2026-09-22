@@ -1,13 +1,94 @@
 ![icon](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQer0dMu_OslWVZBNrBK4TgD0ZJE1ZiqxnuWACrW2jhe3tu1XwTaab66ZM&s=10)
+## Creative Technologist – Automotive & Showcars
 
-Als Creative Technologist bestand der Großteil meiner Arbeit in der Entwicklung von Benutzeroberflächen für Showcars. Showcars sind Konzeptfahrzeuge, die auf Veranstaltungen wie der IAA Mobility präsentiert werden und einen Ausblick auf die Zukunft der Automobilindustrie geben. Diese Fahrzeuge demonstrieren neueste Technologien und Innovationen auf eindrucksvolle Weise. Viele Showcars wurden von icon incar vollständig betreut – von der ersten Konzeptidee über das visuelle Design bis hin zur technischen Umsetzung. Da die Entwicklung in der Regel die letzte Projektphase darstellt, wurden Entwickler bereits sehr früh in die Projekte eingebunden, um technische Anforderungen zu berücksichtigen, die im Designprozess häufig noch nicht absehbar waren. Ich setzte mich in Team- und Projektmeetings besonders dafür ein, die Entwicklungsabteilung stärker in alle Projektphasen einzubinden, um effizientere und zielgerichtetere Arbeitsabläufe zu schaffen.
+Als **Creative Technologist** lag der Schwerpunkt meiner Arbeit auf der Entwicklung von Benutzeroberflächen für **Showcars**.
 
-In laufenden Projekten konzentrierten sich meine täglichen Aufgaben auf die technische Umsetzung der entworfenen Konzepte. Die erste Phase bestand dabei in der Erstellung eines technischen Konzepts. Da Showcars häufig aus mehreren Computern bestehen, die über ein lokales Netzwerk synchronisiert werden müssen, spielte das Design der Netzwerkkommunikation eine zentrale Rolle. Nachdem das technische Konzept definiert war, wurden die Aufgaben im Team aufgeteilt und die Projekte gemeinsam über einen SVN-Server entwickelt.
+Showcars sind Konzeptfahrzeuge, die beispielsweise auf Veranstaltungen wie der **IAA Mobility** präsentiert werden und einen Ausblick auf zukünftige Technologien und Entwicklungen in der Automobilindustrie geben.
 
-Die Umsetzung der Showcar-Projekte basierte auf der Unity3D-Engine, die sich im Automotive-Bereich hervorragend als Prototyping-Werkzeug eignet, da sie komplexe 2D- und 3D-UI-Designs effizient umsetzen kann. Zusätzlich ermöglicht Unity die Kompilierung für alle gängigen Systeme. Häufig nutzten wir ein intern entwickeltes Netzwerkprotokoll sowie ein wachsendes Framework auf Basis eines MVC-(Model-View-Controller)-Klassensystems, das speziell für Unity entwickelt wurde. Zu Beginn musste ich mich intensiv in dieses Framework einarbeiten, wodurch ich meine Kenntnisse in C#/.NET-Programmierung sowie in der allgemeinen Softwareentwicklung erheblich vertiefen konnte.
+Viele dieser Projekte wurden von icon incar vollständig betreut – von der ersten Konzeptidee über das visuelle Design bis hin zur technischen Umsetzung.
 
-Nach Abschluss der Projekte gehörte auch die Betreuung der Showcars vor Ort zu meinen Aufgaben. Bei Messen und Veranstaltungen, an denen viele Personen am Aufbau der Fahrzeuge beteiligt sind, entstehen häufig kurzfristige Anpassungen oder unerwartete Probleme. Anfang 2018 führte mich diese Tätigkeit innerhalb von zwei Monaten nach Las Vegas zur Consumer Electronics Show sowie nach Santa Clara zum „SF Motors Global Launch“.
+### Zusammenarbeit zwischen Design & Entwicklung
 
-Neben den Showcar-Projekten arbeitete ich auch an Projekten zur Erforschung neuer Designs und einzelner Elemente im Bereich User Experience. Ideen und Designs mithilfe interaktiver Prototypen in Echtzeit zu testen, erwies sich dabei als äußerst effizienter Workflow. Mein Designhintergrund in Kombination mit meiner Fähigkeit, interaktive Lösungen technisch umzusetzen, spielte bei diesen Projekten eine entscheidende Rolle.
+Da die technische Entwicklung häufig die letzte Projektphase darstellte, wurden Entwickler bereits frühzeitig in die Projekte eingebunden.
 
-Besonders in Erinnerung geblieben sind mir zwei Projekte, die sich auf die Entwicklung und Erprobung von Benutzeroberflächen für die Microsoft HoloLens konzentrierten. In einem Projekt entwickelte ich ein dreidimensionales Navigationssystem für einen Motorradhelm, im anderen eine Moderationssoftware, mit der mehrere HoloLens-Geräte gleichzeitig dasselbe Objekt betrachten konnten. Beide Projekte stellten das Team vor spannende technische Herausforderungen und waren besonders bereichernd in der Umsetzung.
+Mein Ziel war es, die Entwicklungsabteilung stärker in die verschiedenen Projektphasen einzubeziehen, um:
+
+- technische Anforderungen frühzeitig zu berücksichtigen
+- spätere technische Einschränkungen zu vermeiden
+- effizientere Arbeitsabläufe zu schaffen
+- Design und technische Umsetzung besser miteinander zu verbinden
+
+---
+
+## Technische Umsetzung
+
+Meine täglichen Aufgaben bestanden hauptsächlich in der technischen Umsetzung der entworfenen Konzepte.
+
+### Technisches Konzept
+
+Zu Beginn eines Projekts erstellten wir ein **technisches Konzept**.
+
+Da Showcars häufig aus mehreren Computern bestanden, die über ein lokales Netzwerk miteinander synchronisiert werden mussten, spielte insbesondere die **Netzwerkkommunikation** eine zentrale Rolle.
+
+Nach der Definition des technischen Konzepts wurden die Aufgaben im Team verteilt und die Projekte gemeinsam über einen **SVN-Server** entwickelt.
+
+### Technologien & Architektur
+
+Die Showcar-Projekte basierten hauptsächlich auf:
+
+- **Unity3D**
+- **C# / .NET**
+- Intern entwickeltem Netzwerkprotokoll
+- Eigenem Unity-Framework
+- **MVC (Model-View-Controller)**
+- Verschiedene Web-Technologien für extere Steuerung der Systeme
+
+Unity eignete sich besonders gut als Prototyping-Werkzeug im Automotive-Bereich, da sich damit komplexe **2D- und 3D-Benutzeroberflächen** effizient umsetzen und für verschiedene Zielsysteme kompilieren ließen.
+
+Durch die Arbeit mit dem intern entwickelten Framework konnte ich meine Kenntnisse in **C#/.NET und allgemeiner Softwareentwicklung** deutlich vertiefen.
+
+---
+
+## Deployment & Betreuung vor Ort
+
+Nach Abschluss der Entwicklung gehörte auch die **Betreuung der Showcars vor Ort** zu meinen Aufgaben.
+
+Bei Messen und Veranstaltungen entstehen durch den Aufbau und die kurzfristigen Anpassungen häufig unerwartete technische Probleme, die direkt vor Ort gelöst werden müssen.
+
+Anfang 2018 führte mich diese Tätigkeit unter anderem nach:
+
+- **Las Vegas – Consumer Electronics Show (CES)**
+- **Santa Clara – SF Motors Global Launch**
+
+---
+
+## UX Research & Interactive Prototyping
+
+Neben den Showcar-Projekten arbeitete ich an Projekten zur Erforschung neuer **UX-Konzepte und Interface-Elemente**.
+
+Ein wichtiger Bestandteil dieses Workflows war das Erstellen **interaktiver Prototypen**, mit denen Ideen und Designs direkt in Echtzeit getestet werden konnten.
+
+Meine Kombination aus:
+
+- Design-Hintergrund
+- UX-Verständnis
+- technischer Umsetzungskompetenz
+- Erfahrung mit interaktiven Prototypen
+
+ermöglichte es mir, Designideen direkt in funktionierende interaktive Lösungen zu überführen.
+
+---
+
+## Microsoft HoloLens
+
+Besonders interessant waren zwei Projekte zur Entwicklung und Erprobung von Benutzeroberflächen für die **Microsoft HoloLens**.
+
+### 3D-Navigation für Motorradhelm
+
+Entwicklung eines **dreidimensionalen Navigationssystems** für einen Motorradhelm.
+
+### Multi-Device Object Viewer
+
+Entwicklung einer Moderationssoftware, mit der **mehrere HoloLens-Geräte gleichzeitig dasselbe Objekt betrachten** konnten.
+
+Beide Projekte stellten das Team vor besondere technische Herausforderungen und boten die Möglichkeit, neue Interaktionskonzepte für Mixed-Reality-Anwendungen praktisch zu erproben.

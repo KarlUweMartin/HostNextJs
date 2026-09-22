@@ -1,18 +1,95 @@
 ![icon](https://www.aunovis.de/wp-content/uploads/Aunovis-Logo.svg)
 
-For the “Q!Apps” project, I was brought in by AUNOVIS as an expert in mixed-reality development. In a small team, we laid the foundation for a large-scale assistance system. My main responsibility was implementing the core application for modern AR devices. The central goal was to create an intuitive user interface for operators who had no prior experience with the technology and to ensure that it could be effectively integrated into their daily work routines. Operators can view real-time machine data, control machines, and access important information directly on the object in a three-dimensional view.
+## Q!Vizar Experience – Mixed Reality & Assistance System
 
-In addition to developing the AR interface, compatibility with a web-based Three.js editor was crucial. A team in Barcelona developed this editor in parallel with the project. As Product Owner within their Scrum process, I was responsible for communication and the release of new versions.
+I was hired as a mixed-reality development expert for the **Q!Apps** project. In a small team, we laid the foundation for an extensive assistance system for industrial applications.
 
-Most of the development was based on C#/.NET in Unity and the server applications. A key aspect of the project was maintaining a stable and secure connection to various data streams. I developed REST API interfaces on our servers and implemented them in the client applications. The team held regular weekly meetings with the Product Owner and stakeholders for coordination and quality control. Pull requests, releases, bug fixes, and similar tasks were all organized through Azure DevOps.
+### My Tasks
 
-A major challenge was balancing industrial software standards with the development of intuitive software for next-generation hardware. AUNOVIS is certified to DIN EN ISO 9001, which ensures high quality and secure software at every level.
+- Development of the main application for modern **AR devices**
+- Design and implementation of an **intuitive 3D user interface**
+- Development of the application for operators without prior AR experience
+- Visualization of **real-time machine data**
+- Control of machines through the AR application
+- Display of relevant information directly on the object in a spatial view
+- Development and integration of **REST APIs** for client and server
+- Ensuring stable and secure connections to various data streams
 
-During my first project phase at AUNOVIS, I was able to demonstrate my potential for a technical leadership role and was therefore promoted to Product Owner for another ongoing project in the field of remote support via video calls, focused on special tools for industrial maintenance. The project was still in its early phase, after an earlier prototype had been presented at a trade fair with positive feedback.
+### Collaboration & Product Ownership
 
-My task was to coordinate a team of four to six developers from different disciplines, including a .NET backend, a React web application, a native iOS app, and the underlying infrastructure managed via DevOps. In addition to my role as Product Owner, I also worked actively as a developer in all areas, with my main focus on implementing new features for the React web application (TypeScript) and further developing the backend (REST/ASP.NET).
+The AR application had to be compatible with a web-based **Three.js editor**, which was being developed in parallel by a team in Barcelona.
 
-In addition to client projects, I voluntarily participated in a working group where we discussed topics around artificial intelligence (AI). There we explored which AI models are suitable for deployment in production in an efficient and secure way. Besides using agentic AI as a software developer, I also developed several prototypes for products using AI:
+As **Product Owner within the Scrum process**, I was responsible for:
 
-* Object recognition with YOLOv26 in a “spatial aware” (AR) application to detect and map the position of recognized objects in space.
-* RAG system: an AI support tool that can provide proactive help in a web application based on screenshots. For this, I used YOLOv26, Mistral-OCR, Mistral-Small (LLM), and a vector database built from various technical documents.
+- Communication between the teams involved
+- Coordination with stakeholders
+- Approving new releases
+- Organizing regular quality-assurance meetings
+
+### Technologies & Processes
+
+- **C# / .NET**
+- **Unity**
+- **REST APIs**
+- **Three.js**
+- **Azure DevOps**
+- Pull requests, releases, and bug fixing
+- Agile collaboration with Product Owners and stakeholders
+
+A particular challenge was combining **industrial software standards and high quality requirements** with an intuitive user experience for new hardware technologies. AUNOVIS is certified according to **DIN EN ISO 9001**.
+
+---
+
+## Q!Vizar – Remote Support for Industrial Maintenance
+
+After the first project phase, I was promoted to **Product Owner of another project** because of my technical and organizational responsibilities.
+
+The project develops a remote-support solution for industrial maintenance work, focusing on **specialized tools**. A prototype had previously been presented at a trade fair, where it received positive feedback.
+
+### Team & Responsibilities
+
+I coordinated an interdisciplinary team of **four to six developers** from different technical areas:
+
+- .NET backend
+- React web application
+- Native iOS app
+- Infrastructure and DevOps
+- Development of an AR application with Unity
+
+Alongside my role as Product Owner, I remained actively involved in development and contributed to all areas.
+
+My technical focus was particularly on:
+
+- **React / TypeScript** – developing new features
+- **REST / ASP.NET** – further development of the backend
+- Collaboration with backend, app, and infrastructure developers
+- Technical coordination and prioritization within the team
+
+---
+
+## AI & Prototyping
+
+In addition to my client projects, I voluntarily participated in an internal working group focused on **artificial intelligence**.
+
+The goal was to investigate suitable AI models and use cases for **efficient and secure use in production**.
+
+Alongside using **Agentic AI in software development**, I developed several prototypes.
+
+### Spatial Object Detection
+
+Development of an AR application for **object detection with YOLOv26**.
+
+- Detection of objects in a spatial environment
+- Determining their position in space
+- Mapping the detected objects within the AR environment
+
+### RAG-Based AI Support System
+
+Development of an AI-powered support tool that can provide **active assistance within a web application based on screenshots**.
+
+Technologies used:
+
+- **YOLOv26** – visual object detection
+- **Mistral-OCR** – text recognition
+- **Mistral-Small** – large language model
+- **Vector database** – storage and search of technical documentation

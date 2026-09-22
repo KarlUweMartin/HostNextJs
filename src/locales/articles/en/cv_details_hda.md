@@ -1,9 +1,60 @@
-![icon](https://upload.wikimedia.org/wikipedia/commons/1/18/Hda_logo.svg?utm_source=de.wikipedia.org&utm_campaign=index&utm_content=original)
+## Bachelor’s Degree
 
-In 2016, I completed my Bachelor’s degree in Interactive Media Design (IMD) at the University of Applied Sciences Darmstadt. The program is structured into three main areas: media design, media management, and media technology. My focus was mainly on media technology and media design, especially the technical implementation of prototypes and the design of user experience.
+In 2016, I completed my bachelor’s degree in **Interactive Media Design (IMD)** at **Hochschule Darmstadt**.
 
-Each semester in the IMD program had its own thematic focus, in which small teams worked like a simulated agency throughout the semester to develop a project concept and implement a prototype. These projects gave me valuable hands-on experience in the development of various interactive media, including websites, apps, games, and even technical devices.
+The degree program combined three central areas:
 
-In addition to the semester-spanning main projects, the program offered specialized elective subjects in different areas. I worked on topics such as usability, 3D rendering, game programming, interface design, and augmented and virtual reality, and carried out my own projects in each of these areas. Working with tools such as Cinema4D, Unity3D, and the Adobe Creative Suite was often assumed, so I developed many of these skills independently outside the lectures.
+- **Media design**
+- **Media management**
+- **Media technology**
 
-Presentations were a central part of every semester project and made up a significant portion of the final grade. Professors and lecturers acted as potential clients in front of whom we had to pitch and present our projects. An additional challenge was that these presentations were conducted in English, since the program was designed as a bilingual course.
+My focus was primarily on **media technology and media design**, with an emphasis on the technical implementation of interactive prototypes and the design of **user experiences**.
+
+---
+
+## Practice-Oriented Studies
+
+Each semester had its own thematic focus. In small teams, we worked on a project throughout the semester as if we were a **simulated agency**.
+
+We first developed a concept and then implemented it as a functional prototype.
+
+The projects covered a wide range of interactive media:
+
+- Websites
+- Apps
+- IoT devices
+- Interactive prototypes
+
+This allowed me to gain practical experience in various areas of **interactive media development** at an early stage.
+
+---
+
+## Specializations & Technologies
+
+In addition to the main projects spanning each semester, the degree program offered various specialized electives.
+
+Among other things, I studied:
+
+- **Programming**
+- **UX design**
+- **Interaction design**
+- **3D rendering**
+
+I developed my own projects in each of these areas.
+
+Working with tools such as **Cinema 4D, Unity3D, and the Adobe Creative Suite** was often expected. I therefore also acquired many of these skills **independently outside of classes**.
+
+---
+
+## Presentation & Communication
+
+Presentations were a central part of the semester projects and made up a significant portion of the overall grade for each project.
+
+Professors and lecturers took on the role of potential clients. The teams had to:
+
+- Present
+- Explain
+- Justify
+- Defend their concepts and prototypes before a critical audience
+
+Since the degree program was **bilingual**, the presentations were held in **English**.

@@ -1,13 +1,74 @@
 ![icon](https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/f73e13ff-8b4d-4045-b840-519bfa708af8.png)
 
-Als ich 2018 bei 3spin anfing, war das Unternehmen noch überwiegend wie eine Agentur strukturiert. Zunächst arbeitete ich an kurzfristigen Projekten, beispielsweise Anwendungen für Messen oder Präsentationen. Viele dieser Projekte umfassten die Wiedergabe von 360°-Videos auf VR-Headsets oder Tablets. Bereits zu Beginn konnte ich meine Erfahrung mit Unity3D unter Beweis stellen, indem ich einen plattformübergreifenden Media-Player entwickelte, der gleichzeitig in mehreren Projekten eingesetzt wurde.
+## Einstieg & Agenturprojekte
 
-Nach einigen Monaten bei 3spin wurde mir mein erstes Projekt als Lead Developer übertragen. Dabei handelte es sich um ein exploratives Forschungsprojekt für einen Kunden namens „HoloConference“, das als Prototyp für eine exklusiv für die Microsoft HoloLens entwickelte Konferenzsoftware dienen sollte. In einer HoloConference konnten sich Nutzer als Hologramme begegnen, miteinander kommunizieren und mit Objekten im Raum interagieren. Gemeinsam mit meinem Team konzipierten und implementierten wir Werkzeuge wie digitale Whiteboards, 3D-Stifte und virtuelle Post-its.
+Als ich 2018 bei **3spin** anfing, war das Unternehmen noch überwiegend wie eine Agentur strukturiert. Zu Beginn arbeitete ich an kurzfristigen Projekten, beispielsweise Web-Anwendungen und Apps für Messen.
 
-Die größte Herausforderung bestand darin, einen 3D-Scan der Nutzer in akzeptabler Zeit zu übertragen und gleichzeitig die Positionen aller Teilnehmer synchron zu halten. Im Verlauf von etwa einem Jahr entwickelten wir einen funktionsfähigen Online-Prototypen, der auf der DLD Conference in Munich mit großem Erfolg präsentiert wurde. Aufgrund von Komplikationen während der COVID-19-Pandemie wurde die weitere Entwicklung von HoloConference jedoch auf unbestimmte Zeit ausgesetzt.
+Ein großteil dieser Projekte umfassten die Wiedergabe von **360°-Videos auf VR-Headsets oder Tablets** mit interaktiven Elementen im Video. 
 
-Nachdem die Entwicklung von HoloConference auf Eis gelegt wurde, wechselte ich in das Entwicklungsteam von 3spin DREAM. 3spin DREAM ist eine Plattform, die es Nutzern ermöglicht, VR-Trainingsprogramme zu erstellen und zu verwalten. Die Software läuft auf allen gängigen VR- und AR-Headsets.
+Bereits zu Beginn konnte ich meine Erfahrung mit **Unity3D** einsetzen und einen plattformübergreifenden **Media-Player** entwickeln, der anschließend in mehreren Projekten verwendet wurde.
 
-Im Entwicklungsteam arbeiteten wir mit Unity3D sowie dem Microsoft Mixed Reality Toolkit, um die Plattform kontinuierlich weiterzuentwickeln. Dabei leistete ich sowohl als Softwareentwickler als auch als UX-Designer einen wesentlichen Beitrag. Da 3spin DREAM nicht nur zur Durchführung von Trainingsprogrammen, sondern auch als Editor verwendet wird, stand das Team insbesondere im Bereich Benutzerfreundlichkeit vor großen Herausforderungen. Sämtliche Funktionen mussten sowohl in VR- als auch in AR-Umgebungen zuverlässig funktionieren.
+---
 
-Als UX-Designer konzipierte ich verschiedene Features und Werkzeuge, um die Erstellung von Trainingsprogrammen intuitiver und effizienter zu gestalten. Viele dieser Konzepte setzte ich in interaktiven Prototypen um, die anschließend mit Nutzern getestet wurden, um ihre Eignung für die offizielle Implementierung zu validieren. Gleichzeitig war ich auch an der Entwicklung der offiziellen Releases von 3spin DREAM beteiligt und übernahm häufig die Verantwortung für die finale Implementierung dieser Funktionen.
+## HoloConference – Lead Developer
+
+Nach einigen Monaten bei 3spin wurde mir mein erstes Projekt als **Lead Developer** übertragen.
+
+**HoloConference** war ein exploratives Forschungsprojekt für einen Kunden und sollte als Prototyp für eine exklusiv für die **Microsoft HoloLens** entwickelte Konferenzsoftware dienen.
+
+### Konzept
+
+In einer HoloConference konnten sich Nutzer als Hologramme begegnen, miteinander kommunizieren und mit Objekten im Raum interagieren.
+
+Gemeinsam mit meinem Team konzipierten und implementierten wir verschiedene Werkzeuge:
+
+- Digitale Whiteboards
+- 3D-Stifte
+- Virtuelle Post-its
+- Interaktion mit Objekten im Raum
+
+### Technische Herausforderungen
+
+Eine der größten Herausforderungen bestand darin, einen **3D-Scan der Nutzer innerhalb akzeptabler Zeit zu übertragen** und gleichzeitig die Positionen aller Teilnehmer synchron zu halten.
+
+Über einen Zeitraum von etwa einem Jahr entwickelten wir einen funktionsfähigen **Online-Prototypen**, der auf der **DLD Conference in München** erfolgreich präsentiert wurde.
+
+Aufgrund von Komplikationen während der COVID-19-Pandemie wurde die weitere Entwicklung von HoloConference anschließend auf unbestimmte Zeit ausgesetzt.
+
+---
+
+## 3spin DREAM – VR/AR Training Platform
+
+Nach dem Entwicklungsstopp von HoloConference wechselte ich in das Entwicklungsteam von **3spin DREAM**.
+
+3spin DREAM ist eine Plattform, mit der Nutzer **VR-Trainingsprogramme erstellen und verwalten** können. Die Software läuft auf gängigen **VR- und AR-Headsets**.
+
+### Entwicklung
+
+Im Entwicklungsteam arbeiteten wir mit:
+
+- **Unity3D**
+- **React**
+- **Microsoft Mixed Reality Toolkit**
+
+Dabei war ich sowohl als **Softwareentwickler als auch als UX-Designer** tätig.
+
+Eine besondere Herausforderung bestand darin, dass 3spin DREAM nicht nur zur Durchführung von Trainingsprogrammen, sondern auch als **Editor zur Erstellung dieser Trainings** verwendet wird.
+
+Dadurch mussten sämtliche Funktionen:
+
+- in **VR-Umgebungen**
+- in **AR-Umgebungen**
+- sowohl während der Nutzung als auch bei der Erstellung von Trainings
+
+zuverlässig und intuitiv funktionieren.
+
+### UX Design & Prototyping
+
+Als UX-Designer konzipierte ich verschiedene Features und Werkzeuge, um die Erstellung von Trainingsprogrammen **intuitiver und effizienter** zu gestalten.
+
+Viele dieser Konzepte setzte ich zunächst als **interaktive Prototypen** um.
+
+Diese Prototypen wurden anschließend mit Nutzern getestet, um ihre Eignung für eine offizielle Implementierung zu validieren.
+
+Parallel dazu war ich an der Entwicklung der offiziellen **3spin-DREAM-Releases** beteiligt und übernahm häufig die Verantwortung für die **finale technische Implementierung** der von mir konzipierten Funktionen.

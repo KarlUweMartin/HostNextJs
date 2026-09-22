@@ -1,13 +1,94 @@
 ![icon](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQer0dMu_OslWVZBNrBK4TgD0ZJE1ZiqxnuWACrW2jhe3tu1XwTaab66ZM&s=10)
+## Creative Technologist – Automotive & Show Cars
 
-As a Creative Technologist, most of my work involved developing user interfaces for show cars. Show cars are concept vehicles presented at events such as IAA Mobility and provide a glimpse into the future of the automotive industry. These vehicles demonstrate the latest technologies and innovations in an impressive way. Many show cars were fully managed by icon incar, from the initial concept idea through the visual design to the technical implementation. Since development typically represents the final project phase, developers were involved very early in the projects to account for technical requirements that were often not yet foreseeable in the design process. In team and project meetings, I especially pushed to involve the development department in all project phases to create more efficient and targeted workflows.
+As a **Creative Technologist**, my work focused on developing user interfaces for **show cars**.
 
-In ongoing projects, my daily tasks focused on technically implementing the designed concepts. The first phase involved creating a technical concept. Since show cars often consist of multiple computers that need to be synchronized across a local network, the design of the network communication was a central factor. Once the technical concept was defined, tasks were divided among the team and the projects were developed together via an SVN server.
+Show cars are concept vehicles presented at events such as **IAA Mobility**, for example, providing a glimpse into future technologies and developments in the automotive industry.
 
-The implementation of the show car projects was based on the Unity3D engine, which works exceptionally well as a prototyping tool in the automotive sector because it can efficiently realize complex 2D and 3D UI designs. In addition, Unity can compile for all common systems. We often used an internally developed network protocol and a growing framework based on an MVC (Model-View-Controller) class system specifically developed for Unity. At the beginning, I had to immerse myself deeply in this framework, which significantly expanded my knowledge of C#/.NET programming and general software development.
+Many of these projects were handled entirely by icon incar, from the initial concept through visual design and technical implementation.
 
-After completing the projects, I also took care of the show cars on site. At trade fairs and events where many people are involved in assembling the vehicles, short-term adjustments or unexpected problems often arise. In early 2018, this work took me within two months to Las Vegas for the Consumer Electronics Show and to Santa Clara for the “SF Motors Global Launch.”
+### Collaboration Between Design & Development
 
-In addition to the show car projects, I also worked on projects exploring new designs and individual elements in the field of user experience. Testing ideas and designs in real time with interactive prototypes proved to be an extremely efficient workflow. My design background, combined with my ability to technically implement interactive solutions, was essential in these projects.
+Since technical development often represented the final phase of a project, developers were involved at an early stage.
 
-Two projects remain particularly memorable: they focused on developing and testing user interfaces for the Microsoft HoloLens. In one project, I developed a three-dimensional navigation system for a motorcycle helmet; in the other, a moderation software that allowed several HoloLens devices to view the same object simultaneously. Both projects presented exciting technical challenges and were especially rewarding to realize.
+My goal was to involve the development department more closely in the various project phases in order to:
+
+- Consider technical requirements at an early stage
+- Avoid technical limitations later on
+- Create more efficient workflows
+- Better connect design and technical implementation
+
+---
+
+## Technical Implementation
+
+My daily tasks mainly consisted of technically implementing the concepts that had been designed.
+
+### Technical Concept
+
+At the beginning of a project, we created a **technical concept**.
+
+Since show cars often consisted of multiple computers that had to be synchronized over a local network, **network communication** played a particularly important role.
+
+After defining the technical concept, the tasks were distributed across the team and we developed the projects together using an **SVN server**.
+
+### Technologies & Architecture
+
+The show car projects were mainly based on:
+
+- **Unity3D**
+- **C# / .NET**
+- Internally developed network protocol
+- Custom Unity framework
+- **MVC (Model-View-Controller)**
+- Various web technologies for external system control
+
+Unity was particularly well suited as a prototyping tool in the automotive sector, as it made it possible to efficiently implement complex **2D and 3D user interfaces** and compile them for different target systems.
+
+Working with the internally developed framework allowed me to significantly deepen my knowledge of **C#/.NET and software development in general**.
+
+---
+
+## Deployment & On-Site Support
+
+After development was completed, **supporting the show cars on site** was also part of my responsibilities.
+
+At trade fairs and events, setup and last-minute adjustments often create unexpected technical problems that have to be solved directly on site.
+
+At the beginning of 2018, this work took me, among other places, to:
+
+- **Las Vegas – Consumer Electronics Show (CES)**
+- **Santa Clara – SF Motors Global Launch**
+
+---
+
+## UX Research & Interactive Prototyping
+
+Alongside the show car projects, I worked on projects exploring new **UX concepts and interface elements**.
+
+An important part of this workflow was creating **interactive prototypes** that allowed ideas and designs to be tested directly in real time.
+
+My combination of:
+
+- Design background
+- UX understanding
+- Technical implementation skills
+- Experience with interactive prototypes
+
+enabled me to turn design ideas directly into functional interactive solutions.
+
+---
+
+## Microsoft HoloLens
+
+Two projects involving the development and testing of user interfaces for the **Microsoft HoloLens** were particularly interesting.
+
+### 3D Navigation for a Motorcycle Helmet
+
+Development of a **three-dimensional navigation system** for a motorcycle helmet.
+
+### Multi-Device Object Viewer
+
+Development of moderation software that allowed **multiple HoloLens devices to view the same object simultaneously**.
+
+Both projects presented the team with particular technical challenges and provided an opportunity to practically explore new interaction concepts for mixed-reality applications.
