@@ -84,6 +84,14 @@ const theme = createTheme({
         },     
       },
     },
+    MuiToggleButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#1d1d1d",
+          color: "#525151"
+        },     
+      },
+    },
     MuiCard: {
       styleOverrides: {
         root: {          
@@ -116,7 +124,7 @@ const theme = createTheme({
           color: "#7ab3e9"          
         },     
       },
-    },
+    },   
     MuiCssBaseline: {
       styleOverrides: {
         html: {
