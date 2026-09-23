@@ -1,4 +1,4 @@
-const cacheName = "Karl-Satellites-0.0.1";
+const cacheName = "KarlUweMartin.de-Satellites-0.5";
 const contentToCache = [
     "Build/Satellites_PWA.loader.js",
     "Build/Satellites_PWA.framework.js",
