@@ -22,37 +22,16 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 
-function FeatureContent({ title, body, imgSrc }) {
+function FeatureContent({ title, body }) {
   return (
-    <>
-      <Box
-        sx={{
-          overflow: "hidden",
-          height: "40%",
-          borderRadius: "4px 4px 0 0",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <img
-          src={imgSrc}
-          style={{
-            width: "100%",
-            maxHeight: "250px",
-            objectFit: "cover"
-          }}
-        />
-      </Box>
-      <Box sx={{ p: 2, flexGrow: 1 }}>
-        <Typography variant="h6" gutterBottom>
+    <Box sx={{ p: 2, flexGrow: 1 }}>
+        <Typography color="text.primary" variant="h6" gutterBottom>
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.86)" }}>
           {body}
         </Typography>
-      </Box>
-    </>
+    </Box>
   );
 }
 
@@ -79,10 +58,36 @@ function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen
           borderRadius: 2,
           display: "flex",
           flexDirection: "column",
-          height: { xs: "auto", sm: "100%" }
+          height: { xs: "auto", sm: "100%" },
+          position: "relative",
+          overflow: "hidden",
+          color: "common.white",
+          backgroundImage: `url(${imgSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          border: 1,
+          borderColor: "border.faded",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            inset: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+            pointerEvents: "none"
+          },
+          "& > *": {
+            position: "relative",
+            zIndex: 1
+          }
         }}
       >
-        <FeatureContent body={body} title={title} imgSrc={imgSrc} />
+        <FeatureContent body={body} title={title} />
+        {tags && tags.length > 0 && (
+          <Stack direction="row" spacing={1} m={2}>
+            <Typography fontSize="0.8em" variant="body2" color="text.faded">
+              {tags.join(", ")}
+            </Typography>
+          </Stack>
+        )}
         <Stack spacing={1} m={2} direction={"row"} alignItems={"center"} justifyContent="flex-end">
           {git && (
           <IconButton
@@ -111,7 +116,7 @@ function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen
 
 
 export default function ShowroomPage({ id }: { id?: string }) {
-  const filterOptions = ["Three.js", "Unity/WebGL", "GitHub", "Data visualization"];
+  const filterOptions = ["Three.js", "React", "Unity/WebGL"];
   const [selectedFilters, setSelectedFilters] = React.useState<string[]>(filterOptions);
 
   const [iframeOpen, setIframeOpen] = React.useState(false);
@@ -167,7 +172,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
           onChange={(_, filters: string[]) => setSelectedFilters(filters)}
           aria-label="Showroom filters"
           size="small"
-          sx={{ mt: 3, flexWrap: "wrap" }}          
+          sx={{ mt: 3, flexWrap: "wrap" }}
         >
           {filterOptions.map((filter) => (
             <ToggleButton sx={{fontSize: "0.6em"}} key={filter} value={filter} aria-label={filter}>
@@ -185,7 +190,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                minHeight: 85                
+                minHeight: 85
               }}
             >
               <FilterAltOffIcon sx={{ opacity: 0.3 , fontSize: { xs: 72, sm: 96 } }} />
@@ -198,7 +203,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               body={t("globeDescription")}
               href="/threeGlobe"
               imgSrc={"/thumbGlobe.png"}
-              tags={["Three.js", "Data visualization"]}
+              tags={["Three.js", "React"]}
               selectedFilters={selectedFilters}
               onOpen={openIframe}
           />
@@ -208,7 +213,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               body={t.rich("waterlevelHead")}
               href="/waterlevelPage"
               imgSrc={"/thumbWaterlevels.png"}
-              tags={["Data visualization"]}
+              tags={["React"]}
               selectedFilters={selectedFilters}
               onOpen={openWaterLevel}
           />
@@ -219,7 +224,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               href='/satellites/index.html'
               git={"https://github.com/KarlUweMartin/Unity_Satellites"}
               imgSrc={"/thumbSat.png"}
-              tags={["Unity/WebGL", "GitHub", "Data visualization"]}
+              tags={["Unity/WebGL"]}
               selectedFilters={selectedFilters}
               onOpen={openIframe}
           />
@@ -230,7 +235,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               href='/orbitSandbox/index.html'
               git={"https://github.com/KarlUweMartin/Unity_OrbitParadise"}
               imgSrc={"/orbitSandbox.jpg"}
-              tags={["Unity/WebGL", "GitHub"]}
+              tags={["Unity/WebGL"]}
               selectedFilters={selectedFilters}
               onOpen={openIframe}
           />
@@ -241,19 +246,19 @@ export default function ShowroomPage({ id }: { id?: string }) {
               href='/cubeGame/index.html'
               imgSrc={"/thumbCube.png"}
               git={"https://github.com/KarlUweMartin/Unity_CubePuzzle"}
-              tags={["Unity/WebGL", "GitHub"]}
+              tags={["Unity/WebGL"]}
               selectedFilters={selectedFilters}
               onOpen={openIframe}
           />
 
-          <Feature
+          {/*<Feature
               title="Shop-App Tempate"
               body={t.rich("flutterDescription")}
               git="https://github.com/KarlUweMartin/WebApi-Flutter-Template"
               imgSrc={"/thumbFlutter.png"}
-              tags={["GitHub"]}
+              tags={["GitHub Repo"]}
               selectedFilters={selectedFilters}
-          />
+          />*/}
 
           <Feature
               title="Drone Simulator"

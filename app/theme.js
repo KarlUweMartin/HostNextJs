@@ -8,7 +8,8 @@ const theme = createTheme({
     border: 
     { 
       main: "#e7d192",
-      secondary: "#529fdd"
+      secondary: "#529fdd",
+      faded: "#141c24"
     },
     background: {
       default: "#0e0e0f",
@@ -88,8 +89,12 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#1d1d1d",
-          color: "#525151"
-        },     
+          color: "#525151",
+          textDecoration: "line-through",
+          "&.Mui-selected": {
+            textDecoration: "none",
+          },
+        },
       },
     },
     MuiCard: {
