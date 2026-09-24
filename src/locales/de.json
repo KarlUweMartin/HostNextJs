@@ -25,6 +25,21 @@
   "Contact": {
     "title": "Kontakt"
   },
+  "Process": {
+    "title": "Mein Kreativ-Prozess",
+    "descriptions": {
+      "vision": "Zweck, Zielgruppe und Ergebnis klären, bevor die Lösung gestaltet wird.",
+      "research": "Kontext und Erkenntnisse sammeln, damit Entscheidungen auf realen Bedürfnissen beruhen.",
+      "design": "Erkenntnisse in eine klare Struktur, visuelle Sprache und ein Interaktionsmodell übersetzen.",
+      "architecture": "Systeme, Informationen und technische Details hinter einem Produkt strukturieren.",
+      "prototyping": "Die Idee früh greifbar machen, um daraus zu lernen und die Richtung anzupassen.",
+      "development": "Ein robustes und wartbares Produkt entwickeln.",
+      "usability": "Das Produkt von Nutzern testen lassen, um die Benutzererfahrung zu analysieren.",
+      "release": "Bewusst veröffentlichen und offen für Verbesserungen bleiben.",
+      "feedback": "Feedback als kontinuierlichen Impuls für die nächste Iteration aufnehmen.",
+      "update": "Sicherheit gewährleisten, Feedback nutzen und auf dem aktuellen Stand bleiben."
+    }
+  },
   "Cv": {
     "title": "Lebenslauf",
     "profilePicture": "Profilbild",

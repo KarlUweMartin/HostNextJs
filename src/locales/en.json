@@ -25,6 +25,21 @@
   "Contact": {
     "title": "Contact"
   },
+  "Process": {
+    "title": "My Creative Process",
+    "descriptions": {
+      "vision": "Clarify the purpose, audience, and outcome before shaping the solution.",
+      "research": "Gather the context and evidence that keeps decisions grounded in real needs.",
+      "design": "Turn insights into a clear structure, visual language, and interaction model.",
+      "architecture": "Structure the systems, information, and technical details behind a product.",
+      "prototyping": "Make the idea tangible early enough to learn from it and change direction.",
+      "development": "Build a robust, maintainable product.",
+      "usability": "Have a product tested by users to analyze user experience.",
+      "release": "Ship deliberately but stay open minded for improvements.",
+      "feedback": "Gather feedback as a continuous input for the next iteration.",
+      "update": "Maintain security, use feedback and stay up-to-date."
+    }
+  },
   "Cv": {
     "title": "Curriculum Vitae",
     "profilePicture": "Profile picture",

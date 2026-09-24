@@ -1,36 +1,47 @@
 import { useEffect, useRef, useState } from "react";
 import { Box, ButtonBase, Container, Typography } from "@mui/material";
+import { useTranslations } from "next-intl";
 
 const stages = [
-  { label: "VISION", row: 0, description: "Clarify the purpose, audience, and outcome before shaping the solution." },
-  { label: "RESEARCH", row: 1, description: "Gather the context and evidence that keeps decisions grounded in real needs." },
-  { label: "DESIGN", row: 0, description: "Turn insights into a clear structure, visual language, and interaction model." },
-  { label: "ARCHITECTURE", row: 1, description: "Define the systems, information, and technical boundaries behind the experience." },
-  { label: "PROTOTYPING", row: 0, description: "Make the idea tangible early enough to learn from it and change direction." },
-  { label: "DEVELOPMENT", row: 1, description: "Build the experience as a robust, maintainable product rather than a static concept." },
-  { label: "USABILITY", row: 0, description: "Test the details that affect clarity, confidence, and ease of use." },
-  { label: "RELEASE", row: 1, description: "Ship deliberately, observe the result, and keep improving what matters." },
-  { label: "FEEDBACK", row: 0, description: "Use feedback as a continuous input for the next useful iteration." },
+  { label: "VISION", row: 0, column: 0, descriptionKey: "vision" },
+  { label: "RESEARCH", row: 1, column: 0, descriptionKey: "research" },
+  { label: "DESIGN", row: 0, column: 1, descriptionKey: "design" },
+  { label: "ARCHITECTURE", row: 1, column: 1, descriptionKey: "architecture" },
+  { label: "PROTOTYPING", row: 0, column: 2, descriptionKey: "prototyping" },
+  { label: "DEVELOPMENT", row: 1, column: 2, descriptionKey: "development" },
+  { label: "USABILITY", row: 0, column: 3, descriptionKey: "usability" },
+  { label: "RELEASE", row: 1, column: 3, descriptionKey: "release" },
+  { label: "FEEDBACK", row: 0, column: 4, descriptionKey: "feedback" },
+  { label: "UPDATE", row: 1, column: 4, descriptionKey: "update" },
 ];
 
-const chipWidth = 116;
-const columnWidth = 232;
+const chipWidth = 120;
+const columnWidth = 240;
 const trackWidth = columnWidth * 5;
+const trackInset = 8;
+const sliderPadding = 16;
+const sliderWidth = trackWidth + sliderPadding * 2;
 
 export default function MyProcess() {
+  const t = useTranslations("Process");
   const viewportRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ pointerStart: 0, offsetStart: 0 });
-  const [selectedIndex, setSelectedIndex] = useState(4);
+  const selectedIndexRef = useRef(0);
+  const automationRunRef = useRef(0);
+  const restartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [offset, setOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [isAutomating, setIsAutomating] = useState(false);
+  const [automationRestartKey, setAutomationRestartKey] = useState(0);
 
   useEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
     const updateOffset = () => {
-      const centeredOffset = viewport.clientWidth / 2 - (2 * columnWidth + chipWidth / 2);
-      setOffset(Math.min(0, Math.max(viewport.clientWidth - trackWidth, centeredOffset)));
+      const centeredOffset = viewport.clientWidth / 2 - trackInset - sliderPadding - (2 * columnWidth + chipWidth / 2);
+      setOffset(Math.min(viewport.clientWidth / 2 - trackInset, Math.max(viewport.clientWidth / 2 - trackInset - sliderWidth, centeredOffset)));
     };
 
     updateOffset();
@@ -39,9 +50,65 @@ export default function MyProcess() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const runId = automationRunRef.current + 1;
+    automationRunRef.current = runId;
+    setIsAutomating(true);
+
+    const waitForFrame = () => new Promise<number>((resolve) => requestAnimationFrame(resolve));
+
+    const animateSlider = async () => {
+      const viewportWidth = viewportRef.current?.clientWidth ?? trackWidth;
+      const leftOffset = viewportWidth / 2 - trackInset - sliderWidth;
+      const rightOffset = viewportWidth / 2 - trackInset;
+
+      const animateSegment = async (fromOffset: number, toOffset: number, duration: number) => {
+        const startTime = performance.now();
+
+        while (automationRunRef.current === runId) {
+          await waitForFrame();
+          if (automationRunRef.current !== runId) return false;
+
+          const progress = Math.min((performance.now() - startTime) / duration, 1);
+          const nextOffset = fromOffset + (toOffset - fromOffset) * progress;
+          setOffset(nextOffset);
+          selectClosestStage(nextOffset);
+
+          if (progress === 1) return true;
+        }
+
+        return false;
+      };
+
+      if (automationRestartKey === 0) {
+        setOffset(rightOffset);
+        selectClosestStage(rightOffset);
+      } else if (!(await animateSegment(offset, rightOffset, 500))) {
+        return;
+      }
+
+      while (automationRunRef.current === runId) {
+        if (!(await animateSegment(rightOffset, leftOffset, 45000))) return;
+        if (!(await animateSegment(leftOffset, rightOffset, 500))) return;
+      }
+    };
+
+    animateSlider();
+    return () => {
+      automationRunRef.current += 1;
+      setIsAutomating(false);
+    };
+  }, [automationRestartKey]);
+
+  useEffect(() => () => {
+    if (restartTimerRef.current) clearTimeout(restartTimerRef.current);
+  }, []);
+
   const clampOffset = (nextOffset: number) => {
     const viewportWidth = viewportRef.current?.clientWidth ?? trackWidth;
-    return Math.min(0, Math.max(viewportWidth - trackWidth, nextOffset));
+    const maximumOffset = viewportWidth / 2 - trackInset;
+    const minimumOffset = maximumOffset - sliderWidth;
+    return Math.min(maximumOffset, Math.max(minimumOffset, nextOffset));
   };
 
   const selectClosestStage = (nextOffset: number) => {
@@ -51,7 +118,8 @@ export default function MyProcess() {
     let closestDistance = Number.POSITIVE_INFINITY;
 
     stages.forEach((stage, index) => {
-      const stageCenter = nextOffset + (index % 5) * columnWidth + chipWidth / 2;
+      const rowOffset = stage.row === 1 ? columnWidth / 2 : 0;
+      const stageCenter = trackInset + nextOffset + sliderPadding + rowOffset + stage.column * columnWidth + chipWidth / 2;
       const distance = Math.abs(stageCenter - center);
       if (distance < closestDistance) {
         closestDistance = distance;
@@ -59,10 +127,34 @@ export default function MyProcess() {
       }
     });
 
+    selectedIndexRef.current = closestIndex;
     setSelectedIndex(closestIndex);
   };
 
+  const selectStage = (index: number) => {
+    const viewportWidth = viewportRef.current?.clientWidth ?? trackWidth;
+    const stage = stages[index];
+    const rowOffset = stage.row === 1 ? columnWidth / 2 : 0;
+    const centeredOffset = viewportWidth / 2 - trackInset - sliderPadding - rowOffset - stage.column * columnWidth - chipWidth / 2;
+
+    setOffset(clampOffset(centeredOffset));
+    selectedIndexRef.current = index;
+    setSelectedIndex(index);
+  };
+
+  const pauseAutomation = () => {
+    automationRunRef.current += 1;
+    setIsAutomating(false);
+    if (restartTimerRef.current) clearTimeout(restartTimerRef.current);
+
+    restartTimerRef.current = setTimeout(() => {
+      setAutomationRestartKey((key) => key + 1);
+      restartTimerRef.current = null;
+    }, 15000);
+  };
+
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    pauseAutomation();
     dragRef.current = { pointerStart: event.clientX, offsetStart: offset };
     event.currentTarget.setPointerCapture(event.pointerId);
     setIsDragging(true);
@@ -70,6 +162,7 @@ export default function MyProcess() {
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging) return;
+    pauseAutomation();
     const nextOffset = clampOffset(dragRef.current.offsetStart + event.clientX - dragRef.current.pointerStart);
     setOffset(nextOffset);
     selectClosestStage(nextOffset);
@@ -83,12 +176,30 @@ export default function MyProcess() {
   };
 
   return (
-    <Box component="section" sx={{ display: "flex", justifyContent: "center", py: 2 }}>
-      <Container maxWidth="lg" sx={{ px: { xs: 0, sm: 2 } }}>
-        <Typography sx={{ color: "text.primary", fontSize: "1.25rem", mb: 3, pl: 1 }}>
-          My Process
-        </Typography>
-
+    <Container maxWidth={false} disableGutters>
+ 
+      <Typography sx={{textAlign: "center", mb: 2}}>{t(`title`)}</Typography>
+      
+      <Box
+        sx={{
+          position: "relative",
+          height: 150,
+          overflow: "visible",
+          border: "1px solid",
+          borderColor: "border.faded",
+          borderRadius: 0        
+        }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: "50%",
+            height: 182,
+            borderLeft: "1px dotted",
+            borderColor: selectedIndex % 2 == 0 ? "border.main" : "border.secondary",
+            zIndex: 2,
+            pointerEvents: "none",
+          }} />
         <Box
           ref={viewportRef}
           onPointerDown={handlePointerDown}
@@ -96,54 +207,61 @@ export default function MyProcess() {
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
           sx={{
-            position: "relative",
-            height: 148,
+            position: "absolute",
+            top: 6,
+            bottom: 6,
+            right: 0,
+            left: 0,
             overflow: "hidden",
-            border: "1px solid",
-            borderColor: "text.secondary",
-            borderRadius: 3,
             touchAction: "pan-y",
             cursor: isDragging ? "grabbing" : "grab",
             userSelect: "none",
           }}>
-          <Box sx={{ position: "absolute", inset: "0 auto 0 50%", borderLeft: "1px dotted rgba(243, 237, 227, 0.2)", zIndex: 2 }} />
           <Box
             sx={{
               position: "absolute",
-              top: 6,
-              left: 8,
-              width: trackWidth,
+              top: 0,
+              left: trackInset,
+              width: sliderWidth,
               height: 136,
+              bgcolor: "border.faded",
               borderRadius: 2,
-              bgcolor: "#111c23",
               transform: `translateX(${offset}px)`,
-              transition: isDragging ? "none" : "transform 180ms ease-out",
+              transition: isDragging || isAutomating ? "none" : "transform 333ms ease-in-out",
             }}>
             {stages.map((stage, index) => (
               <ButtonBase
                 key={stage.label}
                 type="button"
-                onClick={() => setSelectedIndex(index)}
+                onPointerDown={(event) => {
+                  event.stopPropagation();
+                  pauseAutomation();
+                  selectStage(index);
+                }}
+                onClick={() => {
+                  pauseAutomation();
+                  selectStage(index);
+                }}
                 aria-pressed={selectedIndex === index}
                 sx={{
                   position: "absolute",
-                  left: (index % 5) * columnWidth + 58,
+                  left: sliderPadding + stage.column * columnWidth + (stage.row === 1 ? columnWidth / 2 : 0),
                   top: stage.row === 0 ? 31 : 66,
                   width: chipWidth,
                   height: 35,
-                  border: "1px dotted",
                   borderColor: stage.row === 0 ? "#c88c08" : "#2775b5",
                   borderRadius: 20,
                   bgcolor: stage.row === 0 ? "#352e1e" : "#1b3c59",
-                  color: stage.row === 0 ? "#d89400" : "#3f91d1",
-                  fontSize: "0.65rem",
+                  color: stage.row === 0 ? "#d89400" : "#56aaeb",
+                  fontSize: "0.8rem",
                   letterSpacing: 0,
                   cursor: "pointer",
                   transition: "box-shadow 160ms ease, border-color 160ms ease",
                   ...(selectedIndex === index && {
+                    border: "2px solid",
                     borderColor: "#eda916",
-                    boxShadow: "0 0 16px 4px rgba(237, 169, 22, 0.65)",
-                    color: "#eda916",
+                    boxShadow: stage.row === 0 ? "0 0 16px 4px rgba(237, 169, 22, 0.65)" : "0 0 16px 4px rgba(107, 179, 226, 0.73)",
+                    color: stage.row === 0 ? "#d89400" : "#56aaeb",
                   }),
                 }}>
                 {stage.label}
@@ -151,11 +269,28 @@ export default function MyProcess() {
             ))}
           </Box>
         </Box>
+      </Box>
 
-        <Typography sx={{ maxWidth: 540, mx: "auto", mt: 4, px: 2, color: "text.secondary", textAlign: "center", fontSize: "0.75rem", lineHeight: 1.25 }}>
-          {stages[selectedIndex].description}
+      <Box
+        sx={{
+          height: 100,
+          maxWidth: 600,
+          mx: { xs: 2, sm: "auto"},
+          my: 4,
+          px: 2,
+          borderRadius: 2,
+          border: "2px dotted",
+          borderColor: selectedIndex % 2 === 0 ? "border.main" : "border.secondary",
+          //backgroundColor: selectedIndex % 2 === 0 ? "#352e1e" : "#1b3c59",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxSizing: "border-box",
+        }}>
+        <Typography sx={{ color: "text.secondary", textAlign: "center" }}>
+          {t(`descriptions.${stages[selectedIndex].descriptionKey}`)}
         </Typography>
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   );
 }

@@ -79,18 +79,20 @@ export default function AboutPage() {
             mx: "auto", 
             mt: 3, 
             mb: 3,
-            bgcolor: "background.defaultLight", 
+            //bgcolor: "background.defaultLight", 
             p: 3, 
-            borderRadius: 2, 
+            //borderRadius: 2, 
             width: {xs: "100%", md: "85%"} 
           }}>
           <MarkdownBox markdown={aboutContent.about0} />
           <MarkdownBox markdown={aboutContent.about1} />
         </Stack>
-
-        <MyProcess/>
-
       </Container>
+
+      <Box mb={8}>
+        <MyProcess/>
+      </Box>
+
     </Box>
   );
 }
