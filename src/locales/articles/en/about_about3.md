@@ -1,0 +1,1 @@
+I believe every object – whether created by humans or occurring naturally – is an interface. Used consciously or unconsciously, every object has its own language for communicating its purpose to its “user”. The clearer that language is, the more easily and successfully the object can be used for its intended purpose.

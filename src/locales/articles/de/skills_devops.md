@@ -1,0 +1,1 @@
+In meinem Arbeitsalltag setze ich DevOps-Tools und -Methoden ein und betreibe diese teilweise auch selbst, um eine effiziente Zusammenarbeit im Team und zuverlässige Deployment-Prozesse zu ermöglichen. So können wir strukturiert zusammenarbeiten, die Entwicklung übersichtlich halten und neue Features und Updates schnell und zuverlässig in unterschiedliche Umgebungen bringen.

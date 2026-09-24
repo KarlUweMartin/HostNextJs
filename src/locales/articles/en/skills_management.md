@@ -1,0 +1,3 @@
+As a Product Owner, I translate research and stakeholder input into clear requirements, prioritize the backlog, and define product goals and a structured roadmap. Good communication skills and a healthy level of empathy are key to building an efficient team that shares common goals.
+
+As a Scrum Master, I organize team meetings, remove blockers, and support the team in working efficiently and collaboratively. In my view, the conventional Scrum process has its flaws and doesn't apply equally well to every team. I have never hesitated to adapt the workflow by introducing my own ideas and adjustments - an approach that has proven successful in past projects.

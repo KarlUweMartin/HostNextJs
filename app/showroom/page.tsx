@@ -14,30 +14,75 @@ import {
 } from "@mui/material";
 import { IframeModal } from "../components/iframeModal";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTranslations } from "next-intl";
 import { WaterLevelModal } from "../components/waterlevelModal";
 import PlayIcon from '@mui/icons-material/PlayArrow';
 import { BackButton } from "../sections/backbutton";
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
+import { MarkdownBox } from "../components/markdown";
+import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
 
-function FeatureContent({ title, body }) {
+import showroomHeadDe from "../../src/locales/articles/de/showroom_head.md";
+import showroomHeadEn from "../../src/locales/articles/en/showroom_head.md";
+import showroomDisclaimerDe from "../../src/locales/articles/de/showroom_disclaimer.md";
+import showroomDisclaimerEn from "../../src/locales/articles/en/showroom_disclaimer.md";
+import globeDescriptionDe from "../../src/locales/articles/de/globe_description.md";
+import globeDescriptionEn from "../../src/locales/articles/en/globe_description.md";
+import waterlevelHeadDe from "../../src/locales/articles/de/waterlevel_head.md";
+import waterlevelHeadEn from "../../src/locales/articles/en/waterlevel_head.md";
+import satellitesDescriptionDe from "../../src/locales/articles/de/satellites_description.md";
+import satellitesDescriptionEn from "../../src/locales/articles/en/satellites_description.md";
+import orbitSandboxDescriptionDe from "../../src/locales/articles/de/orbit_sandbox_description.md";
+import orbitSandboxDescriptionEn from "../../src/locales/articles/en/orbit_sandbox_description.md";
+import flutterDescriptionDe from "../../src/locales/articles/de/flutter_description.md";
+import flutterDescriptionEn from "../../src/locales/articles/en/flutter_description.md";
+import cubePuzzleDescriptionDe from "../../src/locales/articles/de/cube_puzzle_description.md";
+import cubePuzzleDescriptionEn from "../../src/locales/articles/en/cube_puzzle_description.md";
+import droneSimDescriptionDe from "../../src/locales/articles/de/drone_sim_description.md";
+import droneSimDescriptionEn from "../../src/locales/articles/en/drone_sim_description.md";
+
+const showroomContentByLocale = {
+  de: {
+    showroomHead: showroomHeadDe,
+    showroomDisclaimer: showroomDisclaimerDe,
+    globeDescription: globeDescriptionDe,
+    waterlevelHead: waterlevelHeadDe,
+    satellitesDescription: satellitesDescriptionDe,
+    orbitSandboxDescription: orbitSandboxDescriptionDe,
+    flutterDescription: flutterDescriptionDe,
+    cubePuzzleDescription: cubePuzzleDescriptionDe,
+    droneSimDescription: droneSimDescriptionDe,
+  },
+  en: {
+    showroomHead: showroomHeadEn,
+    showroomDisclaimer: showroomDisclaimerEn,
+    globeDescription: globeDescriptionEn,
+    waterlevelHead: waterlevelHeadEn,
+    satellitesDescription: satellitesDescriptionEn,
+    orbitSandboxDescription: orbitSandboxDescriptionEn,
+    flutterDescription: flutterDescriptionEn,
+    cubePuzzleDescription: cubePuzzleDescriptionEn,
+    droneSimDescription: droneSimDescriptionEn,
+  },
+} as const;
+
+function FeatureContent({ title, body }: { title: string; body: string }) {
   return (
     <Box sx={{ p: 2, flexGrow: 1 }}>
-        <Typography color="text.primary" variant="h6" gutterBottom>
+        <Typography mb={3} color="text.primary" variant="h6" gutterBottom>
           {title}
         </Typography>
-        <Typography variant="body2" sx={{ color: "rgba(255, 255, 255, 0.86)" }}>
-          {body}
-        </Typography>
+        <Box sx={{ fontSize: "0.8em"}}>
+          <MarkdownBox markdown={body} />
+        </Box>
     </Box>
   );
 }
 
 function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen }: { 
   title: string; 
-  body: React.ReactNode; 
+  body: string; 
   href?: string; 
   git?: string;
   imgSrc: string; 
@@ -139,7 +184,8 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
   const closeIframe = () => setIframeOpen(false);
   const closeWaterLevel = () => setWaterOpen(false);
-  const t = useTranslations('Showroom');
+  const { locale } = useAppLocale();
+  const showroomContent = showroomContentByLocale[locale];
 
   const [singlePage, setSinglePage] = React.useState(false);
   React.useEffect(() => {
@@ -160,12 +206,10 @@ export default function ShowroomPage({ id }: { id?: string }) {
             </IconButton>
           </Stack>
         }
-        <Typography variant="body1" color="text.secondary">
-          {t("showroomHead")}
-        </Typography>
-        <Typography variant="body2" sx={{ fontSize: "0.7em" }} color="text.faded">
-          {t("showroomDisclaimer")}
-        </Typography>
+        <MarkdownBox markdown={showroomContent.showroomHead} />
+        <Box sx={{ fontSize: "0.7em", color: "text.faded" }}>
+          <MarkdownBox markdown={showroomContent.showroomDisclaimer} />
+        </Box>
 
         <ToggleButtonGroup
           value={selectedFilters}
@@ -200,7 +244,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           <Feature
               title="ThreeJS Globe"
-              body={t("globeDescription")}
+              body={showroomContent.globeDescription}
               href="/threeGlobe"
               imgSrc={"/thumbGlobe.png"}
               tags={["Three.js", "React"]}
@@ -210,7 +254,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           <Feature
               title="Water Levels"
-              body={t.rich("waterlevelHead")}
+              body={showroomContent.waterlevelHead}
               href="/waterlevelPage"
               imgSrc={"/thumbWaterlevels.png"}
               tags={["React"]}
@@ -220,7 +264,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           <Feature
               title="Satellites"
-              body={t.rich("satellitesDescription")}
+              body={showroomContent.satellitesDescription}
               href='/satellites/index.html'
               git={"https://github.com/KarlUweMartin/Unity_Satellites"}
               imgSrc={"/thumbSat.png"}
@@ -231,7 +275,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           <Feature
               title="Orbit Sandbox"
-              body={t.rich("orbitSandboxDescription")}
+              body={showroomContent.orbitSandboxDescription}
               href='/orbitSandbox/index.html'
               git={"https://github.com/KarlUweMartin/Unity_OrbitParadise"}
               imgSrc={"/orbitSandbox.jpg"}
@@ -242,7 +286,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           <Feature
               title="Cube Puzzle"
-              body={t.rich("cubePuzzleDescription")}
+              body={showroomContent.cubePuzzleDescription}
               href='/cubeGame/index.html'
               imgSrc={"/thumbCube.png"}
               git={"https://github.com/KarlUweMartin/Unity_CubePuzzle"}
@@ -253,7 +297,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           {/*<Feature
               title="Shop-App Tempate"
-              body={t.rich("flutterDescription")}
+              body={showroomContent.flutterDescription}
               git="https://github.com/KarlUweMartin/WebApi-Flutter-Template"
               imgSrc={"/thumbFlutter.png"}
               tags={["GitHub Repo"]}
@@ -262,7 +306,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
 
           <Feature
               title="Drone Simulator"
-              body={t.rich("droneSimDescription")}
+              body={showroomContent.droneSimDescription}
               href='/droneSim/index.html'
               imgSrc={"/thumbDrone.png"}
               tags={["Unity/WebGL"]}

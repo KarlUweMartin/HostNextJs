@@ -63,7 +63,6 @@ export function MarkdownBox({ markdown }: { markdown: string }) {
     <Box
       component="article"
       sx={{
-        maxWidth: 680,
         mx: "auto",
         color: "text.secondary",
         lineHeight: 1.75,
@@ -76,7 +75,7 @@ export function MarkdownBox({ markdown }: { markdown: string }) {
         "& h1": { fontSize: "1.6rem", mt: 0 },
         "& h2": { fontSize: "1.3rem" },
         "& h3": { fontSize: "1.1rem" },
-        "& p": { my: 2 },
+        "& p": { my: 1 },
         "& ul, & ol": { pl: 3, my: 2 },
         "& a": { color: "primary.main" },
         "& blockquote": {

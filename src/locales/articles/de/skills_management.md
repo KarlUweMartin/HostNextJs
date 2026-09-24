@@ -1,0 +1,3 @@
+Als Product Owner übersetze ich Rechercheergebnisse und Stakeholder-Input in klare Anforderungen, priorisiere das Backlog und definiere Produktziele sowie eine strukturierte Roadmap. Gute Kommunikationsfähigkeiten und ein gesundes Maß an Empathie sind entscheidend, um ein effizientes Team mit gemeinsamen Zielen aufzubauen.
+
+Als Scrum Master organisiere ich Team-Meetings, beseitige Blockaden und unterstütze das Team dabei, effizient und kollaborativ zu arbeiten. Meiner Ansicht nach hat der klassische Scrum-Prozess seine Schwächen und passt nicht gleichermaßen auf jedes Team. Deshalb habe ich nie gezögert, Workflows durch eigene Ideen und Anpassungen weiterzuentwickeln – ein Ansatz, der sich in vergangenen Projekten als erfolgreich erwiesen hat.

@@ -1,0 +1,1 @@
+Als Hybrid aus Entwickler und Designer erkunde ich ständig neue Techniken, um meine Fähigkeiten weiterzuentwickeln. Mit einem Hintergrund in Softwareentwicklung und User Experience Design schlage ich die Brücke zwischen Funktionalität und Ästhetik.

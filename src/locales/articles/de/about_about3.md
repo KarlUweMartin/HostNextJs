@@ -1,0 +1,1 @@
+Ich bin der Überzeugung, dass jedes Objekt – ob vom Menschen geschaffen oder natürlich entstanden – ein Interface ist. Bewusst oder unbewusst genutzt, besitzt jedes Objekt seine eigene Sprache, um seinem „Nutzer“ seine Verwendung zu vermitteln. Je klarer diese Sprache ist, desto einfacher und erfolgreicher kann das Objekt für seinen Zweck genutzt werden.

@@ -14,6 +14,27 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 import React from "react";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import { MarkdownBox } from "../components/markdown";
+import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
+import uxDe from "../../src/locales/articles/de/skills_ux.md";
+import uxEn from "../../src/locales/articles/en/skills_ux.md";
+import managementDe from "../../src/locales/articles/de/skills_management.md";
+import managementEn from "../../src/locales/articles/en/skills_management.md";
+import frontendDe from "../../src/locales/articles/de/skills_frontend.md";
+import frontendEn from "../../src/locales/articles/en/skills_frontend.md";
+import backendDe from "../../src/locales/articles/de/skills_backend.md";
+import backendEn from "../../src/locales/articles/en/skills_backend.md";
+import devopsDe from "../../src/locales/articles/de/skills_devops.md";
+import devopsEn from "../../src/locales/articles/en/skills_devops.md";
+import unityDe from "../../src/locales/articles/de/skills_unity.md";
+import unityEn from "../../src/locales/articles/en/skills_unity.md";
+import aiDe from "../../src/locales/articles/de/skills_ai.md";
+import aiEn from "../../src/locales/articles/en/skills_ai.md";
+
+const skillsContentByLocale = {
+  de: { ux: uxDe, management: managementDe, frontend: frontendDe, backend: backendDe, devops: devopsDe, unity: unityDe, ai: aiDe },
+  en: { ux: uxEn, management: managementEn, frontend: frontendEn, backend: backendEn, devops: devopsEn, unity: unityEn, ai: aiEn },
+};
 
 export default function SkillsPage({ id }: { id?: string }){
 
@@ -23,6 +44,8 @@ export default function SkillsPage({ id }: { id?: string }){
   }
 
   const t = useTranslations('Skills');
+  const { locale } = useAppLocale();
+  const skillsContent = skillsContentByLocale[locale];
 
   const skills_ux: ChipRow = {
     name: t("techniques"),
@@ -130,25 +153,9 @@ export default function SkillsPage({ id }: { id?: string }){
         {title}
       </Typography>
 
-      {paragraphs.map((paragraph, index) => {
-        return (
-          <Typography
-            key={index}
-            component="p"
-            variant="body2"
-            color="text.secondary"
-            sx={{
-              mb: 1.5,
-              "& b, & strong": {
-                fontWeight: 700,
-                color: "text.primary",
-              },
-            }}
-          >
-            {paragraph}
-          </Typography>
-        );
-      })}
+      <Box sx={{fontSize: "0.85em"}}>
+        {paragraphs.map((paragraph, index) => <MarkdownBox key={index} markdown={paragraph} />)}
+      </Box>
 
       <Box height={15} />
 
@@ -220,7 +227,7 @@ export default function SkillsPage({ id }: { id?: string }){
          articleIndex={0}
           bgIcon={<DrawIcon sx={{ color:"white", fontSize: 220 }} />}
           title="User Experience Design"
-          paragraphs={[t("ux1")]}
+          paragraphs={[skillsContent.ux]}
           blueChips={skills_ux}
           yellowChips={tools_ux}
         />
@@ -229,7 +236,7 @@ export default function SkillsPage({ id }: { id?: string }){
           articleIndex={1}
           bgIcon={<AssignmentIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Project Management"         
-          paragraphs={[t("management1"), t("management2")]}
+          paragraphs={[skillsContent.management]}
           blueChips={skills_management}
           yellowChips={tools_management}
         />
@@ -238,7 +245,7 @@ export default function SkillsPage({ id }: { id?: string }){
           articleIndex={2}
           bgIcon={<PhonelinkIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Frontend & Mobile Development"
-          paragraphs={[t("frontend1"), t("frontend2")]}
+          paragraphs={[skillsContent.frontend]}
           blueChips={skills_frontend}
           yellowChips={tools_frontend}
         />
@@ -247,7 +254,7 @@ export default function SkillsPage({ id }: { id?: string }){
           articleIndex={3}
           bgIcon={<CodeIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Backend Development"
-          paragraphs={[t("backend1"), t("backend2")]}
+          paragraphs={[skillsContent.backend]}
           blueChips={skills_backend}
           yellowChips={tools_backend}
         />
@@ -256,7 +263,7 @@ export default function SkillsPage({ id }: { id?: string }){
           articleIndex={4}
           bgIcon={<SmartToyIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Artificial Intelligence"
-          paragraphs={[t("ai1"), t("ai2")]}
+          paragraphs={[skillsContent.ai]}
           blueChips={skills_ai}
           yellowChips={tools_ai}
         />
@@ -265,7 +272,7 @@ export default function SkillsPage({ id }: { id?: string }){
           articleIndex={5}
           bgIcon={<Image width={250} src={UnityLogo} alt={"unity"}/>}
           title="Unity Development"
-          paragraphs={[t("unity1"), t("unity2"), t("unity3")]}
+          paragraphs={[skillsContent.unity]}
           blueChips={skills_unity}
           yellowChips={tools_unity}
         />
@@ -274,7 +281,7 @@ export default function SkillsPage({ id }: { id?: string }){
           articleIndex={6}
           bgIcon={<HandymanIcon sx={{ color:"white", fontSize: 220 }} />}
           title="DevOps"
-          paragraphs={[t("devops1")]}
+          paragraphs={[skillsContent.devops]}
           yellowChips={tools_devops}
         />
 

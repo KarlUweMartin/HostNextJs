@@ -4,6 +4,12 @@ import { Box, Container, Typography, Stack, Chip } from '@mui/material';
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import { useTranslations } from "next-intl";
+import { MarkdownBox } from "../components/markdown";
+import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
+import contactHeadDe from "../../src/locales/articles/de/contact_head.md";
+import contactHeadEn from "../../src/locales/articles/en/contact_head.md";
+
+const contactHeadByLocale = { de: contactHeadDe, en: contactHeadEn };
 
 const socials = [
   {
@@ -22,6 +28,7 @@ const socials = [
 
 export default function ContactPage({ id }: { id?: string }) {
   const t = useTranslations('Contact');
+  const { locale } = useAppLocale();
 
   return (
     <Box id={id}>
@@ -30,9 +37,7 @@ export default function ContactPage({ id }: { id?: string }) {
           <Typography variant="h4" sx={{ mb: 2 }}>
             {t("title")}
           </Typography>
-          <Typography variant="body1" color="text.secondary">
-            {t("head")}
-          </Typography>
+          <MarkdownBox markdown={contactHeadByLocale[locale]} />
         </Box>
         <Box sx={{ mb: 2, bgcolor: "background.defaultLight", p: 3, borderRadius: 2 }}>
           <Stack spacing={2} gap={1}>

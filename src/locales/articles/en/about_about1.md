@@ -1,0 +1,1 @@
+As a hybrid of developer and designer, I’m constantly exploring new techniques to expand my skill set. With a background in software development and user experience design, I bridge the gap between functionality and aesthetics.

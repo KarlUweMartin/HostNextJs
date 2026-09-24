@@ -1,43 +1,14 @@
 {
   "Showroom": {
-    "showroomHead": "Hier findest du eine Mischung aus visuellen Experimenten und kreativen Ideen, die ich in den letzten Jahren in meiner Freizeit umgesetzt habe.",
-    "showroomDisclaimer": "Disclaimer: NDA's erlauben es mir nicht, Kundenprojekte oder Teile dieser öffentlich zu demonstrieren - der Showroom ist kein professionelles Portfolio.",
-    "satellitesDescription": "3D-Visualisierung aller öffentlich dokumentierten Satelliten, die sich derzeit in einer Umlaufbahn um die Erde befinden. Die Daten werden von NORAD bereitgestellt.",
-    "orbitSandboxDescription": "Eine farbenfrohe Simulation zur Erkundung von Masse, Impuls und Gravitation. Wische oder ziehe, um Objekte zu erstellen, und beobachte, wie sie mit dem zentralen Stern interagieren.",
-    "flutterDescription": "Flutter-Template für eine Shop-App – inklusive funktionsfähigem Backend mit REST-API. Der Code ist auf GitHub verfügbar.",
-    "cubePuzzleDescription": "Nachbildung des berühmten Würfelpuzzles, das kaum jemand lösen kann. Mir war wichtig, ein realistisches Look-and-Feel sowie eine klare und intuitive Steuerung umzusetzen.",
-    "droneSimDescription": "Physikalisch realistische Simulation einer Quadcopter-Drohne mit einstellbaren PID-Reglern.",
-    "globeDescription": "Anhand einer Specular-Map der Erde wird eine Punktmatrix erzeugt und mit Three.js/Fiber visualisiert.",
-    "days": "Tag/e",
-    "waterlevelHead": "Als Angler ist für mich wichtig, die aktuellen Wasserstände der Flüsse meiner Region zu kennen."
+    "days": "Tag/e"
   },
   "Skills": {
-    "ux1": "User Experience Design (UXD) konzentriert sich darauf, Anwendungen zu gestalten, die intuitiv, effizient und angenehm zu bedienen sind. Ich verbinde Nutzerbedürfnisse mit technischer Umsetzung, indem ich Ziele und Workflows in klare Interfaces, konsistente Interaktionen und vorhersehbares Systemverhalten übersetze. Aus programmatischer Sicht umfasst UXD nicht nur die visuelle Gestaltung, sondern auch Performance, Reaktionsfähigkeit, Barrierefreiheit, Fehlerbehandlung und Feedback. Durch nutzerzentriertes Design und Entwicklung reduziere ich Reibung, verbessere die Usability und schaffe Software, die sich zuverlässig und leicht bedienbar anfühlt.",
-    
-    "management1": "Das Fundament erfolgreicher Projekte ist eine starke Zusammenarbeit in allen Phasen des Prozesses. Als Product Owner übersetze ich Rechercheergebnisse und Stakeholder-Input in klare Anforderungen, priorisiere das Backlog und definiere Produktziele sowie eine strukturierte Roadmap. Gute Kommunikationsfähigkeiten und ein gesundes Maß an Empathie sind entscheidend, um ein effizientes Team mit gemeinsamen Zielen aufzubauen.",
-    "management2": "Als Scrum Master organisiere ich Team-Meetings, beseitige Blockaden und unterstütze das Team dabei, effizient und kollaborativ zu arbeiten. Meiner Ansicht nach hat der klassische Scrum-Prozess seine Schwächen und passt nicht gleichermaßen auf jedes Team. Deshalb habe ich nie gezögert, Workflows durch eigene Ideen und Anpassungen weiterzuentwickeln – ein Ansatz, der sich in vergangenen Projekten als erfolgreich erwiesen hat.",
-    
-    "frontend1": "In den 90ern aufzuwachsen bedeutete, parallel mit dem Internet und den dazugehörigen Technologien groß zu werden. Bereits früh entdeckte ich in verschiedenen IT-Kursen meine Leidenschaft für die Gestaltung von Benutzeroberflächen. Über die Jahre habe ich mit reinem HTML/CSS, WordPress, FTP, Typo3 und weiteren Technologien Websites für Schulklassen, Vereine und private Projekte umgesetzt. Durch das stetige Arbeiten mit aktuellen Libraries und Frameworks konnte ich meine Lösungen kontinuierlich verbessern.",
-    "frontend2": "Mit dem Erscheinen der ersten Smartphones entstand ein völlig neuer Bedarf an benutzerfreundlichen Interfaces. Displays in unterschiedlichsten Größen und Formaten mussten berücksichtigt werden. Responsive Layouts und plattformübergreifende Deployments wurden zunehmend wichtiger. Für mich bedeutete das, mich auf Technologien zu fokussieren, mit denen sich Interfaces auf allen gängigen Gerätetypen bereitstellen lassen – wie Flutter, Electron und React.",
-
-    "backend1": "Ich bin mit der Entwicklung und Wartung komplexer Backend- und API-Systeme vertraut – von der Erstellung von REST-APIs bis hin zur Anbindung von Services und Datenebenen. Auch wenn Backend-Entwicklung nicht mein Schwerpunkt ist, kann ich mit C# und ASP.NET zuverlässige Systeme entwickeln und langfristig betreuen, wenn ein Projekt es erfordert.",
-    "backend2": "Mein Fokus liegt auf sauberen Schnittstellen, nachvollziehbaren Datenflüssen und sicherer, testbarer Architektur. Dabei arbeite ich mit Authentifizierung, Geschäftslogik und API-Design, damit sowohl nutzerseitige Anwendungen als auch die langfristige Produktstabilität unterstützt werden.",
-    
-    "devops1": "In meinem Arbeitsalltag setze ich DevOps-Tools und -Methoden ein und betreibe diese teilweise auch selbst, um eine effiziente Zusammenarbeit im Team und zuverlässige Deployment-Prozesse zu ermöglichen. So können wir strukturiert zusammenarbeiten, die Entwicklung übersichtlich halten und neue Features und Updates schnell und zuverlässig in unterschiedliche Umgebungen bringen.",
-    
-    "unity1" : "Während meines Studiums habe ich intensiv mit Unity gearbeitet, um interaktive Prototypen und Simulationen zu entwickeln und abstrakte Ideen in greifbare, testbare Erfahrungen zu verwandeln. Dabei habe ich mir früh eine Arbeitsweise angeeignet, die auf schnelle Iteration und nutzerzentriertes Design setzt.",
-    "unity2" : "Diese Erfahrung habe ich in meine erste berufliche Station mitgenommen, wo ich Prototypen für Automotive-Benutzeroberflächen entwickelt habe. Mit Unity konnte ich HMI-Konzepte früh simulieren und testen und so eine Brücke zwischen Design, technischer Umsetzung und realen Anwendungsfällen im Fahrzeug schlagen.",
-    "unity3" : "Parallel dazu habe ich an Mixed-Reality-Projekten gearbeitet und VR- und AR-Erlebnisse für Geräte wie Microsoft HoloLens und Magic Leap entwickelt. Der Fokus lag dabei auf räumlicher Interaktion, immersiven Benutzeroberflächen und Echtzeitsimulationen, wodurch ich meine Fähigkeiten im Prototyping für neue, über klassische Bildschirme hinausgehende Plattformen weiter ausbauen konnte.",
-
-    "ai1" : "Ich habe meine IT-Karriere als Autodidakt begonnen. Das bedeutet, dass ich unzählige Stunden damit verbracht habe, mich durch Stack Overflow, GitHub und Dokumentationen zu arbeiten, um Entwicklung zu verstehen und meine Ideen in die Praxis umzusetzen. Mein Ansatz war schon immer und ist es bis heute: „Learning by doing“. Das Programmieren mit KI hat diesen Prozess massiv beschleunigt. Wenn ich nicht mehr an Syntaxproblemen, komplexen Abhängigkeiten oder besonderen Softwaremustern festhänge, kann ich schnell Ergebnisse erzielen und nahezu sofort sehen, wie etwas umgesetzt werden sollte.",
-    "ai2" : "Meine tägliche Arbeit mit vertrauten Technologien hat sich durch KI stark verändert. Gerade bei der Frontend-Entwicklung bedeutet das oft, dieselben Muster immer wieder umzusetzen. Nicht mehr alles selbst ausformulieren zu müssen, gibt mir mehr Zeit, mich auf die eigentliche Funktionalität und die Benutzerfreundlichkeit eines Interfaces zu konzentrieren.",
-
-    "head" : "Skills",
+    "head": "Skills",
     "devTools": "Entwicklung",
     "programming": "Programmierung",
     "platforms": "Plattform Resumé",
     "creativeTools": "Kreativ",
-    "tools" : "Meine Werkzeuge",
+    "tools": "Meine Werkzeuge",
     "toolsLabel": "Tools",
     "techniques": "Techniken",
     "roles": "Rollen",
@@ -47,17 +18,12 @@
     "fluentLanguages": "Fließende Sprachen",
     "en": "Englisch",
     "de": "Deutsch"
-  }, 
+  },
   "About": {
-    "title": "Über mich",
-    "about0": "Ich bin Karl, ein UX-Technologist und Senior-Entwickler aus Deutschland mit mehr als 12 Jahren Erfahrung in der Erstellung komplexer digitaler Produkte.",
-    "about1": "Als Hybrid aus Entwickler und Designer erkunde ich ständig neue Techniken, um meine Fähigkeiten weiterzuentwickeln. Mit einem Hintergrund in Softwareentwicklung und User Experience Design schlage ich die Brücke zwischen Funktionalität und Ästhetik.",
-    "about2": "UX-Design bedeutet für mich, komplexe Systeme nicht nur intuitiv, sondern auch angenehm nutzbar zu machen. Dazu gehört nicht nur ein gutes Gespür für visuelle Qualität, sondern auch ein tiefes Verständnis für die Struktur eines Systems. Als Softwareentwickler kann ich tief in die Kernfunktionalität eines Systems eintauchen, um Engpässe, Hürden für Nutzer sowie Herausforderungen für Entwickler zu identifizieren. Ein großer Teil meiner Arbeit besteht darin, komplexe Diskussionen zwischen Designern, Entwicklern und Managern zu moderieren. Das Verständnis für Ziele und Herausforderungen beider Welten kann die Problemlösung in allen Projektphasen erheblich beschleunigen.",
-    "about3": "Ich bin der Überzeugung, dass jedes Objekt – ob vom Menschen geschaffen oder natürlich entstanden – ein Interface ist. Bewusst oder unbewusst genutzt, besitzt jedes Objekt seine eigene Sprache, um seinem „Nutzer“ seine Verwendung zu vermitteln. Je klarer diese Sprache ist, desto einfacher und erfolgreicher kann das Objekt für seinen Zweck genutzt werden."
+    "title": "Über mich"
   },
   "Contact": {
-    "title": "Kontakt",
-    "head": "Du hast eine Frage oder möchtest zusammenarbeiten? Melde dich gerne!"
+    "title": "Kontakt"
   },
   "Cv": {
     "title": "Lebenslauf",

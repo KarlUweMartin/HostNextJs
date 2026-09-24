@@ -1,0 +1,5 @@
+Während meines Studiums habe ich intensiv mit Unity gearbeitet, um interaktive Prototypen und Simulationen zu entwickeln und abstrakte Ideen in greifbare, testbare Erfahrungen zu verwandeln. Dabei habe ich mir früh eine Arbeitsweise angeeignet, die auf schnelle Iteration und nutzerzentriertes Design setzt.
+
+Diese Erfahrung habe ich in meine erste berufliche Station mitgenommen, wo ich Prototypen für Automotive-Benutzeroberflächen entwickelt habe. Mit Unity konnte ich HMI-Konzepte früh simulieren und testen und so eine Brücke zwischen Design, technischer Umsetzung und realen Anwendungsfällen im Fahrzeug schlagen.
+
+Parallel dazu habe ich an Mixed-Reality-Projekten gearbeitet und VR- und AR-Erlebnisse für Geräte wie Microsoft HoloLens und Magic Leap entwickelt. Der Fokus lag dabei auf räumlicher Interaktion, immersiven Benutzeroberflächen und Echtzeitsimulationen, wodurch ich meine Fähigkeiten im Prototyping für neue, über klassische Bildschirme hinausgehende Plattformen weiter ausbauen konnte.

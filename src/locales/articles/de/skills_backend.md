@@ -1,0 +1,3 @@
+Ich bin mit der Entwicklung und Wartung komplexer Backend- und API-Systeme vertraut – von der Erstellung von REST-APIs bis hin zur Anbindung von Services und Datenebenen. Auch wenn Backend-Entwicklung nicht mein Schwerpunkt ist, kann ich mit C# und ASP.NET zuverlässige Systeme entwickeln und langfristig betreuen, wenn ein Projekt es erfordert.
+
+Mein Fokus liegt auf sauberen Schnittstellen, nachvollziehbaren Datenflüssen und sicherer, testbarer Architektur. Dabei arbeite ich mit Authentifizierung, Geschäftslogik und API-Design, damit sowohl nutzerseitige Anwendungen als auch die langfristige Produktstabilität unterstützt werden.
