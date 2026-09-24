@@ -3,6 +3,7 @@
 import { Box, Container, Typography, Stack } from "@mui/material";
 import { SineWaveBox } from "../three/sineWave3d";
 import { MarkdownBox } from "../components/markdown";
+import MyProcess from "../sections/myprocess";
 import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
 import about0De from "../../src/locales/articles/de/about_about0.md";
 import about0En from "../../src/locales/articles/en/about_about0.md";
@@ -86,6 +87,8 @@ export default function AboutPage() {
           <MarkdownBox markdown={aboutContent.about0} />
           <MarkdownBox markdown={aboutContent.about1} />
         </Stack>
+
+        <MyProcess/>
 
       </Container>
     </Box>
