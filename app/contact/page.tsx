@@ -64,6 +64,9 @@ export default function ContactPage({ id }: { id?: string }) {
             ))}
           </Stack>
         </Box>
+          <Typography textAlign="end" mt={2} variant="body2" color="text.faded">
+            {t("nosocial")}
+          </Typography>
       </Container>
     </Box>
   );
