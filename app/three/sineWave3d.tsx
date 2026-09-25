@@ -67,14 +67,28 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
     return new Float32Array(xAmount * yAmount).fill(1.2)
   }, [xAmount, yAmount])
 
+  const baseColor = useMemo(() => new THREE.Color(props.color || 'white'), [props.color])
+
+  const animatedColors = useMemo(() => {
+    const array = new Float32Array(xAmount * yAmount * 3)
+    for (let i = 0; i < array.length; i += 3) {
+      array[i] = baseColor.r
+      array[i + 1] = baseColor.g
+      array[i + 2] = baseColor.b
+    }
+    return array
+  }, [xAmount, yAmount, baseColor])
+
   useFrame((state) => {
     const time = state.clock.elapsedTime * (props.timeScale ?? 0.1)
 
     const geometry = pointsRef.current.geometry
     const positionAttribute = geometry.attributes.position
     const sizeAttribute = geometry.attributes.size as THREE.BufferAttribute
+    const colorAttribute = geometry.attributes.color as THREE.BufferAttribute
     const positions = positionAttribute.array as Float32Array
     const sizes = sizeAttribute.array as Float32Array
+    const colors = colorAttribute.array as Float32Array
 
     for (let i = 0; i < positions.length; i += 3) {
       const x = basePositions[i]
@@ -106,11 +120,18 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
 
       // Update particle size based on magnetic effect
       const pointIndex = i / 3
-      sizes[pointIndex] = baseSizes[pointIndex] + magnetEffect * 3
+      sizes[pointIndex] = baseSizes[pointIndex] + magnetEffect * 1.5
+
+      // Brighten color towards the magnet core
+      const brightness = 1 + magnetEffect * 2.5
+      colors[i] = baseColor.r * brightness
+      colors[i + 1] = baseColor.g * brightness
+      colors[i + 2] = baseColor.b * brightness
     }
 
     positionAttribute.needsUpdate = true
     sizeAttribute.needsUpdate = true
+    colorAttribute.needsUpdate = true
   })
 
   return (
@@ -128,6 +149,12 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
           array={animatedSizes}
           itemSize={1}
         />
+        <bufferAttribute
+          attach="attributes-color"
+          count={animatedColors.length / 3}
+          array={animatedColors}
+          itemSize={3}
+        />
       </bufferGeometry>
 
       <shaderMaterial
@@ -136,22 +163,22 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
         transparent
         vertexShader={`
           attribute float size;
+          attribute vec3 color;
+          varying vec3 vColor;
           void main() {
+            vColor = color;
             gl_PointSize = size * 2.0;
             gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
           }
         `}
         fragmentShader={`
-          uniform vec3 color;
+          varying vec3 vColor;
           void main() {
             float dist = length(gl_PointCoord - vec2(0.5));
             if (dist > 0.5) discard;
-            gl_FragColor = vec4(color, 1.0);
+            gl_FragColor = vec4(vColor, 1.0);
           }
         `}
-        uniforms={{
-          color: { value: new THREE.Color(props.color || "white") }
-        }}
       />
     </points>
   )
