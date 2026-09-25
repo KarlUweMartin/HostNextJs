@@ -1,7 +1,8 @@
 "use client";
 
-import { Box, Container, Typography, Chip, Stack, IconButton } from "@mui/material";
+import { Box, Container, Typography, Chip, Stack, IconButton, Collapse } from "@mui/material";
 import CodeIcon from '@mui/icons-material/SettingsEthernet';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslations } from "next-intl";
 import { ReactElement } from "react";
 import DrawIcon from '@mui/icons-material/Draw';
@@ -30,6 +31,7 @@ import unityDe from "../../src/locales/articles/de/skills_unity.md";
 import unityEn from "../../src/locales/articles/en/skills_unity.md";
 import aiDe from "../../src/locales/articles/de/skills_ai.md";
 import aiEn from "../../src/locales/articles/en/skills_ai.md";
+import zIndex from "@mui/material/styles/zIndex";
 
 const skillsContentByLocale = {
   de: { ux: uxDe, management: managementDe, frontend: frontendDe, backend: backendDe, devops: devopsDe, unity: unityDe, ai: aiDe },
@@ -59,7 +61,7 @@ export default function SkillsPage({ id }: { id?: string }){
   
   const skills_management: ChipRow = {
     name: t("roles"),
-    chips: ["Product Owner", "Scrum Master"]
+    chips: ["Product Owner", "Creative Director", "Scrum Master" ]
   };
   const tools_management: ChipRow = {
     name: t("toolsLabel"),
@@ -121,11 +123,14 @@ export default function SkillsPage({ id }: { id?: string }){
     blueChips?: ChipRow;
     yellowChips?: ChipRow;
     bgIcon?: ReactElement
-  }) => (
+  }) => {
+    const [expanded, setExpanded] = React.useState(false);
+
+    return (
     <Box
       sx={{
         mb: 4,
-        bgcolor: "background.defaultLight",
+        bgcolor: "background.defaultDark",
         p: 3,
         borderRadius: 2,
         position: "relative",
@@ -142,20 +147,39 @@ export default function SkillsPage({ id }: { id?: string }){
           top: "50%",
           transform: "translateY(-50%)",
           pointerEvents: "none",
-          opacity: 0.1
+          opacity: 0.1,
+          zIndex: 0,
         }}
         >
           {bgIcon}
         </Box>
       }
 
-      <Typography mb={3} variant="h6">
-        {title}
-      </Typography>
+      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={expanded ? 3 : 0}>
+        <Typography variant="h5">
+          {title}
+        </Typography>
+        <IconButton
+          onClick={() => setExpanded((prev) => !prev)}
+          title={"Detail"}
+          aria-label={"Detail"}
+          aria-expanded={expanded}
+          size="small"
+        >
+          <ExpandMoreIcon
+            sx={{
+              transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.3s",
+            }}
+          />
+        </IconButton>
+      </Stack>
 
-      <Box sx={{fontSize: "0.85em"}}>
-        {paragraphs.map((paragraph, index) => <MarkdownBox key={index} markdown={paragraph} />)}
-      </Box>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Box sx={{fontSize: "0.85em"}}>
+          {paragraphs.map((paragraph, index) => <MarkdownBox key={index} markdown={paragraph} />)}
+        </Box>
+      </Collapse>
 
       <Box height={15} />
 
@@ -169,6 +193,7 @@ export default function SkillsPage({ id }: { id?: string }){
             key={index}
             label={item}
             sx={{
+              zIndex: 1,
               backgroundColor: 'chip.primary_offset',
               color: 'text.secondary',
             }}
@@ -180,7 +205,7 @@ export default function SkillsPage({ id }: { id?: string }){
         ))}
       </Stack>
 
-      <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+      <Stack  mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
          <Typography variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
           {yellowChips?.name}
         </Typography>
@@ -190,6 +215,7 @@ export default function SkillsPage({ id }: { id?: string }){
             key={index}
             label={item}
             sx={{
+              zIndex: 1,
               backgroundColor: 'chip.secondary_offset',
               color: 'text.secondary',
             }}
@@ -202,6 +228,7 @@ export default function SkillsPage({ id }: { id?: string }){
       </Stack>
     </Box>
   );
+  };
 
   const [singlePage, setSinglePage] = React.useState(false);
   React.useEffect(() => {
@@ -232,17 +259,8 @@ export default function SkillsPage({ id }: { id?: string }){
           yellowChips={tools_ux}
         />
 
-        <SkillArticle
-          articleIndex={1}
-          bgIcon={<AssignmentIcon sx={{ color:"white", fontSize: 220 }} />}
-          title="Project Management"         
-          paragraphs={[skillsContent.management]}
-          blueChips={skills_management}
-          yellowChips={tools_management}
-        />
-
         <SkillArticle  
-          articleIndex={2}
+          articleIndex={1}
           bgIcon={<PhonelinkIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Frontend & Mobile Development"
           paragraphs={[skillsContent.frontend]}
@@ -251,7 +269,7 @@ export default function SkillsPage({ id }: { id?: string }){
         />
 
         <SkillArticle
-          articleIndex={3}
+          articleIndex={2}
           bgIcon={<CodeIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Backend Development"
           paragraphs={[skillsContent.backend]}
@@ -260,7 +278,7 @@ export default function SkillsPage({ id }: { id?: string }){
         />
 
         <SkillArticle
-          articleIndex={4}
+          articleIndex={3}
           bgIcon={<SmartToyIcon sx={{ color:"white", fontSize: 220 }} />}
           title="Artificial Intelligence"
           paragraphs={[skillsContent.ai]}
@@ -269,12 +287,21 @@ export default function SkillsPage({ id }: { id?: string }){
         />
 
         <SkillArticle
-          articleIndex={5}
+          articleIndex={4}
           bgIcon={<Image width={250} src={UnityLogo} alt={"unity"}/>}
           title="Unity Development"
           paragraphs={[skillsContent.unity]}
           blueChips={skills_unity}
           yellowChips={tools_unity}
+        />
+
+        <SkillArticle
+          articleIndex={5}
+          bgIcon={<AssignmentIcon sx={{ color:"white", fontSize: 220 }} />}
+          title="Project Management"         
+          paragraphs={[skillsContent.management]}
+          blueChips={skills_management}
+          yellowChips={tools_management}
         />
 
         <SkillArticle
@@ -285,15 +312,6 @@ export default function SkillsPage({ id }: { id?: string }){
           yellowChips={tools_devops}
         />
 
-        {/*<Box sx={{ my: 4 }}>
-          <Typography variant="h5" sx={{ mb: 2 }}>
-            {t("fluentLanguages")}
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            🇩🇪 {t("de")}<br />
-            🇬🇧 {t("en")}
-          </Typography>
-        </Box>*/}      
       </Container>
     </Box>
   );
