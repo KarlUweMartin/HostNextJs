@@ -75,13 +75,11 @@ export default function AboutPage() {
           direction={{ xs: "column", sm: "row" }} 
           spacing={3} 
           sx={{
-            fontSize: "0.8em",     
+            fontSize: "0.8em",
             mx: "auto", 
             mt: 3, 
-            mb: 3,
-            //bgcolor: "background.defaultLight", 
+            mb: 1,
             p: 3, 
-            //borderRadius: 2, 
             width: {xs: "100%", md: "85%"} 
           }}>
           <MarkdownBox markdown={aboutContent.about0} />

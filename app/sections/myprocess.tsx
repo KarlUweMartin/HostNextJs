@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Box, ButtonBase, Container, Typography } from "@mui/material";
 import { useTranslations } from "next-intl";
+import zIndex from "@mui/material/styles/zIndex";
 
 const stages = [
   { label: "VISION", row: 0, column: 0, descriptionKey: "vision" },
@@ -178,7 +179,7 @@ export default function MyProcess() {
   return (
     <Container maxWidth={false} disableGutters>
  
-      <Typography sx={{textAlign: "center", mb: 2}}>{t(`title`)}</Typography>
+      <Typography sx={{textAlign: "center", mb: 3}}>{t(`title`)}</Typography>
       
       <Box
         sx={{
@@ -192,12 +193,12 @@ export default function MyProcess() {
         <Box
           sx={{
             position: "absolute",
-            top: 0,
+            top: -15,
             left: "50%",
-            height: 182,
+            height: 188,
             borderLeft: "1px dotted",
             borderColor: selectedIndex % 2 == 0 ? "border.main" : "border.secondary",
-            zIndex: 2,
+            zIndex: 1,
             pointerEvents: "none",
           }} />
         <Box
@@ -226,6 +227,18 @@ export default function MyProcess() {
               height: 136,
               bgcolor: "border.faded",
               borderRadius: 2,
+              zIndex: 0,
+              transform: `translateX(${offset}px)`,
+              transition: isDragging || isAutomating ? "none" : "transform 333ms ease-in-out",
+            }} />
+          <Box
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: trackInset,
+              width: sliderWidth,
+              height: 136,
+              zIndex: 3,
               transform: `translateX(${offset}px)`,
               transition: isDragging || isAutomating ? "none" : "transform 333ms ease-in-out",
             }}>
@@ -244,6 +257,7 @@ export default function MyProcess() {
                 }}
                 aria-pressed={selectedIndex === index}
                 sx={{
+                  zIndex: 3,
                   position: "absolute",
                   left: sliderPadding + stage.column * columnWidth + (stage.row === 1 ? columnWidth / 2 : 0),
                   top: stage.row === 0 ? 31 : 66,
@@ -276,12 +290,11 @@ export default function MyProcess() {
           height: 100,
           maxWidth: 600,
           mx: { xs: 2, sm: "auto"},
-          my: 4,
+          my: 3,
           px: 2,
           borderRadius: 2,
-          border: "2px dotted",
+          border: "1px dotted",
           borderColor: selectedIndex % 2 === 0 ? "border.main" : "border.secondary",
-          //backgroundColor: selectedIndex % 2 === 0 ? "#352e1e" : "#1b3c59",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
