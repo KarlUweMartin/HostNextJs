@@ -42,6 +42,8 @@ Eine besondere Herausforderung bestand darin, **industrielle Softwarestandards u
 
 ## Q!Vizar – Remote Support für industrielle Wartung
 
+[Offizielle Webseite](https://www.aunovis.de/produkte-digitale-loesungen/qvizar-industrial-remote-support/), [AppStore](https://apps.apple.com/us/app/q-vizar/id6639614429), [Dokumentation](https://docu.qvizar.de/1898EBD7-04CA-4B01-ACA5-73C1D12AAA0F/docs/overview/productsheet.html)
+
 Nach der ersten Projektphase wurde ich aufgrund meiner technischen und organisatorischen Verantwortung zum **Product Owner eines weiteren Projekts** befördert.
 
 Das Projekt entwickelt eine Remote-Support-Lösung für industrielle Wartungsarbeiten mit Fokus auf **Spezialwerkzeuge**. Zuvor war ein Prototyp auf einer Fachmesse präsentiert worden und hatte dort positives Feedback erhalten.
