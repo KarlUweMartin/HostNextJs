@@ -48,10 +48,10 @@ export default function AboutPage() {
                 zIndex: 1 
               }}>
             " Every <span style={{ fontWeight: 'bold', color: '#eda916' }}>THING</span> is an interface! "
-          </Typography>    
+          </Typography>
           <Box sx={{ 
                 textAlign: "center",
-                fontSize: "0.8em",                
+                fontSize: "0.8em",
                 fontStyle: "italic",
                 position: "relative",
                 zIndex: 1,
@@ -61,7 +61,7 @@ export default function AboutPage() {
           </Box>
           <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
             <SineWaveBox 
-              color="#6e95b9"
+              color="#246c8d"
               xDensity={0.12} 
               yDensity={0.12} 
               xAmount={350}
