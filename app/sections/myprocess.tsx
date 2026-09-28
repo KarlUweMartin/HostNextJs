@@ -1,7 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { Box, ButtonBase, Container, Typography } from "@mui/material";
 import { useTranslations } from "next-intl";
-import zIndex from "@mui/material/styles/zIndex";
+
+import VisionIcon from '@mui/icons-material/PsychologyAlt';
+import ResearchIcon from '@mui/icons-material/Biotech';
+import DesignIcon from '@mui/icons-material/Brush';
+import ArchitectureIcon from '@mui/icons-material/Architecture';
+import PrototypeIcon from '@mui/icons-material/PrecisionManufacturing';
+import DevIcon from '@mui/icons-material/Construction';
+import UsabilityIcon from '@mui/icons-material/PersonSearch';
+import ReleaseIcon from '@mui/icons-material/NewReleases';
+import FeedbackIcon from '@mui/icons-material/Feedback';
+import UpdateIcon from '@mui/icons-material/Update';
 
 const stages = [
   { label: "VISION", row: 0, column: 0, descriptionKey: "vision" },
@@ -36,13 +46,38 @@ export default function MyProcess() {
   const [isAutomating, setIsAutomating] = useState(false);
   const [automationRestartKey, setAutomationRestartKey] = useState(0);
 
+  const processIcon = (selectedIndex: number, color: string) => {
+    switch (selectedIndex) {
+      case 1:
+        return <ResearchIcon fontSize="small" sx={{ color }} />;
+      case 2:
+        return <DesignIcon fontSize="small" sx={{ color }} />;
+      case 3:
+        return <ArchitectureIcon fontSize="small" sx={{ color }} />;
+      case 4:
+        return <PrototypeIcon fontSize="small" sx={{ color }} />;
+      case 5:
+        return <DevIcon fontSize="small" sx={{ color }} />;
+      case 6:
+        return <UsabilityIcon fontSize="small" sx={{ color }} />;
+      case 7:
+        return <ReleaseIcon fontSize="small" sx={{ color }} />;
+      case 8:
+        return <FeedbackIcon fontSize="small" sx={{ color }} />;
+      case 9:
+        return <UpdateIcon fontSize="small" sx={{ color }} />;
+
+      default:
+        return <VisionIcon fontSize="small" sx={{ color }} />;
+    }
+  };
+
   useEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
 
     const updateOffset = () => {
-      const centeredOffset = viewport.clientWidth / 2 - trackInset - sliderPadding - (2 * columnWidth + chipWidth / 2);
-      setOffset(Math.min(viewport.clientWidth / 2 - trackInset, Math.max(viewport.clientWidth / 2 - trackInset - sliderWidth, centeredOffset)));
+      setOffset(viewport.clientWidth / 2 - trackInset);
     };
 
     updateOffset();
@@ -179,7 +214,7 @@ export default function MyProcess() {
   return (
     <Container maxWidth={false} disableGutters>
  
-      <Typography sx={{textAlign: "center", mb: 3}}>{t(`title`)}</Typography>
+      <Typography sx={{textAlign: "center", mb: 6}}>{t(`title`)}</Typography>
       
       <Box
         sx={{
@@ -188,7 +223,7 @@ export default function MyProcess() {
           overflow: "visible",
           border: "1px solid",
           borderColor: "border.faded",
-          borderRadius: 0        
+          borderRadius: 0
         }}>
         <Box
           sx={{
@@ -201,6 +236,25 @@ export default function MyProcess() {
             zIndex: 1,
             pointerEvents: "none",
           }} />
+        <Box
+          sx={{
+            position: "absolute",
+            top: -30,
+            left: "50%",
+            width: 32,
+            height: 32,
+            transform: "translate(-50%, -50%)",
+            borderRadius: "50%",
+            border: "1px dotted",
+            borderColor: selectedIndex % 2 == 0 ? "border.main" : "border.secondary",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}>
+          {processIcon(selectedIndex, selectedIndex % 2 == 0 ? "border.main" : "border.secondary")}
+        </Box>
         <Box
           ref={viewportRef}
           onPointerDown={handlePointerDown}
