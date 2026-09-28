@@ -7,7 +7,7 @@ const theme = createTheme({
     mode: "light",    
     border: 
     { 
-      main: "#e7d192",
+      main: "#cf974c",
       secondary: "#529fdd",
       faded: "#141c24"
     },

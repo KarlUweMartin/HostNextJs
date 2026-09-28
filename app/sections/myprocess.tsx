@@ -231,7 +231,7 @@ export default function MyProcess() {
             top: -15,
             left: "50%",
             height: 188,
-            borderLeft: "1px dotted",
+            borderLeft: "1px solid",
             borderColor: selectedIndex % 2 == 0 ? "border.main" : "border.secondary",
             zIndex: 1,
             pointerEvents: "none",
@@ -245,7 +245,7 @@ export default function MyProcess() {
             height: 32,
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
-            border: "1px dotted",
+            border: "1px solid",
             borderColor: selectedIndex % 2 == 0 ? "border.main" : "border.secondary",
             display: "flex",
             alignItems: "center",
@@ -253,7 +253,7 @@ export default function MyProcess() {
             zIndex: 2,
             pointerEvents: "none",
           }}>
-          {processIcon(selectedIndex, selectedIndex % 2 == 0 ? "border.main" : "border.secondary")}
+          {processIcon(selectedIndex, "text.secondary")}
         </Box>
         <Box
           ref={viewportRef}
@@ -347,7 +347,7 @@ export default function MyProcess() {
           my: 3,
           px: 2,
           borderRadius: 2,
-          border: "1px dotted",
+          border: "1px solid",
           borderColor: selectedIndex % 2 === 0 ? "border.main" : "border.secondary",
           display: "flex",
           alignItems: "center",
