@@ -1,8 +1,7 @@
 "use client";
 
-import { Box, Container, Typography, Chip, Stack, IconButton, Collapse } from "@mui/material";
+import { Box, Container, Typography, Chip, Stack, IconButton } from "@mui/material";
 import CodeIcon from '@mui/icons-material/SettingsEthernet';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslations } from "next-intl";
 import { ReactElement } from "react";
 import DrawIcon from '@mui/icons-material/Draw';
@@ -61,7 +60,7 @@ export default function SkillsPage({ id }: { id?: string }){
   
   const skills_management: ChipRow = {
     name: t("roles"),
-    chips: ["Product Owner", "Creative Director", "Scrum Master" ]
+    chips: ["Product Owner", "Scrum Master" ]
   };
   const tools_management: ChipRow = {
     name: t("toolsLabel"),
@@ -131,7 +130,7 @@ export default function SkillsPage({ id }: { id?: string }){
       sx={{
         mb: 4,
         bgcolor: "background.defaultDark",
-        p: 3,
+        p: { xs: 2.5, sm: 4 },
         borderRadius: 2,
         position: "relative",
         overflow: "hidden",
@@ -147,7 +146,7 @@ export default function SkillsPage({ id }: { id?: string }){
           top: "50%",
           transform: "translateY(-50%)",
           pointerEvents: "none",
-          opacity: 0.1,
+          opacity: 0.05,
           zIndex: 0,
         }}
         >
@@ -158,72 +157,50 @@ export default function SkillsPage({ id }: { id?: string }){
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={expanded ? 3 : 0}>
         <Typography variant="h5">
           {title}
-        </Typography>
-        <IconButton
-          onClick={() => setExpanded((prev) => !prev)}
-          title={"Detail"}
-          aria-label={"Detail"}
-          aria-expanded={expanded}
-          size="small"
-        >
-          <ExpandMoreIcon
-            sx={{
-              transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.3s",
-            }}
-          />
-        </IconButton>
+        </Typography>        
       </Stack>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <Box sx={{fontSize: "0.85em"}}>
-          {paragraphs.map((paragraph, index) => <MarkdownBox key={index} markdown={paragraph} />)}
-        </Box>
-      </Collapse>
+      <Box mt={3} sx={{fontSize: "0.75em"}}>
+        {paragraphs.map((paragraph, index) => <MarkdownBox key={index} markdown={paragraph} />)}
+      </Box>
 
-      <Box height={15} />
-
-      <Stack mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        <Typography color="chip.primary" variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
-          {blueChips?.name}
-        </Typography>
-        {blueChips?.chips.map((item, index) => (
-           <Chip
-            size="small"
-            key={index}
-            label={item}
-            sx={{
-              zIndex: 1,
-              backgroundColor: 'chip.primary_offset',
-              color: 'text.secondary',
-            }}
-          >
-            <Typography px={2} variant="body2" sx={{ fontSize: "0.75rem" }}>
-              {item}
+      <Stack spacing={3} sx={{ mt: 4, position: "relative" }}>
+        {[
+          { group: blueChips, color: "chip.primary", borderColor: "chip.primary_offset" },
+          { group: yellowChips, color: "chip.secondary", borderColor: "chip.secondary_offset" },
+        ].filter(({ group }) => group?.chips.length).map(({ group, color, borderColor }) => (
+          <Box key={color}>
+            <Typography
+              variant="subtitle2"
+              color={color}
+              sx={{ mb: 1.25, fontSize: "0.75rem", fontWeight: 500, letterSpacing: "0.04em" }}
+            >
+              {group.name}
             </Typography>
-          </Chip>
-        ))}
-      </Stack>
-
-      <Stack  mt={2} direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-         <Typography variant="subtitle2" sx={{ mr: 1, fontWeight: 600 }}>
-          {yellowChips?.name}
-        </Typography>
-        {yellowChips?.chips.map((item, index) => (
-          <Chip
-            size="small"
-            key={index}
-            label={item}
-            sx={{
-              zIndex: 1,
-              backgroundColor: 'chip.secondary_offset',
-              color: 'text.secondary',
-            }}
-          >
-            <Typography px={2}  variant="body2" sx={{ fontSize: "0.75rem" }}>
-              {item}
-            </Typography>
-          </Chip>
+            <Stack direction="row" flexWrap="wrap" gap={1}>
+              {group.chips.map((item) => (
+                <Chip
+                  key={item}
+                  size="small"
+                  variant="filled"
+                  label={item}
+                  sx={{
+                    height: "auto",
+                    minHeight: 28,
+                    maxWidth: "100%",
+                    backgroundColor: borderColor,
+                    color: "text.secondary",
+                    fontSize: "0.75rem",
+                    "& .MuiChip-label": {
+                      px: 1.25,
+                      py: 0.5,
+                      whiteSpace: "normal",
+                    },
+                  }}
+                />
+              ))}
+            </Stack>
+          </Box>
         ))}
       </Stack>
     </Box>
