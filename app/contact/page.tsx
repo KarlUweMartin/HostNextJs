@@ -46,7 +46,7 @@ export default function ContactPage({ id }: { id?: string }) {
                 onClick={() => window.open(social.href, '_blank')}
                 clickable
                 sx={{
-                  backgroundColor: "#35393f",
+                  backgroundColor: "#242b30",
                   color: "text.secondary",
                   boxShadow: 1,
                   "& .MuiChip-icon": {

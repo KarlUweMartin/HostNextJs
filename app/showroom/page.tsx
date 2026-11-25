@@ -21,6 +21,7 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import { MarkdownBox } from "../components/markdown";
+import { cursorBorderHandlers, cursorBorderSx } from "../components/cursorBorder";
 import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
 
 import showroomHeadDe from "../../src/locales/articles/de/showroom_head.md";
@@ -99,30 +100,18 @@ function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen
   return (
     <Grid item xs={12} sm={4} md={3}>
       <Card
+        {...cursorBorderHandlers}
         sx={{
+          ...cursorBorderSx,
           borderRadius: 2,
           display: "flex",
           flexDirection: "column",
           height: { xs: "auto", sm: "100%" },
-          position: "relative",
           overflow: "hidden",
           color: "common.white",
-          backgroundImage: `url(${imgSrc})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imgSrc})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          border: 1,
-          borderColor: "border.faded",
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            pointerEvents: "none"
-          },
-          "& > *": {
-            position: "relative",
-            zIndex: 1
-          }
         }}
       >
         <FeatureContent body={body} title={title} />

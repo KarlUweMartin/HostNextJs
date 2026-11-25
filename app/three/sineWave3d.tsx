@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { useRef, useMemo, useState, useEffect } from 'react'
+import { useRef, useMemo, useEffect, type RefObject } from 'react'
 import { Canvas, useFrame, ThreeElements } from '@react-three/fiber'
 
 interface SineWaveProps  {
@@ -18,8 +18,13 @@ interface SineWaveProps  {
   timeScale?: number;
 }
 
-function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: [number, number] }) {
+type CursorPosition = [number, number]
+
+function SineWave({ cursorTarget, ...props }: ThreeElements['points'] & SineWaveProps & {
+  cursorTarget: RefObject<CursorPosition | null>
+}) {
   const pointsRef = useRef<THREE.Points>(null!)
+  const cursorPosition = useRef<CursorPosition>([0, 0])
 
   const xDensity = props.xDensity ?? 0.2
   const yDensity = props.yDensity ?? 0.2
@@ -79,8 +84,19 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
     return array
   }, [xAmount, yAmount, baseColor])
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     const time = state.clock.elapsedTime * (props.timeScale ?? 0.1)
+    const cursor = cursorPosition.current
+    const target = cursorTarget.current
+
+    if (target) {
+      cursor[0] = target[0]
+      cursor[1] = target[1]
+    } else {
+      const returnSpeed = 10
+      cursor[0] = THREE.MathUtils.damp(cursor[0], 0, returnSpeed, delta)
+      cursor[1] = THREE.MathUtils.damp(cursor[1], 0, returnSpeed, delta)
+    }
 
     const geometry = pointsRef.current.geometry
     const positionAttribute = geometry.attributes.position
@@ -100,8 +116,8 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
         Math.cos(y * 1 + time * 1.2) * 0.45
 
       // Calculate distance to cursor
-      const dx = x - props.cursorPos[0]
-      const dy = y - props.cursorPos[1]
+      const dx = x - cursor[0]
+      const dy = y - cursor[1]
       const distance = Math.sqrt(dx * dx + dy * dy)
 
       // Apply magnet effect - attract points within radius
@@ -185,13 +201,15 @@ function SineWave(props: ThreeElements['points'] & SineWaveProps & { cursorPos: 
 }
 
 export function SineWaveBox(props: SineWaveProps) {
-  const [cursorPos, setCursorPos] = useState<[number, number]>([0, 0])
+  const cursorTarget = useRef<CursorPosition | null>(null)
 
   useEffect(() => {
     const canvasElement = document.querySelector('canvas')
     if (!canvasElement) return
 
-    const resetCursor = () => setCursorPos([0, 0])
+    const resetCursor = () => {
+      cursorTarget.current = null
+    }
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvasElement.getBoundingClientRect()
@@ -207,8 +225,8 @@ export function SineWaveBox(props: SineWaveProps) {
       const normalizedX = (x / rect.width) * 2 - 1
       const normalizedY = -(y / rect.height) * 2 + 1
 
-      const multiplier = 200
-      setCursorPos([normalizedX * rect.width / multiplier, normalizedY * rect.height / multiplier])
+      const multiplier = 150
+      cursorTarget.current = [normalizedX * rect.width / multiplier, normalizedY * rect.height / multiplier]
     }
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -231,8 +249,8 @@ export function SineWaveBox(props: SineWaveProps) {
       const normalizedX = (x / rect.width) * 2 - 1
       const normalizedY = -(y / rect.height) * 2 + 1
 
-      const multiplier = 90
-      setCursorPos([normalizedX * rect.width / multiplier, normalizedY * rect.height / multiplier])
+      const multiplier = 65
+      cursorTarget.current = [normalizedX * rect.width / multiplier, normalizedY * rect.height / multiplier]
     }
 
     canvasElement.addEventListener('mouseleave', resetCursor)
@@ -252,7 +270,7 @@ export function SineWaveBox(props: SineWaveProps) {
   return (
     <Canvas camera={{ fov: 35 }}>
       <SineWave 
-        cursorPos={cursorPos}
+        cursorTarget={cursorTarget}
         timeScale={props.timeScale} 
         color={props.color} 
         yDensity={props.yDensity} 

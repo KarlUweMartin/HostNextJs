@@ -13,8 +13,8 @@ const theme = createTheme({
     },
     background: {
       default: "#0e0e0f",
-      defaultDark: "#19191b",
-      defaultLight: "#202124",
+      defaultDark: "#15181a",
+      defaultLight: "#15181a",
       blurry: "#32323a52",
       paper: "#35393f"
     },
@@ -64,11 +64,11 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#35393f",
+          backgroundColor: "#15181a",
           color: "#f3ede3",
           ":hover": {
-            backgroundColor: "#535861",
-            color: "#eda916",
+            backgroundColor: "#15181a",
+            color: "#070604",
           },
         },     
       },
@@ -76,7 +76,7 @@ const theme = createTheme({
     MuiIconButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#35393f",
+          backgroundColor: "#242b30",
           color: "#f3ede3",
           ":hover": {
             backgroundColor: "#535861",

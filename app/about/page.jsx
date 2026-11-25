@@ -53,34 +53,35 @@ export default function AboutPage() {
                 fontSize: "0.8em",
                 fontStyle: "italic",
                 position: "relative",
-                zIndex: 1,
-                mt: 3
+                zIndex: 1,         
               }}>
-            <MarkdownBox markdown={aboutContent.about3} />
+       <MarkdownBox markdown={aboutContent.about3} />
           </Box>
-          <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
+          <Box sx={{ background: "rgb(15, 15, 15)", position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
             <SineWaveBox 
-              color="#5d6b80"
-              xDensity={0.12} 
-              yDensity={0.12} 
+              color="#2e7197"
+              xDensity={0.15} 
+              yDensity={0.15} 
               xAmount={350}
               yAmount={50}
               timeScale={.1}
             />
           </Box>
         </Box>
-
+        <Box sx={{ opacity: 0.7, fontStyle: "italic", fontSize: "0.75em", mx: "auto", p: 3, width: {xs: "100%", md: "85%"} }}>
+   
+        </Box>
         <Stack 
           direction={{ xs: "column", sm: "row" }} 
           spacing={3} 
           sx={{
             fontSize: "0.8em",
             mx: "auto", 
-            mt: 3, 
+            mt: 1, 
             mb: 1,
             p: 3, 
             width: {xs: "100%", md: "85%"} 
-          }}>
+          }}>                 
           <MarkdownBox markdown={aboutContent.about0} />
           <MarkdownBox markdown={aboutContent.about1} />
         </Stack>
