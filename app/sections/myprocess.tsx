@@ -12,6 +12,7 @@ import UsabilityIcon from '@mui/icons-material/PersonSearch';
 import ReleaseIcon from '@mui/icons-material/NewReleases';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import UpdateIcon from '@mui/icons-material/Update';
+import { cursorBorderHandlers, cursorBorderSx } from "../components/cursorBorder";
 
 const stages = [
   { label: "VISION", row: 0, column: 0, descriptionKey: "vision" },
@@ -79,26 +80,26 @@ export default function MyProcess() {
   const processIcon = (selectedIndex: number, color: string) => {
     switch (selectedIndex) {
       case 1:
-        return <ResearchIcon fontSize="small" sx={{ color }} />;
+        return <ResearchIcon sx={{ color }} />;
       case 2:
-        return <DesignIcon fontSize="small" sx={{ color }} />;
+        return <DesignIcon sx={{ color }} />;
       case 3:
-        return <ArchitectureIcon fontSize="small" sx={{ color }} />;
+        return <ArchitectureIcon sx={{ color }} />;
       case 4:
-        return <PrototypeIcon fontSize="small" sx={{ color }} />;
+        return <PrototypeIcon sx={{ color }} />;
       case 5:
-        return <DevIcon fontSize="small" sx={{ color }} />;
+        return <DevIcon sx={{ color }} />;
       case 6:
-        return <UsabilityIcon fontSize="small" sx={{ color }} />;
+        return <UsabilityIcon sx={{ color }} />;
       case 7:
-        return <ReleaseIcon fontSize="small" sx={{ color }} />;
+        return <ReleaseIcon sx={{ color }} />;
       case 8:
-        return <FeedbackIcon fontSize="small" sx={{ color }} />;
+        return <FeedbackIcon sx={{ color }} />;
       case 9:
-        return <UpdateIcon fontSize="small" sx={{ color }} />;
+        return <UpdateIcon sx={{ color }} />;
 
       default:
-        return <VisionIcon fontSize="small" sx={{ color }} />;
+        return <VisionIcon sx={{ color }} />;
     }
   };
 
@@ -224,16 +225,24 @@ export default function MyProcess() {
   return (
     <Container maxWidth={false} disableGutters>
  
-      <Typography sx={{textAlign: "center", mb: 6}}>{t(`title`)}</Typography>
+      <Typography sx={{textAlign: "center", mb: 10}}>{t(`title`)}</Typography>
       
       <Box
+        {...cursorBorderHandlers}
         sx={{
+          ...cursorBorderSx,
+           "&::after": {
+             ...cursorBorderSx["&::after"],
+             borderInline: "none",
+           },
+           "@supports (mask-composite: exclude)": {
+             "&::before": {
+               ...cursorBorderSx["@supports (mask-composite: exclude)"]["&::before"],
+               padding: "1px 0",
+             },
+           },
           position: "relative",
           height: 150,
-          overflow: "visible",
-          borderTop: "1px solid",
-          borderBottom: "1px solid",
-          borderColor: "border.faded",
           borderRadius: 0
         }}>
         <Box
@@ -250,10 +259,10 @@ export default function MyProcess() {
         <Box
           sx={{
             position: "absolute",
-            top: -30,
+            top: -40,
             left: "50%",
-            width: 32,
-            height: 32,
+            width: 52,
+            height: 52,
             transform: "translate(-50%, -50%)",
             borderRadius: "50%",
             border: "1px solid",
@@ -263,6 +272,7 @@ export default function MyProcess() {
             justifyContent: "center",
             zIndex: 2,
             pointerEvents: "none",
+            backgroundColor: selectedIndex % 2 === 0 ? "#221e13" : "#102435",
           }}>
           {processIcon(selectedIndex, "text.secondary")}
         </Box>
@@ -323,6 +333,7 @@ export default function MyProcess() {
                 aria-pressed={selectedIndex === index}
                 sx={{
                   zIndex: 3,
+                  fontFamily: "Consolas, monospace",
                   position: "absolute",
                   left: sliderPadding + stage.column * columnWidth + (stage.row === 1 ? columnWidth / 2 : 0),
                   top: stage.row === 0 ? 31 : 66,
@@ -364,6 +375,7 @@ export default function MyProcess() {
           alignItems: "center",
           justifyContent: "center",
           boxSizing: "border-box",
+          backgroundColor: selectedIndex % 2 === 0 ? "#221e13" : "#102435",
         }}>
         <Typography sx={{ color: "text.secondary", textAlign: "center" }}>
           {t(`descriptions.${stages[selectedIndex].descriptionKey}`)}

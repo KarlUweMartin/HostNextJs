@@ -1,6 +1,7 @@
 "use client";
 
 import { Box, Container, Typography, Chip, Stack, IconButton, Link } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import CodeIcon from '@mui/icons-material/SettingsEthernet';
 import { useTranslations } from "next-intl";
 import { ReactElement } from "react";
@@ -167,9 +168,9 @@ export default function SkillsPage({ id }: { id?: string }){
 
       <Stack spacing={3} sx={{ mt: 4, position: "relative" }}>
         {[
-          { group: blueChips, color: "chip.primary", borderColor: "chip.primary_offset" },
-          { group: yellowChips, color: "chip.secondary", borderColor: "chip.secondary_offset" },
-        ].filter(({ group }) => group?.chips.length).map(({ group, color, borderColor }) => (
+          { group: blueChips, color: "chip.primary", chipColor: "primary_offset" as const },
+          { group: yellowChips, color: "chip.secondary", chipColor: "secondary_offset" as const },
+        ].filter(({ group }) => group?.chips.length).map(({ group, color, chipColor }) => (
           <Box key={color}>
             <Typography
               variant="subtitle2"
@@ -185,19 +186,22 @@ export default function SkillsPage({ id }: { id?: string }){
                   size="small"
                   variant="filled"
                   label={item}
-                  sx={{
+                  sx={(theme) => ({
                     height: "auto",
                     minHeight: 28,
                     maxWidth: "100%",
-                    backgroundColor: borderColor,
+                    backgroundColor: alpha(theme.palette.chip[chipColor], 0.5),
+                    border: "1px solid",
+                    borderColor: theme.palette.chip[chipColor],
                     color: "text.secondary",
+                    fontFamily: "Consolas, monospace",
                     fontSize: "0.75rem",
                     "& .MuiChip-label": {
                       px: 1.25,
                       py: 0.5,
                       whiteSpace: "normal",
                     },
-                  }}
+                  })}
                 />
               ))}
             </Stack>

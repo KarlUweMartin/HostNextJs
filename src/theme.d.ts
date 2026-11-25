@@ -16,6 +16,11 @@ declare module "@mui/material/styles" {
       secondary: string;
     };
 
+    chip: {
+      primary_offset: string;
+      secondary_offset: string;
+    };
+
     text: {
       faded: string;
     };
