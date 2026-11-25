@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Box, ButtonBase, Container, Typography } from "@mui/material";
 import { useTranslations } from "next-intl";
 
@@ -36,15 +36,45 @@ const sliderWidth = trackWidth + sliderPadding * 2;
 export default function MyProcess() {
   const t = useTranslations("Process");
   const viewportRef = useRef<HTMLDivElement>(null);
+  const trackBackgroundRef = useRef<HTMLDivElement>(null);
+  const trackContentRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
   const dragRef = useRef({ pointerStart: 0, offsetStart: 0 });
   const selectedIndexRef = useRef(0);
   const automationRunRef = useRef(0);
   const restartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [offset, setOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [isAutomating, setIsAutomating] = useState(false);
   const [automationRestartKey, setAutomationRestartKey] = useState(0);
+
+  const updateTrackOffset = useCallback((nextOffset: number) => {
+    offsetRef.current = nextOffset;
+    const transform = `translateX(${nextOffset}px)`;
+    if (trackBackgroundRef.current) trackBackgroundRef.current.style.transform = transform;
+    if (trackContentRef.current) trackContentRef.current.style.transform = transform;
+  }, []);
+
+  const selectClosestStage = useCallback((nextOffset: number) => {
+    const viewportWidth = viewportRef.current?.clientWidth ?? trackWidth;
+    const center = viewportWidth / 2;
+    let closestIndex = selectedIndexRef.current;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    stages.forEach((stage, index) => {
+      const rowOffset = stage.row === 1 ? columnWidth / 2 : 0;
+      const stageCenter = trackInset + nextOffset + sliderPadding + rowOffset + stage.column * columnWidth + chipWidth / 2;
+      const distance = Math.abs(stageCenter - center);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    if (selectedIndexRef.current === closestIndex) return;
+    selectedIndexRef.current = closestIndex;
+    setSelectedIndex(closestIndex);
+  }, []);
 
   const processIcon = (selectedIndex: number, color: string) => {
     switch (selectedIndex) {
@@ -77,14 +107,14 @@ export default function MyProcess() {
     if (!viewport) return;
 
     const updateOffset = () => {
-      setOffset(viewport.clientWidth / 2 - trackInset);
+      updateTrackOffset(viewport.clientWidth / 2 - trackInset);
     };
 
     updateOffset();
     const observer = new ResizeObserver(updateOffset);
     observer.observe(viewport);
     return () => observer.disconnect();
-  }, []);
+  }, [updateTrackOffset]);
 
   useEffect(() => {
     const runId = automationRunRef.current + 1;
@@ -107,8 +137,8 @@ export default function MyProcess() {
 
           const progress = Math.min((performance.now() - startTime) / duration, 1);
           const nextOffset = fromOffset + (toOffset - fromOffset) * progress;
-          setOffset(nextOffset);
           selectClosestStage(nextOffset);
+          updateTrackOffset(nextOffset);
 
           if (progress === 1) return true;
         }
@@ -117,9 +147,9 @@ export default function MyProcess() {
       };
 
       if (automationRestartKey === 0) {
-        setOffset(rightOffset);
         selectClosestStage(rightOffset);
-      } else if (!(await animateSegment(offset, rightOffset, 500))) {
+        updateTrackOffset(rightOffset);
+      } else if (!(await animateSegment(offsetRef.current, rightOffset, 500))) {
         return;
       }
 
@@ -134,7 +164,7 @@ export default function MyProcess() {
       automationRunRef.current += 1;
       setIsAutomating(false);
     };
-  }, [automationRestartKey]);
+  }, [automationRestartKey, selectClosestStage, updateTrackOffset]);
 
   useEffect(() => () => {
     if (restartTimerRef.current) clearTimeout(restartTimerRef.current);
@@ -147,33 +177,13 @@ export default function MyProcess() {
     return Math.min(maximumOffset, Math.max(minimumOffset, nextOffset));
   };
 
-  const selectClosestStage = (nextOffset: number) => {
-    const viewportWidth = viewportRef.current?.clientWidth ?? trackWidth;
-    const center = viewportWidth / 2;
-    let closestIndex = selectedIndex;
-    let closestDistance = Number.POSITIVE_INFINITY;
-
-    stages.forEach((stage, index) => {
-      const rowOffset = stage.row === 1 ? columnWidth / 2 : 0;
-      const stageCenter = trackInset + nextOffset + sliderPadding + rowOffset + stage.column * columnWidth + chipWidth / 2;
-      const distance = Math.abs(stageCenter - center);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    selectedIndexRef.current = closestIndex;
-    setSelectedIndex(closestIndex);
-  };
-
   const selectStage = (index: number) => {
     const viewportWidth = viewportRef.current?.clientWidth ?? trackWidth;
     const stage = stages[index];
     const rowOffset = stage.row === 1 ? columnWidth / 2 : 0;
     const centeredOffset = viewportWidth / 2 - trackInset - sliderPadding - rowOffset - stage.column * columnWidth - chipWidth / 2;
 
-    setOffset(clampOffset(centeredOffset));
+    updateTrackOffset(clampOffset(centeredOffset));
     selectedIndexRef.current = index;
     setSelectedIndex(index);
   };
@@ -191,7 +201,7 @@ export default function MyProcess() {
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     pauseAutomation();
-    dragRef.current = { pointerStart: event.clientX, offsetStart: offset };
+    dragRef.current = { pointerStart: event.clientX, offsetStart: offsetRef.current };
     event.currentTarget.setPointerCapture(event.pointerId);
     setIsDragging(true);
   };
@@ -200,8 +210,8 @@ export default function MyProcess() {
     if (!isDragging) return;
     pauseAutomation();
     const nextOffset = clampOffset(dragRef.current.offsetStart + event.clientX - dragRef.current.pointerStart);
-    setOffset(nextOffset);
     selectClosestStage(nextOffset);
+    updateTrackOffset(nextOffset);
   };
 
   const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -274,6 +284,7 @@ export default function MyProcess() {
             userSelect: "none",
           }}>
           <Box
+            ref={trackBackgroundRef}
             sx={{
               position: "absolute",
               top: 0,
@@ -283,10 +294,10 @@ export default function MyProcess() {
               bgcolor: "border.faded",
               borderRadius: 2,
               zIndex: 0,
-              transform: `translateX(${offset}px)`,
               transition: isDragging || isAutomating ? "none" : "transform 333ms ease-in-out",
             }} />
           <Box
+            ref={trackContentRef}
             sx={{
               position: "absolute",
               top: 0,
@@ -294,7 +305,6 @@ export default function MyProcess() {
               width: sliderWidth,
               height: 136,
               zIndex: 3,
-              transform: `translateX(${offset}px)`,
               transition: isDragging || isAutomating ? "none" : "transform 333ms ease-in-out",
             }}>
             {stages.map((stage, index) => (
