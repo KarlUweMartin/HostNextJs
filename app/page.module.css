@@ -1,0 +1,21 @@
+@media (prefers-reduced-motion: no-preference) {
+  .revealed {
+    animation: reveal 650ms ease-in;
+  }
+
+  .revealed:focus-within {
+    animation-duration: 0s;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

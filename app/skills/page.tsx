@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Typography, Chip, Stack, IconButton } from "@mui/material";
+import { Box, Container, Typography, Chip, Stack, IconButton, Link } from "@mui/material";
 import CodeIcon from '@mui/icons-material/SettingsEthernet';
 import { useTranslations } from "next-intl";
 import { ReactElement } from "react";
@@ -14,6 +14,7 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 import React from "react";
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import { cursorBorderHandlers, cursorBorderSx } from "../components/cursorBorder";
 import { MarkdownBox } from "../components/markdown";
 import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
 import uxDe from "../../src/locales/articles/de/skills_ux.md";
@@ -123,19 +124,19 @@ export default function SkillsPage({ id }: { id?: string }){
     yellowChips?: ChipRow;
     bgIcon?: ReactElement
   }) => {
-    const [expanded, setExpanded] = React.useState(false);
 
     return (
     <Box
+      {...cursorBorderHandlers}
       sx={{
         mb: 4,
         bgcolor: "background.defaultDark",
         p: { xs: 2.5, sm: 4 },
         borderRadius: 2,
-        position: "relative",
         overflow: "hidden",
         width: { xs: "100%", md: "85%" },
         ml: { xs: 0, md: articleIndex % 2 === 0 ? 0: "auto" },
+        ...cursorBorderSx,
       }}
     >
       {bgIcon && 
@@ -154,7 +155,7 @@ export default function SkillsPage({ id }: { id?: string }){
         </Box>
       }
 
-      <Stack direction="row" alignItems="center" justifyContent="space-between" mb={expanded ? 3 : 0}>
+      <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Typography variant="h5">
           {title}
         </Typography>        
@@ -288,6 +289,16 @@ export default function SkillsPage({ id }: { id?: string }){
           paragraphs={[skillsContent.devops]}
           yellowChips={tools_devops}
         />
+        
+        <Typography variant="body2" color="text.secondary">
+          {t.rich("cvDetails", {
+            cvLink: (text) => (
+              <Link href="/cv" target="_blank" rel="noopener noreferrer">
+                {text}
+              </Link>
+            ),
+          })}
+        </Typography>
 
       </Container>
     </Box>

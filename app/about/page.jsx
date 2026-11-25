@@ -1,7 +1,9 @@
 "use client";
 
 import { Box, Container, Typography, Stack } from "@mui/material";
+import { useTranslations } from "next-intl";
 import { SineWaveBox } from "../three/sineWave3d";
+import { cursorBorderHandlers, cursorBorderSx } from "../components/cursorBorder";
 import { MarkdownBox } from "../components/markdown";
 import MyProcess from "../sections/myprocess";
 import { useAppLocale } from "../../src/i18n/ClientIntlProvider";
@@ -20,23 +22,20 @@ const aboutContentByLocale = {
 };
 
 export default function AboutPage() {
-
   const { locale } = useAppLocale();
   const aboutContent = aboutContentByLocale[locale];
 
   return (
     <Box>
       <Container maxWidth="lg" sx={{ py: 6 }}>
-        <Box sx={{
+        <Box {...cursorBorderHandlers} sx={{
+          ...cursorBorderSx,
           width: "85%", 
           mx: "auto",
           p: 6,
-          border: "0.1rem solid",
-          borderColor: "border.secondary",
           borderBottomLeftRadius: 100,
           borderBottomRightRadius: 100,
           borderTopRightRadius: 100,
-          position: "relative",
           overflow: "hidden" }}>
           <Typography 
               color="text.secondary"
@@ -61,7 +60,7 @@ export default function AboutPage() {
           </Box>
           <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
             <SineWaveBox 
-              color="#246c8d"
+              color="#5d6b80"
               xDensity={0.12} 
               yDensity={0.12} 
               xAmount={350}

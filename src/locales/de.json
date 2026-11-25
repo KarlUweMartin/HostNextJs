@@ -3,6 +3,7 @@
     "days": "Tag/e"
   },
   "Skills": {
+    "cvDetails": "Weitere Informationen zu meiner Berufserfahrung und meinen Qualifikationen findest Du in meinem <cvLink>Lebenslauf</cvLink>.",
     "head": "Skills",
     "devTools": "Entwicklung",
     "programming": "Programmierung",
@@ -24,8 +25,7 @@
   },
   "Contact": {
     "title": "Kontakt",
-    "tagline": "Du hast eine Frage oder möchtest zusammenarbeiten?",
-    "nosocial": "… falls du dich wunderst: Ich bin nicht in sozialen Medien aktiv. Frag mich gerne, warum! 😉"
+    "tagline": "Du hast eine Frage oder möchtest zusammenarbeiten?"
   },
   "Process": {
     "title": "Mein Kreativ-Prozess",

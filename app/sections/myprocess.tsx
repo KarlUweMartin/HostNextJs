@@ -221,7 +221,8 @@ export default function MyProcess() {
           position: "relative",
           height: 150,
           overflow: "visible",
-          border: "1px solid",
+          borderTop: "1px solid",
+          borderBottom: "1px solid",
           borderColor: "border.faded",
           borderRadius: 0
         }}>

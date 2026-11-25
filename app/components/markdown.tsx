@@ -108,6 +108,10 @@ export function MarkdownBox({ markdown }: { markdown: string }) {
           backgroundColor: "#fff",
           my: 3,
         },
+        "& hr": {
+          my: 5,
+          color: "border.secondary",
+        }
       }}
     >
       <ReactMarkdown remarkPlugins={[remarkGfm]}>
