@@ -1,0 +1,1 @@
+Stilisierte OpenStreetMap Integration mit einer schnell und einfach einsetzbaren Distanzmessung.

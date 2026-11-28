@@ -8,11 +8,10 @@ import {
   Grid,
   Card,
   IconButton,
-  Stack,
-  ToggleButton,
-  ToggleButtonGroup
+  Stack
 } from "@mui/material";
 import { IframeModal } from "../components/iframeModal";
+import { OpenStreetMapModal } from "../openStreetMap/openStreetMapModal";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { WaterLevelModal } from "../components/waterlevelModal";
 import PlayIcon from '@mui/icons-material/PlayArrow';
@@ -42,6 +41,8 @@ import cubePuzzleDescriptionDe from "../../src/locales/articles/de/cube_puzzle_d
 import cubePuzzleDescriptionEn from "../../src/locales/articles/en/cube_puzzle_description.md";
 import droneSimDescriptionDe from "../../src/locales/articles/de/drone_sim_description.md";
 import droneSimDescriptionEn from "../../src/locales/articles/en/drone_sim_description.md";
+import osmDescriptionDe from "../../src/locales/articles/de/osm_description.md";
+import osmDescriptionEn from "../../src/locales/articles/en/osm_description.md";
 
 const showroomContentByLocale = {
   de: {
@@ -54,6 +55,7 @@ const showroomContentByLocale = {
     flutterDescription: flutterDescriptionDe,
     cubePuzzleDescription: cubePuzzleDescriptionDe,
     droneSimDescription: droneSimDescriptionDe,
+    openStreetMapDescription: osmDescriptionDe,
   },
   en: {
     showroomHead: showroomHeadEn,
@@ -65,6 +67,7 @@ const showroomContentByLocale = {
     flutterDescription: flutterDescriptionEn,
     cubePuzzleDescription: cubePuzzleDescriptionEn,
     droneSimDescription: droneSimDescriptionEn,
+    openStreetMapDescription: osmDescriptionEn,
   },
 } as const;
 
@@ -81,18 +84,19 @@ function FeatureContent({ title, body }: { title: string; body: string }) {
   );
 }
 
-function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen }: { 
+function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen, modalOnMobile = false }: {
   title: string; 
   body: string; 
   href?: string; 
   git?: string;
-  imgSrc: string; 
+  imgSrc?: string;
   tags: string[];
   selectedFilters: string[];
   onOpen?: (href: string, title: string) => void;
+  modalOnMobile?: boolean;
 }) {
   const isMobile = useMediaQuery("(max-width:1000px)", { noSsr: true });
-  const showModal = onOpen && !isMobile;
+  const showModal = onOpen && (!isMobile || modalOnMobile);
   const isVisible = tags.some((tag) => selectedFilters.includes(tag));
 
   if (!isVisible) return null;
@@ -109,7 +113,9 @@ function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen
           height: { xs: "auto", sm: "100%" },
           overflow: "hidden",
           color: "common.white",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imgSrc})`,
+          backgroundImage: imgSrc
+            ? `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imgSrc})`
+            : undefined,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -150,12 +156,13 @@ function Feature({ title, body, href, git, imgSrc, tags, selectedFilters, onOpen
 
 
 export default function ShowroomPage({ id }: { id?: string }) {
-  const filterOptions = ["Three.js", "React", "Unity/WebGL"];
+  const filterOptions = ["Three.js", "React", "Unity/WebGL", "OpenStreetMap"];
   const [selectedFilters, setSelectedFilters] = React.useState<string[]>(filterOptions);
 
   const [iframeOpen, setIframeOpen] = React.useState(false);
   const [iframeUrl, setIframeUrl] = React.useState<string | null>(null);
   const [iframeTitle, setIframeTitle] = React.useState<string | undefined>(undefined);
+  const [mapOpen, setMapOpen] = React.useState(false);
 
   const openIframe = (url: string, title?: string) => {
     setIframeTitle(title);
@@ -200,7 +207,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
           <MarkdownBox markdown={showroomContent.showroomDisclaimer} />
         </Box>
 
-        <ToggleButtonGroup
+        {/*<ToggleButtonGroup
           value={selectedFilters}
           onChange={(_, filters: string[]) => setSelectedFilters(filters)}
           aria-label="Showroom filters"
@@ -212,7 +219,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
               {filter}
             </ToggleButton>
           ))}
-        </ToggleButtonGroup>
+        </ToggleButtonGroup>*/}
 
         <Grid container spacing={2} sx={{ mb: 3, mt: 3 }}>
 
@@ -249,6 +256,17 @@ export default function ShowroomPage({ id }: { id?: string }) {
               tags={["React"]}
               selectedFilters={selectedFilters}
               onOpen={openWaterLevel}
+          />
+
+          <Feature
+              title="OSM Distance Tool"
+              body={showroomContent.openStreetMapDescription}
+              href={"https://www.openstreetmap.org/"}
+              tags={["React", "OpenStreetMap"]}
+              imgSrc={"/osm_distance.png"}
+              selectedFilters={selectedFilters}
+              onOpen={() => setMapOpen(true)}
+              modalOnMobile
           />
 
           <Feature
@@ -305,6 +323,7 @@ export default function ShowroomPage({ id }: { id?: string }) {
         </Grid>
       </Container>
       <IframeModal open={iframeOpen} url={iframeUrl} title={iframeTitle} onClose={closeIframe} />
+      <OpenStreetMapModal open={mapOpen} onClose={() => setMapOpen(false)} />
       <WaterLevelModal open={waterOpen} title={"Water Levels - Rhein/Neckar"} onClose={closeWaterLevel} />
     </Box>
   );

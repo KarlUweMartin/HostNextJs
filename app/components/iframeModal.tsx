@@ -11,25 +11,29 @@ import {
   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { openStreetMapColors } from "../theme";
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 
 type IframeModalProps = {
   open: boolean;
-  url: string | null; 
+  url?: string | null;
   title?: string;
   onClose: () => void;
   unmountOnClose?: boolean;
+  children?: React.ReactNode;
 };
 
 export function IframeModal({
   open,
-  url,
+  url = null,
   title,
   onClose,
   unmountOnClose = true,
+  children,
 }: IframeModalProps) {
   const [loading, setLoading] = React.useState(false);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (open && url) setLoading(true);
@@ -38,6 +42,10 @@ export function IframeModal({
   const shouldRenderIframe = open || !unmountOnClose;
 
   function useFullscreen() {
+    if (children) {
+      contentRef.current?.requestFullscreen?.();
+      return;
+    }
     if (!iframeRef.current) return;
 
     try {
@@ -62,16 +70,16 @@ export function IframeModal({
     slotProps={{
       backdrop: {
         sx: {
-          backgroundColor: "rgba(0, 0, 0, 0.75)",
+          backgroundColor: openStreetMapColors.modal.backdrop,
           backdropFilter: "blur(6px)",
         },
       },
     }}
     PaperProps={{
       sx: {
-        minWidth: 1000,
+        minWidth: "min(1000px, calc(100% - 64px))",
         height: "85vh",
-        backgroundColor: "background.defaultLight",
+        backgroundColor: openStreetMapColors.modal.surface,
         borderRadius: 1,
         overflow: "hidden",
       },
@@ -94,14 +102,14 @@ export function IframeModal({
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
           <IconButton 
-              sx={{ backgroundColor: "background.defaultLight" }}
+              sx={{ backgroundColor: openStreetMapColors.modal.surface }}
               onClick={useFullscreen} 
               aria-label="Fullscreen" 
               size="small">
             <WebAssetIcon />
           </IconButton>
           <IconButton 
-              sx={{ backgroundColor: "background.defaultLight" }} 
+              sx={{ backgroundColor: openStreetMapColors.modal.surface }}
               onClick={onClose} 
               aria-label="Close" 
               size="small">
@@ -110,38 +118,41 @@ export function IframeModal({
         </Box>
       </DialogTitle>
 
-      <DialogContent sx={{ p: 0, position: "relative", height: "100%" }}>
-        {loading && (
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              bgcolor: "background.defaultLight",
-              zIndex: 1,
-            }}
-          >
-            <CircularProgress />
-          </Box>
-        )}
+      <DialogContent sx={{ p: 0, display: "flex", minHeight: 0 }}>
+        <Box ref={contentRef} sx={{ position: "relative", flex: 1, minWidth: 0, minHeight: 0 }}>
+          {loading && (
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: openStreetMapColors.modal.surface,
+                zIndex: 1,
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
 
-        {shouldRenderIframe && url ? (
-          <Box<'iframe'>
-            component="iframe"
-            ref={iframeRef}
-            key={url}
-            src={url}
-            onLoad={() => setLoading(false)}
-            sx={{ width: "100%", height: "100%", border: "none", display: "block", backgroundColor: "background.default" }}
-            allow="clipboard-read; clipboard-write; fullscreen"
-          />
-        ) : (
-          <Box sx={{ p: 3 }}>
-            <Typography color="text.secondary">No URL selected.</Typography>
-          </Box>
-        )}
+          {children ?? (shouldRenderIframe && url ? (
+            <Box<'iframe'>
+              component="iframe"
+              ref={iframeRef}
+              key={url}
+              src={url}
+              title={title ?? "Embedded content"}
+              onLoad={() => setLoading(false)}
+              sx={{ width: "100%", height: "100%", border: "none", display: "block", backgroundColor: openStreetMapColors.modal.iframeBackground }}
+              allow="clipboard-read; clipboard-write; fullscreen"
+            />
+          ) : (
+            <Box sx={{ p: 3 }}>
+              <Typography color={openStreetMapColors.modal.emptyText}>No URL selected.</Typography>
+            </Box>
+          ))}
+        </Box>
       </DialogContent>
     </Dialog>
   );

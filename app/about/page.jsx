@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Container, Typography, Stack } from "@mui/material";
-import { useTranslations } from "next-intl";
 import { SineWaveBox } from "../three/sineWave3d";
 import { cursorBorderHandlers, cursorBorderSx } from "../components/cursorBorder";
 import { MarkdownBox } from "../components/markdown";
@@ -55,7 +54,7 @@ export default function AboutPage() {
                 position: "relative",
                 zIndex: 1,         
               }}>
-       <MarkdownBox markdown={aboutContent.about3} />
+          <MarkdownBox markdown={aboutContent.about3} />
           </Box>
           <Box sx={{ background: "rgb(15, 15, 15)", position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
             <SineWaveBox 
@@ -68,7 +67,7 @@ export default function AboutPage() {
             />
           </Box>
         </Box>
-        <Box sx={{ opacity: 0.7, fontStyle: "italic", fontSize: "0.75em", mx: "auto", p: 3, width: {xs: "100%", md: "85%"} }}>
+        <Box sx={{ opacity: 0.7, fontStyle: "italic", fontSize: "0.75em", mx: "auto",  width: {xs: "100%", md: "85%"} }}>
    
         </Box>
         <Stack 
@@ -76,8 +75,7 @@ export default function AboutPage() {
           spacing={3} 
           sx={{
             fontSize: "0.8em",
-            mx: "auto", 
-            mt: 1, 
+            mx: "auto",
             mb: 1,
             p: 3, 
             width: {xs: "100%", md: "85%"} 

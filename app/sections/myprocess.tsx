@@ -250,7 +250,7 @@ export default function MyProcess() {
             position: "absolute",
             top: -15,
             left: "50%",
-            height: 188,
+            height: 184,
             borderLeft: "1px solid",
             borderColor: selectedIndex % 2 == 0 ? "border.main" : "border.secondary",
             zIndex: 1,
